@@ -1,3 +1,8 @@
 # Northcoders News API
 
-For instructions, please head over to [L2C NC News](https://l2c.northcoders.com/courses/be/nc-news).
+
+In order to connect to the database you will need to set local variables for PGDATABASE.
+
+Please create the folowing files:
+.env.test
+.env.dev 
