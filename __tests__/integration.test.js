@@ -3,12 +3,13 @@ const seed = require("../db/seeds/seed");
 const testData = require("../db/data/test-data");
 const request = require("supertest");
 const app = require("../app");
+const endpoints = require('../endpoints.json')
 
 beforeEach(() => seed(testData));
 afterAll(() => db.end());
 
 
-//Invalid Endpoint
+// Invalid Endpoint
 
 describe("/*", () => {
 
@@ -24,8 +25,21 @@ describe("/*", () => {
   
 });
 
+// api
 
-//api/topics
+describe("/api", () => {
+
+  test("GET: Requests to this endpoint should respond with an object containing all endpoints with a description", () => {
+    return request(app)
+    .get("/api")
+    .then(({body})=>{
+      expect(body).toEqual(endpoints)
+    })
+  })
+
+});
+
+// api/topics
 
 describe("/api/topics", () => {
 
