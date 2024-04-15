@@ -1,4 +1,14 @@
-const {findArticle} = require('../models/articles')
+const {findArticle, findArticles} = require('../models/articles')
+
+function getArticles(req,res,next) {
+  return findArticles().then(({rows})=>{
+    const articles = rows
+    res.status(200).send({articles})
+  })
+  .catch((err)=>{
+    next(err)
+  })
+}
 
 function getArticle(req,res,next) {
   const {article_id} = req.params
@@ -14,4 +24,4 @@ function getArticle(req,res,next) {
   })
 }
 
-module.exports = {getArticle}
+module.exports = {getArticle, getArticles}
