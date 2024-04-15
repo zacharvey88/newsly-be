@@ -2,6 +2,7 @@ const express = require("express")
 const app = express()
 const endpoints = require("./endpoints.json")
 const {getTopics} = require('./controllers/topics')
+const {getArticle} = require('./controllers/articles')
 
 
 //ENDPOINTS
@@ -11,6 +12,8 @@ app.get("/api", (req,res,next)=>{
 })
 
 app.get("/api/topics", getTopics)
+
+app.get("/api/articles/:article_id", getArticle)
 
 //ERROR HANDLING
 
@@ -26,7 +29,7 @@ app.use((err, req, res, next) => {
 
 app.use((err, req, res, next) => {
   if (err.code === "22P02") {
-    res.status(400).send({ msg: "Bad Request" });
+    res.status(400).send({ msg: "Bad request" });
   } else next(err);
 });
 
