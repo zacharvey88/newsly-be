@@ -61,3 +61,48 @@ describe("/api/topics", () => {
   })
 
 });
+
+// api/articles/:article_id
+
+describe("/api/articles/:article_id", () => {
+
+  test("GET: Requests to this endpoint should respond with single object with an id matching the request and the following properties; author, title, article_id, body ,topic, created_at, votes, article_img_url", () => {
+    return request(app)
+    .get("/api/articles/3")
+    .expect(200)
+    .then(({body})=>{
+      const {article} = body
+      expect(article).toMatchObject({
+        article_id: expect.any(Number),
+        title: expect.any(String),
+        topic: expect.any(String),
+        author: expect.any(String),
+        body: expect.any(String),
+        created_at: expect.any(String),
+        votes: expect.any(Number),
+        article_img_url:expect.any(String)
+      })
+    })
+  })
+
+  test("GET ERROR 404: Requests that return no results due to a non-existent ID should return a 404 error with a relevant message", () => {
+    return request(app)
+    .get("/api/articles/666")
+    .expect(404)
+    .then(({body})=>{
+      const {msg} = body
+      expect(msg).toBe("Not found")
+    })
+  })
+
+  test("GET ERROR 400: Requests that contain an invalid ID should return a 400 error with a relevant message", () => {
+    return request(app)
+    .get("/api/articles/not-a-number")
+    .expect(400)
+    .then(({body})=>{
+      const {msg} = body
+      expect(msg).toBe("Bad request")
+    })
+  })
+
+});
