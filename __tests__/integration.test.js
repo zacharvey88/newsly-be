@@ -43,7 +43,7 @@ describe("/api", () => {
 
 describe("/api/topics", () => {
 
-  test("GET: Requests to this endpoint should respond with an array of topic objects, each with slug and description properties", () => {
+  test("GET: Requests to this endpoint should respond with an array of all topic objects, each with slug and description properties", () => {
     return request(app)
     .get("/api/topics")
     .expect(200)
@@ -55,6 +55,36 @@ describe("/api/topics", () => {
         expect(topic).toMatchObject({
           slug: expect.any(String),
           description: expect.any(String)
+        });
+      })
+    })
+  })
+
+});
+
+// api/articles
+
+describe("/api/articles", () => {
+
+  test("GET: Requests to this endpoint should respond with an array of all article objects, sorted in descending date order each with author, title, article_id, topic, created_at, votes, article_img_url and comment_count properties", () => {
+    return request(app)
+    .get("/api/articles")
+    .expect(200)
+    .then(({body})=>{
+      const {articles} = body
+      expect(Array.isArray(articles)).toBe(true)
+      expect(articles.length).toBe(13)
+      expect(articles).toBeSortedBy("created_at", {descending: true})
+      articles.forEach(article => {
+        expect(article).toMatchObject({
+          article_id: expect.any(Number),
+          title: expect.any(String),
+          topic: expect.any(String),
+          author: expect.any(String),
+          created_at: expect.any(String),
+          votes: expect.any(Number),
+          article_img_url:expect.any(String),
+          comment_count: expect.any(Number)
         });
       })
     })

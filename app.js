@@ -2,7 +2,7 @@ const express = require("express")
 const app = express()
 const endpoints = require("./endpoints.json")
 const {getTopics} = require('./controllers/topics')
-const {getArticle} = require('./controllers/articles')
+const {getArticle, getArticles} = require('./controllers/articles')
 
 
 //ENDPOINTS
@@ -12,7 +12,7 @@ app.get("/api", (req,res,next)=>{
 })
 
 app.get("/api/topics", getTopics)
-
+app.get("/api/articles", getArticles)
 app.get("/api/articles/:article_id", getArticle)
 
 //ERROR HANDLING
