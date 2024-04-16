@@ -1,4 +1,4 @@
-const {findArticle, findArticles} = require('../models/articles')
+const {findArticle, findArticles, updateArticle, checkArticleExists} = require('../models/articles')
 
 function getArticles(req,res,next) {
   return findArticles().then((articles)=>{
@@ -11,8 +11,7 @@ function getArticles(req,res,next) {
 
 function getArticle(req,res,next) {
   const {article_id} = req.params
-  return findArticle(article_id).then((result)=>{
-    const article = result[0]
+  return findArticle(article_id).then((article)=>{
     res.status(200).send({article})
   })
   .catch((err)=>{
@@ -20,4 +19,16 @@ function getArticle(req,res,next) {
   })
 }
 
-module.exports = {getArticle, getArticles}
+function patchArticle(req,res,next) {
+  const {article_id} = req.params
+  const {inc_votes} = req.body
+  Promise.all([updateArticle(article_id, inc_votes), checkArticleExists(article_id)])
+  .then(([article])=>{
+    res.status(200).send({article})
+  })
+  .catch((err)=>{
+    next(err)
+  })
+}
+
+module.exports = {getArticle, getArticles, patchArticle}
