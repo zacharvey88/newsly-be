@@ -18,4 +18,22 @@ function findCommentsByArticle(article_id) {
   })
 }
 
-module.exports = {findCommentsByArticle}
+function createComment(article_id, newComment) {
+  return db.query(`
+    INSERT INTO comments (author, body, article_id)
+    VALUES ($1, $2, $3)
+    RETURNING 
+      comment_id,
+      article_id,
+      author,
+      body,
+      TO_CHAR(comments.created_at, 'YYYY-MM-DD HH:MM:SS') AS created_at,
+      votes
+  `, [newComment.username, newComment.body, article_id])
+  .then(({rows})=>{
+    return rows[0]
+  })
+}
+
+
+module.exports = {findCommentsByArticle, createComment}

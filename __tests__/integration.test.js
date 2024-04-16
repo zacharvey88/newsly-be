@@ -33,7 +33,8 @@ describe("/api", () => {
     return request(app)
     .get("/api")
     .then(({body})=>{
-      expect(body).toEqual(endpoints)
+      const {endpoints} = body
+      expect(endpoints).toEqual(endpoints)
     })
   })
 
@@ -121,7 +122,7 @@ describe("/api/articles/:article_id", () => {
     .expect(404)
     .then(({body})=>{
       const {msg} = body
-      expect(msg).toBe("article_id not found")
+      expect(msg).toBe("Not found")
     })
   })
 
@@ -179,7 +180,7 @@ describe("/api/articles/:article_id/comments", () => {
     .expect(404)
     .then(({body})=>{
       const {msg} = body
-      expect(msg).toBe("article_id not found")
+      expect(msg).toBe("Not found")
     })
   })
 
@@ -192,5 +193,70 @@ describe("/api/articles/:article_id/comments", () => {
       expect(msg).toBe("Bad request")
     })
   })
+
+  test("POST: Successfull posts to this endpoint should respond with 201 and the newly added comment inluding comment_id, author, body, votes, created_at, article_id", () => {
+    return request(app)
+    .post("/api/articles/3/comments")
+    .send({
+      username: "theRealDumbledore",
+      body: "It does not do to dwell on dreams, and forget to live"
+    })
+    .expect(201)
+    .then(({body})=>{
+      const {comment} = body
+      expect(comment).toEqual({
+        comment_id: 19,
+        article_id: 3,
+        author: "theRealDumbledore",
+        body: "It does not do to dwell on dreams, and forget to live",
+        created_at: expect.any(String),
+        votes: 0,
+      })
+      })
+    })
+
+    test("POST 404 article_id: Posts to a non-existent ID should return a 404 error with a relevant message", () => {
+      return request(app)
+      .post("/api/articles/666/comments")
+      .send({
+        username: "swishandflick",
+        body: "It's leviosa not leviosa"
+      })
+      .expect(404)
+      .then(({body})=>{
+        const {msg} = body
+        expect(msg).toBe("Not found")
+      })
+    })
+
+
+    test("POST 404 username: Posts with a username that's not in the database will return a 404 error with a relevant message", () => {
+      return request(app)
+      .post("/api/articles/3/comments")
+      .send({
+        username: "notthedarklord",
+        body: "Avada Kedavra"
+      })
+      .expect(404)
+      .then(({body})=>{
+        const {msg} = body
+        expect(msg).toBe("Not found")
+      })
+    })
+  
+    test("POST 400: Posts to invalid ID should return a 400 error with a relevant message", () => {
+      return request(app)
+      .post("/api/articles/not-a-number/comments")
+      .send({
+        username: "marauder5",
+        body: "I solemnly swear I am up to no good"
+      })
+      .expect(400)
+      .then(({body})=>{
+        const {msg} = body
+        expect(msg).toBe("Bad request")
+      })
+    })
+
 
 });
