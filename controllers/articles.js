@@ -1,8 +1,7 @@
 const {findArticle, findArticles} = require('../models/articles')
 
 function getArticles(req,res,next) {
-  return findArticles().then(({rows})=>{
-    const articles = rows
+  return findArticles().then((articles)=>{
     res.status(200).send({articles})
   })
   .catch((err)=>{

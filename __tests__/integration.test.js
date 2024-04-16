@@ -48,7 +48,7 @@ describe("/api/topics", () => {
     .get("/api/topics")
     .expect(200)
     .then(({body})=>{
-      const topics = body
+      const {topics} = body
       expect(topics.length).toBe(3)
       expect(Array.isArray(topics)).toBe(true)
       topics.forEach(topic => {
@@ -103,7 +103,7 @@ describe("/api/articles/:article_id", () => {
     .then(({body})=>{
       const {article} = body
       expect(article).toMatchObject({
-        article_id: expect.any(Number),
+        article_id: 3,
         title: expect.any(String),
         topic: expect.any(String),
         author: expect.any(String),
