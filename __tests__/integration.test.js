@@ -121,7 +121,7 @@ describe("/api/articles/:article_id", () => {
     .expect(404)
     .then(({body})=>{
       const {msg} = body
-      expect(msg).toBe("Not found")
+      expect(msg).toBe("article_id not found")
     })
   })
 
@@ -142,7 +142,7 @@ describe("/api/articles/:article_id", () => {
 
 describe("/api/articles/:article_id/comments", () => {
 
-  test.only("GET: Requests to this endpoint should respond with an array of all the comments with the requested article_id, each with the following properties; comment_id, author, body, votes, created_at, article_id", () => {
+  test("GET: Requests to this endpoint should respond with an array of all the comments with the requested article_id, each with the following properties; comment_id, author, body, votes, created_at, article_id", () => {
     return request(app)
     .get("/api/articles/3/comments")
     .expect(200)
@@ -179,7 +179,7 @@ describe("/api/articles/:article_id/comments", () => {
     .expect(404)
     .then(({body})=>{
       const {msg} = body
-      expect(msg).toBe("artist_id not found")
+      expect(msg).toBe("article_id not found")
     })
   })
 
