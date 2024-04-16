@@ -38,7 +38,7 @@ function findArticle(article_id) {
     `, [article_id])
   .then(({rows: article})=>{
     if(article.length === 0) {
-      return Promise.reject({status: 404, msg: "article_id not found"})
+      return Promise.reject({status: 404, msg: "Not found"})
     }
     return article
   })
@@ -52,7 +52,7 @@ function checkArticleExists(article_id) {
     WHERE article_id = $1`, [article_id])
   .then(({rows: articles})=>{
     if(articles.length === 0) {
-      return Promise.reject({status: 404, msg: "article_id not found"})
+      return Promise.reject({status: 404, msg: "Not found"})
     }
   })
 }

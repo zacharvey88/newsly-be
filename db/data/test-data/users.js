@@ -20,5 +20,23 @@ module.exports = [
     name: 'do_nothing',
     avatar_url:
       'https://www.golenbock.com/wp-content/uploads/2015/01/placeholder-user.png'
+  },
+  {
+    username: 'theRealDumbledore',
+    name: 'Albus',
+    avatar_url:
+      'https://www.golenbock.com/wp-content/uploads/2015/01/placeholder-user.png'
+  },
+  {
+    username: 'swishandflick',
+    name: 'Hermione',
+    avatar_url:
+      'https://www.golenbock.com/wp-content/uploads/2015/01/placeholder-user.png'
+  },
+  {
+    username: 'marauder5',
+    name: 'Harry',
+    avatar_url:
+      'https://www.golenbock.com/wp-content/uploads/2015/01/placeholder-user.png'
   }
 ];
