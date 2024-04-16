@@ -32,7 +32,20 @@ function findArticle(article_id) {
       TO_CHAR(created_at, 'YYYY-MM-DD HH:MM') AS created_at
     FROM articles
     WHERE article_id = $1
-    `,[article_id])
+    `, [article_id])
 }
 
-module.exports = {findArticle, findArticles}
+
+function checkArticleExists(article_id) {
+  return db.query(`
+    SELECT * 
+    FROM articles 
+    WHERE article_id = $1`, [article_id])
+  .then(({rows: articles})=>{
+    if(articles.length === 0) {
+      return Promise.reject({status: 404, msg: "artist_id not found"})
+    }
+  })
+}
+
+module.exports = {findArticle, findArticles, checkArticleExists}
