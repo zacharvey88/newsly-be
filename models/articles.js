@@ -36,11 +36,11 @@ function findArticle(article_id) {
     FROM articles
     WHERE article_id = $1
     `, [article_id])
-  .then(({rows: article})=>{
-    if(article.length === 0) {
+  .then(({rows})=>{
+    if(rows.length === 0) {
       return Promise.reject({status: 404, msg: "Not found"})
     }
-    return article
+    return rows[0]
   })
 }
 
@@ -50,11 +50,31 @@ function checkArticleExists(article_id) {
     SELECT * 
     FROM articles 
     WHERE article_id = $1`, [article_id])
-  .then(({rows: articles})=>{
-    if(articles.length === 0) {
+  .then(({rows})=>{
+    if(rows.length === 0) {
       return Promise.reject({status: 404, msg: "Not found"})
     }
   })
 }
 
-module.exports = {findArticle, findArticles, checkArticleExists}
+function updateArticle(article_id, inc_votes) {
+  return db.query(`
+    UPDATE articles
+      SET votes = $2
+    WHERE article_id=$1 
+    RETURNING 
+      article_id, 
+      title, 
+      topic, 
+      author, 
+      body, 
+      votes, 
+      article_img_url, 
+      TO_CHAR(created_at, 'YYYY-MM-DD HH:MM:SS') AS created_at
+  `, [article_id, inc_votes])
+  .then(({rows})=>{
+    return rows[0]
+  })
+}
+
+module.exports = {findArticle, findArticles, checkArticleExists, updateArticle}

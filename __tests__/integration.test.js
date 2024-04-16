@@ -136,7 +136,71 @@ describe("/api/articles/:article_id", () => {
     })
   })
 
+  test("PATCH 200: Successful patch request should return status 200 with the updated article", () => {
+    return request(app)
+    .patch("/api/articles/5")
+    .send({
+      inc_votes: 9
+    })
+    .expect(200)
+    .then(({body})=>{
+      const {article} = body
+      expect(article).toMatchObject({
+        article_id: 5,
+        title: "UNCOVERED: catspiracy to bring down democracy",
+        topic: "cats",
+        author: "rogersop",
+        votes: 9,
+        body: "Bastet walks amongst us, and the cats are taking arms!",
+        created_at: "2020-08-03 02:08:00",
+        article_img_url:
+          "https://images.pexels.com/photos/158651/news-newsletter-newspaper-information-158651.jpeg?w=700&h=700"
+      })
+    })
+  })
+
+  test("PATCH 404: When the provided article_id doesn't exist, should respond with 404 error and not found message", () => {
+    return request(app)
+    .patch("/api/articles/999")
+    .send({
+      inc_votes: 9
+    })
+    .expect(404)
+    .then(({body})=>{
+      const {msg} = body
+      expect(msg).toBe("Not found")
+    })
+  })
+
+  test("PATCH 400 article_id: When provided an invalid article_id, should respond with a 400 error and bad request message", () => {
+    return request(app)
+    .patch("/api/articles/not-a-number")
+    .send({
+      inc_votes: 9
+    })
+    .expect(400)
+    .then(({body})=>{
+      const {msg} = body
+      expect(msg).toBe("Bad request")
+    })
+  })
+
+  test("PATCH 400 inc_votes: When provided an invalid datatype for the key, should respond with a 400 error and bad request message", () => {
+    return request(app)
+    .patch("/api/articles/999")
+    .send({
+      inc_votes: "nine"
+    })
+    .expect(400)
+    .then(({body})=>{
+      const {msg} = body
+      expect(msg).toBe("Bad request")
+    })
+  })
+  
+
 });
+
 
 
 // api/articles/:article_id/comments
