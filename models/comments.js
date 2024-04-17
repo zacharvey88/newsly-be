@@ -1,6 +1,6 @@
 const db = require('../db/connection')
 
-function findCommentsByArticle(article_id) {
+function selectCommentsByArticle(article_id) {
   return db.query(`
     SELECT
       comment_id,
@@ -18,7 +18,10 @@ function findCommentsByArticle(article_id) {
   })
 }
 
-function createComment(article_id, newComment) {
+function insertComment(article_id, newComment) {
+  if(!newComment.body || !newComment.username)  {
+    return Promise.reject({status: 400, msg: "Bad request"})
+  }
   return db.query(`
     INSERT INTO comments (author, body, article_id)
     VALUES ($1, $2, $3)
@@ -49,4 +52,4 @@ function removeComment(comment_id) {
 }
 
 
-module.exports = {findCommentsByArticle, createComment, removeComment}
+module.exports = {selectCommentsByArticle, insertComment, removeComment}

@@ -1,6 +1,6 @@
 const db = require('../db/connection')
 
-function findArticles(query) {
+function selectArticles(query) {
   const greenlist = ["topic"]
   const queryParams = []
 
@@ -45,7 +45,7 @@ function findArticles(query) {
 }
 
 
-function findArticle(article_id) {
+function selectArticle(article_id) {
   return db.query(`
     SELECT 
       article_id, 
@@ -83,8 +83,11 @@ function updateArticle(article_id, inc_votes) {
       TO_CHAR(created_at, 'YYYY-MM-DD HH:MM:SS') AS created_at
   `, [article_id, inc_votes])
   .then(({rows})=>{
+    if(rows.length === 0) {
+      return Promise.reject({status: 404, msg: "Not found"})
+    }
     return rows[0]
   })
 }
 
-module.exports = {findArticle, findArticles, updateArticle}
+module.exports = {selectArticle, selectArticles, updateArticle}

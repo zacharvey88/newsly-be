@@ -51,7 +51,6 @@ describe("/api/topics", () => {
     .then(({body})=>{
       const {topics} = body
       expect(topics.length).toBe(3)
-      expect(Array.isArray(topics)).toBe(true)
       topics.forEach(topic => {
         expect(topic).toMatchObject({
           slug: expect.any(String),
@@ -73,7 +72,6 @@ describe("/api/articles", () => {
     .expect(200)
     .then(({body})=>{
       const {articles} = body
-      expect(Array.isArray(articles)).toBe(true)
       expect(articles.length).toBe(13)
       expect(articles).toBeSortedBy("created_at", {descending: true})
       articles.forEach(article => {
@@ -140,7 +138,7 @@ describe("/api/articles", () => {
 
 describe("/api/articles/:article_id", () => {
 
-  test("GET: Requests to this endpoint should respond with single object with an id matching the request and the following properties; author, title, article_id, body ,topic, created_at, votes, article_img_url", () => {
+  test("GET: Requests to this endpoint should respond with single object with an article_id matching the request and the following properties; author, title, article_id, body ,topic, created_at, votes, article_img_url", () => {
     return request(app)
     .get("/api/articles/3")
     .expect(200)
@@ -159,7 +157,7 @@ describe("/api/articles/:article_id", () => {
     })
   })
 
-  test("GET 404: Requests that return no results due to a non-existent ID should return a 404 error with a relevant message", () => {
+  test("GET 404: Requests that return no results due to a non-existent article_id should return a 404 error with a relevant message", () => {
     return request(app)
     .get("/api/articles/666")
     .expect(404)
@@ -169,7 +167,7 @@ describe("/api/articles/:article_id", () => {
     })
   })
 
-  test("GET 400: Requests that contain an invalid ID should return a 400 error with a relevant message", () => {
+  test("GET 400: Requests that contain an invalid article_id should return a 400 error with a relevant message", () => {
     return request(app)
     .get("/api/articles/not-a-number")
     .expect(400)
@@ -281,7 +279,7 @@ describe("/api/articles/:article_id/comments", () => {
     })
   })
 
-  test("GET 404: Requests that return no results due to a non-existent ID should return a 404 error with a relevant message", () => {
+  test("GET 404: Requests that return no results due to a non-existent article_id should return a 404 error with a relevant message", () => {
     return request(app)
     .get("/api/articles/666/comments")
     .expect(404)
@@ -291,7 +289,7 @@ describe("/api/articles/:article_id/comments", () => {
     })
   })
 
-  test("GET 400: Requests that contain an invalid ID should return a 400 error with a relevant message", () => {
+  test("GET 400: Requests that contain an invalid article_id should return a 400 error with a relevant message", () => {
     return request(app)
     .get("/api/articles/not-a-number/comments")
     .expect(400)
@@ -322,7 +320,7 @@ describe("/api/articles/:article_id/comments", () => {
       })
     })
 
-    test("POST 404 article_id: Posts to a non-existent ID should return a 404 error with a relevant message", () => {
+    test("POST 404 article_id: Posts to a non-existent article_id will return a 404 error with a relevant message", () => {
       return request(app)
       .post("/api/articles/666/comments")
       .send({
@@ -337,7 +335,7 @@ describe("/api/articles/:article_id/comments", () => {
     })
 
 
-    test("POST 404 username: Posts with a username that's not in the database will return a 404 error with a relevant message", () => {
+    test("POST 404 username: Posts with a username that's not in the database will return a 404 error with a not found message", () => {
       return request(app)
       .post("/api/articles/3/comments")
       .send({
@@ -351,12 +349,66 @@ describe("/api/articles/:article_id/comments", () => {
       })
     })
   
-    test("POST 400: Posts to invalid ID should return a 400 error with a relevant message", () => {
+    test("POST 400: If the path contains an invalid article_id will return a 400 error with a bad request message", () => {
       return request(app)
       .post("/api/articles/not-a-number/comments")
       .send({
         username: "marauder5",
         body: "I solemnly swear I am up to no good"
+      })
+      .expect(400)
+      .then(({body})=>{
+        const {msg} = body
+        expect(msg).toBe("Bad request")
+      })
+    })
+
+    test("POST 400 Empty body: Requests that have an empty body property, will return a 400 error with bad request message", () => {
+      return request(app)
+      .post("/api/articles/5/comments")
+      .send({
+        username: "marauder5",
+        body: ""
+      })
+      .expect(400)
+      .then(({body})=>{
+        const {msg} = body
+        expect(msg).toBe("Bad request")
+      })
+    })
+
+    test("POST 400 Missing body: Requests that are missing a body key will return a 400 error with bad request message", () => {
+      return request(app)
+      .post("/api/articles/3/comments")
+      .send({
+        username: "swishandflick"
+      })
+      .expect(400)
+      .then(({body})=>{
+        const {msg} = body
+        expect(msg).toBe("Bad request")
+      })
+    })
+
+    test("POST 400 Empty username: Requests that have an empty body property, will return a 400 error with bad request message", () => {
+      return request(app)
+      .post("/api/articles/5/comments")
+      .send({
+        username: "",
+        body: "I solemnly swear I am up to no good"
+      })
+      .expect(400)
+      .then(({body})=>{
+        const {msg} = body
+        expect(msg).toBe("Bad request")
+      })
+    })
+
+    test("POST 400 Missing username: Requests that are missing a body key will return a 400 error with bad request message", () => {
+      return request(app)
+      .post("/api/articles/3/comments")
+      .send({
+        body: "It's leviosa not leviosa",
       })
       .expect(400)
       .then(({body})=>{
@@ -379,7 +431,7 @@ describe("/api/comments/:comment_id", () => {
   })
 
 
-  test("DELETE 404: When provided an ID that's not in the database will return a 404 error and not found message", () => {
+  test("DELETE 404: When provided an comment_id that's not in the database will return a 404 error and not found message", () => {
     return request(app)
     .delete("/api/comments/420")
     .expect(404)
@@ -390,7 +442,7 @@ describe("/api/comments/:comment_id", () => {
   })
 
 
-  test("DELETE 400: Delete requests with an invalid ID should return a 400 error and bad request message", () => {
+  test("DELETE 400: Delete requests with an invalid comment_id should return a 400 error and bad request message", () => {
     return request(app)
     .delete("/api/comments/Sujide-wa-arimasen")
     .expect(400)
@@ -412,7 +464,6 @@ describe("/api/users", () => {
     .expect(200)
     .then(({body})=>{
       const {users} = body
-      expect(Array.isArray(users)).toBe(true)
       expect(users.length).toBe(7)
       users.forEach(user => {
         expect(user).toMatchObject({

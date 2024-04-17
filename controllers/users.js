@@ -1,7 +1,7 @@
-const { findUsers } = require("../models/users");
+const { selectUsers } = require("../models/users");
 
 function getUsers(req,res,next) {
-  findUsers()
+  selectUsers()
   .then((users)=>{
     res.status(200).send({users})
   })

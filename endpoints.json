@@ -76,7 +76,7 @@
 
   "POST /api/articles/:article_id/comments": {
     "description": "Creates a new comment by the username provided, attatched to the article_id provided",
-    "request body required": {
+    "requestBody": {
       "username": "string",
       "body": "string"
     },
@@ -95,7 +95,7 @@
 
   "PATCH /api/articles/:article_id": {
     "description": "Updates the number of votes on an existing article",
-    "request body required": {
+    "requestBody": {
       "inc_votes": 1
     },
     "queries": [],
