@@ -118,6 +118,21 @@
     "description": "Deletes the specified comment",
     "queries": [],
     "exampleResponse": "Status 204"
+  },
+
+
+  "GET /api/users": {
+    "description": "serves an array of all users",
+    "queries": [],
+    "exampleResponse": {
+      "users": [
+        {
+          "username": "marauder5",
+          "name": "Harry",
+          "avatar_url": "https://www.golenbock.com/wp-content/uploads/2015/01/placeholder-user.png"
+        }
+      ]
+    }
   }
 
 }
