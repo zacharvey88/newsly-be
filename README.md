@@ -1,8 +1,19 @@
 ![NC News](/assets/images/nc-news-project.png)
 
-**NC NEWS** is my first solo full-stack project, with the aim of highlighting my capabilities as a new software developer. It is a hosted news application featuring a variety of fun articles, each with topic tags, a comments section and the ability to upvote. Every new comment must be associated with an existing user. Current user functionality allows for the retrieval of articles, comments topics and users, and the addition and deletion of comments.
+**NC NEWS** is my first solo full-stack project, with the aim of highlighting my capabilities as a new software developer. It is a hosted news application featuring a variety of fun articles, each with topic tags, a comments section and the ability to upvote. Current user functionality allows for the retrieval of articles, comments topics and users, and the addition and deletion of comments. The front end is yet to be developed to stay tuned!
 
 You can test the app here: [NC NEWS](https://nc-news-ngma.onrender.com)
+
+Simply enter a valid URL path to retrieve information from the database. (Best viewed with a browser JSON formatter)
+```
+/api/users
+/api/comments
+/api/comments/*id*
+/api/articles
+/api/articles/*id*
+/api/articles?topic=*sometopic*
+/api/articles/*id*/comments
+```
 
 Alternatively, to make a local clone of the repo for yourself:
 1. copy this URL: https://github.com/zacharvey88/nc-news.git.
@@ -22,10 +33,10 @@ To get started, install dependencies. Run command `npm install`
 In order to connect to the database you will need to set local variables for PGDATABASE. 
 
 Create the following files. In each, initialise PGDATABASE with the relevant database name as provided privately.
-```
-.env.test
-.env.development
-```
+
+- .env.test
+- .env.development
+
 
 
 ## Database Set-up
