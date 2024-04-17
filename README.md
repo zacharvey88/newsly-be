@@ -1,5 +1,3 @@
-# Northcoders News API
-
 ![NC News](/assets/images/nc-news-project.png)
 
 **NC NEWS** is my first solo full-stack project, with the aim of highlighting my capabilities as a new software developer. It is a hosted news application featuring a variety of fun articles, each with topic tags, a comments section and the ability to upvote. Every new comment must be associated with an existing user. Current user functionality allows for the retrieval of articles, comments topics and users, and the addition and deletion of comments.
