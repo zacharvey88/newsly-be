@@ -322,5 +322,39 @@ describe("/api/articles/:article_id/comments", () => {
       })
     })
 
-
 });
+
+
+// api/comments/:comment_id
+
+describe("/api/comments/:comment_id", () => {
+
+  test("DELETE: Successful request will delete the specified comment from comments table and return a 204 status with no content", () => {
+    return request(app)
+    .delete("/api/comments/16")
+    .expect(204)
+  })
+
+
+  test("DELETE 404: When provided an ID that's not in the database will return a 404 error and not found message", () => {
+    return request(app)
+    .delete("/api/comments/420")
+    .expect(404)
+    .then(({body})=>{
+      const {msg} = body
+      expect(msg).toBe("Not found")
+    })
+  })
+
+
+  test("DELETE 400: Delete requests with an invalid ID should return a 400 error and bad request message", () => {
+    return request(app)
+    .delete("/api/comments/Sujide-wa-arimasen")
+    .expect(400)
+    .then(({body})=>{
+      const {msg} = body
+      expect(msg).toBe("Bad request")
+    })
+  })
+
+})

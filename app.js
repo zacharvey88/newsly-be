@@ -3,7 +3,7 @@ const app = express()
 const endpoints = require("./endpoints.json")
 const {getTopics} = require('./controllers/topics')
 const {getArticle, getArticles, patchArticle} = require('./controllers/articles')
-const {getCommentsByArticle, postComment} = require("./controllers/comments")
+const {getCommentsByArticle, postComment, deleteComment} = require("./controllers/comments")
 
 app.use(express.json());
 
@@ -22,6 +22,8 @@ app.patch("/api/articles/:article_id", patchArticle)
 
 app.get("/api/articles/:article_id/comments", getCommentsByArticle)
 app.post("/api/articles/:article_id/comments", postComment)
+
+app.delete("/api/comments/:comment_id", deleteComment)
 
 //ERROR HANDLING
 
@@ -43,7 +45,7 @@ app.use((err, req, res, next) => {
 
 app.use((err, req, res, next) => {
   if (err.code === "23503") {
-    res.status(404).send({ msg: `Not found` });
+    res.status(404).send({ msg: "Not found" });
   } else next(err);
 });
 
