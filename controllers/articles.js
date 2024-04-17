@@ -3,7 +3,8 @@ const {findArticle, findArticles, updateArticle} = require('../models/articles')
 
 
 function getArticles(req,res,next) {
-  return findArticles().then((articles)=>{
+  const query = req.query
+  return findArticles(query).then((articles)=>{
     res.status(200).send({articles})
   })
   .catch((err)=>{

@@ -1,7 +1,17 @@
 const db = require('../db/connection')
 
-function findArticles() {
-  return db.query(`
+function findArticles(query) {
+  const greenlist = ["topic"]
+  const queryParams = []
+
+  for(const [key, value] of Object.entries(query)) {
+    if(!greenlist.includes(key)){
+      return Promise.reject({status: 400, msg: "Bad request"})
+    }
+    queryParams.push(value)
+  }
+
+  let sqlQuery = `
   SELECT 
     articles.article_id, 
     title,
@@ -12,11 +22,24 @@ function findArticles() {
     CAST(COUNT(comment_id) AS INT) AS comment_count,
     article_img_url 
   FROM articles 
-  LEFT JOIN comments ON comments.article_id = articles.article_id 
-  GROUP BY articles.article_id 
-  ORDER BY TO_CHAR(articles.created_at, 'YYYY-MM-DD HH:MM:SS') DESC 
-  `)
+  LEFT JOIN comments ON comments.article_id = articles.article_id`
+
+  if (query.topic) {
+    if(!typeof query.topic === "string") {
+      return Promise.reject({status: 400, msg: "Bad request"})
+    }
+    sqlQuery += ` WHERE topic=$1`
+  }
+
+  sqlQuery += `
+    GROUP BY articles.article_id 
+    ORDER BY TO_CHAR(articles.created_at, 'YYYY-MM-DD HH:MM:SS') DESC`
+
+  return db.query(sqlQuery, queryParams)
   .then(({rows})=>{
+    if(rows.length === 0) {
+      return Promise.reject({status: 404, msg: "Not found"})
+    }
     return rows
   })
 }
