@@ -157,7 +157,7 @@ describe("/api/articles/:article_id", () => {
     })
   })
 
-  test.only("GET: Returned articles should now additionaly have a comment_count property", () => {
+  test("GET: Returned articles should now additionaly have a comment_count property", () => {
     return request(app)
     .get("/api/articles/4")
     .expect(200)
