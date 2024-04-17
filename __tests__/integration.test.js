@@ -91,6 +91,49 @@ describe("/api/articles", () => {
     })
   })
 
+  test("GET QUERY: Requests with a topic query should return an array of all articles with the matching topic ", () => {
+    return request(app)
+    .get("/api/articles?topic=cats")
+    .expect(200)
+    .then(({body})=>{
+      const {articles} = body
+      expect(articles.length).toBe(3)
+      expect(articles).toBeSortedBy("created_at", {descending: true})
+      articles.forEach(article => {
+        expect(article).toMatchObject({
+          article_id: expect.any(Number),
+          title: expect.any(String),
+          topic: "cats",
+          author: expect.any(String),
+          created_at: expect.any(String),
+          votes: expect.any(Number),
+          article_img_url:expect.any(String),
+          comment_count: expect.any(Number)
+        });
+      })
+    })
+  })
+
+  test("GET QUERY 404: When the query value doesn't exist in the database, should return status 404 with not found message", ()=>{
+    return request(app)
+    .get("/api/articles?topic=blackholes")
+    .expect(404)
+    .then(({body})=>{
+      const {msg} = body
+      expect(msg).toBe("Not found")
+    })
+  })
+
+  test("GET QUERY 400: When the query key is not on the greenlist, should return status 400 with bad request message", ()=>{
+    return request(app)
+    .get("/api/articles?backdoor=cats")
+    .expect(400)
+    .then(({body})=>{
+      const {msg} = body
+      expect(msg).toBe("Bad request")
+    })
+  })
+
 });
 
 // api/articles/:article_id
