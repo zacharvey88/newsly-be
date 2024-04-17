@@ -1,9 +1,9 @@
+const { checkExists } = require('../db/seeds/utils');
 const {findCommentsByArticle, createComment, removeComment} = require('../models/comments')
-const {checkArticleExists} = require('../models/articles')
 
 function getCommentsByArticle(req,res,next) {
   const {article_id} = req.params
-  Promise.all([findCommentsByArticle(article_id), checkArticleExists(article_id)])
+  Promise.all([findCommentsByArticle(article_id), checkExists("articles", "article_id",article_id)])
     .then(([comments])=>{
       res.status(200).send({comments})
     })
@@ -15,7 +15,7 @@ function getCommentsByArticle(req,res,next) {
 function postComment(req,res,next) {
   const {article_id} = req.params
   const newComment = req.body
-  Promise.all([createComment(article_id, newComment), checkArticleExists(article_id)])
+  Promise.all([createComment(article_id, newComment), checkExists("articles", "article_id", article_id)])
     .then(([comment])=>{
       res.status(201).send({comment})
     })

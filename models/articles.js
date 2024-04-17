@@ -44,19 +44,6 @@ function findArticle(article_id) {
   })
 }
 
-
-function checkArticleExists(article_id) {
-  return db.query(`
-    SELECT * 
-    FROM articles 
-    WHERE article_id = $1`, [article_id])
-  .then(({rows})=>{
-    if(rows.length === 0) {
-      return Promise.reject({status: 404, msg: "Not found"})
-    }
-  })
-}
-
 function updateArticle(article_id, inc_votes) {
   return db.query(`
     UPDATE articles
@@ -77,4 +64,4 @@ function updateArticle(article_id, inc_votes) {
   })
 }
 
-module.exports = {findArticle, findArticles, checkArticleExists, updateArticle}
+module.exports = {findArticle, findArticles, updateArticle}

@@ -1,4 +1,6 @@
-const {findArticle, findArticles, updateArticle, checkArticleExists} = require('../models/articles')
+const { checkExists } = require('../db/seeds/utils');
+const {findArticle, findArticles, updateArticle} = require('../models/articles')
+
 
 function getArticles(req,res,next) {
   return findArticles().then((articles)=>{
@@ -22,7 +24,7 @@ function getArticle(req,res,next) {
 function patchArticle(req,res,next) {
   const {article_id} = req.params
   const {inc_votes} = req.body
-  Promise.all([updateArticle(article_id, inc_votes), checkArticleExists(article_id)])
+  Promise.all([updateArticle(article_id, inc_votes), checkExists("articles", "article_id", article_id)])
   .then(([article])=>{
     res.status(200).send({article})
   })
