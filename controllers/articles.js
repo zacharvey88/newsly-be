@@ -1,4 +1,3 @@
-const { checkExists } = require('../db/seeds/utils');
 const {selectArticle, selectArticles, updateArticle} = require('../models/articles')
 
 
