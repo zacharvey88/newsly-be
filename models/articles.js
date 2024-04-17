@@ -48,16 +48,19 @@ function selectArticles(query) {
 function selectArticle(article_id) {
   return db.query(`
     SELECT 
-      article_id, 
+      articles.article_id, 
       title, 
       topic, 
-      author, 
-      body, 
-      votes, 
+      articles.author, 
+      articles.body, 
+      articles.votes, 
       article_img_url, 
-      TO_CHAR(created_at, 'YYYY-MM-DD HH:MM:SS') AS created_at
+      TO_CHAR(articles.created_at, 'YYYY-MM-DD HH:MM:SS') AS created_at,
+      CAST(COUNT(comment_id) AS INT) AS comment_count
     FROM articles
-    WHERE article_id = $1
+    LEFT JOIN comments ON comments.article_id = articles.article_id
+    WHERE articles.article_id = $1
+    GROUP BY articles.article_id
     `, [article_id])
   .then(({rows})=>{
     if(rows.length === 0) {

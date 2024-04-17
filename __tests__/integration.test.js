@@ -157,6 +157,26 @@ describe("/api/articles/:article_id", () => {
     })
   })
 
+  test.only("GET: Returned articles should now additionaly have a comment_count property", () => {
+    return request(app)
+    .get("/api/articles/4")
+    .expect(200)
+    .then(({body})=>{
+      const {article} = body
+      expect(article).toMatchObject({
+        article_id: 4,
+        title: expect.any(String),
+        topic: expect.any(String),
+        author: expect.any(String),
+        body: expect.any(String),
+        created_at: expect.any(String),
+        votes: expect.any(Number),
+        article_img_url:expect.any(String),
+        comment_count: 0
+      })
+    })
+  })
+
   test("GET 404: Requests that return no results due to a non-existent article_id should return a 404 error with a relevant message", () => {
     return request(app)
     .get("/api/articles/666")
