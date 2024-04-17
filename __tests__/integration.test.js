@@ -361,7 +361,7 @@ describe("/api/comments/:comment_id", () => {
 
 // api/users
 
-describe.only("/api/users", () => {
+describe("/api/users", () => {
 
   test("GET: Successful requests should return an array of all users with username, name and avatar_url properties", () => {
     return request(app)
