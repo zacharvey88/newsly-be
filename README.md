@@ -5,19 +5,12 @@
 You can test the app here: [NC NEWS](https://nc-news-ngma.onrender.com)
 
 Simply enter a valid URL path to retrieve information from the database. (Best viewed with a browser JSON formatter)
-```
-/api/users
-/api/comments
-/api/comments/*id*
-/api/articles
-/api/articles/*id*
-/api/articles?topic=*sometopic*
-/api/articles/*id*/comments
-```
+
+To get a detailed list of available paths, append the URL with `/api`
 
 Alternatively, to make a local clone of the repo for yourself:
 1. copy this URL: https://github.com/zacharvey88/nc-news.git.
-2. In your command line interface, navigate to the folder you'd like to create the repo in.
+2. In your terminal, navigate to the folder you'd like to create the repo in.
 3. enter command `git clone` followed by the repo URL.
 4. Finally open the directory in your chosen code editor and refer to further instrctions below.
 
@@ -41,8 +34,8 @@ Create the following files. In each, initialise PGDATABASE with the relevant dat
 
 ## Database Set-up
 
-1. Create the database. Run command `npm run setup-dbs`
-2. Create tables and populate the database. Run command `npm run seed`
+1. To create the database run command `npm run setup-dbs`
+2. To create tables and populate the database run command `npm run seed`
 
 
 ## Available Paths
