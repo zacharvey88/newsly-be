@@ -545,7 +545,7 @@ describe("/api/users/:username", () => {
       expect(user).toMatchObject({
         username: "theRealDumbledore",
         name: "Albus",
-        avatar_url: expect.any(String),
+        avatar_url: expect.any(String)
       });
     })
   })

@@ -134,6 +134,20 @@
         }
       ]
     }
+  },
+
+  "GET /api/users/:username": {
+    "description": "Returns a single user with a username matching the query",
+    "queries": [],
+    "exampleResponse": {
+      "user": [
+        {
+          "username": "theRealDUmbledore",
+          "name": "Albus",
+          "avatar_url": "https://www.golenbock.com/wp-content/uploads/2015/01/placeholder-user.png"
+        }
+      ]
+    }
   }
 
 }
