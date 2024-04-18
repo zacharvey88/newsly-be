@@ -293,10 +293,19 @@ describe("/api/articles/:article_id", () => {
       expect(msg).toBe("Bad request")
     })
   })
+
+  test("PATCH 400 missing body: When the request has no inc_votes property, should respond with a 400 error and bad request message", () => {
+    return request(app)
+    .patch("/api/articles/5")
+    .send({})
+    .expect(400)
+    .then(({body})=>{
+      const {msg} = body
+      expect(msg).toBe("Bad request")
+    })
+  })
   
-
 });
-
 
 
 // api/articles/:article_id/comments

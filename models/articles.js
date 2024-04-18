@@ -90,6 +90,9 @@ function selectArticle(article_id) {
 }
 
 function updateArticle(article_id, inc_votes) {
+  if(!inc_votes) {
+    return Promise.reject({status: 400, msg: "Bad request"})
+  }
   return db.query(`
     UPDATE articles
       SET votes = $2
