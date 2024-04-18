@@ -51,5 +51,29 @@ function removeComment(comment_id) {
   })
 }
 
+function updateComment(comment_id, inc_votes) {
+  if(!inc_votes) {
+    return Promise.reject({status: 400, msg: "Bad request"})
+  }
+  return db.query(`
+    UPDATE comments
+    SET votes=$2
+    WHERE comment_id=$1
+    RETURNING 
+      comment_id,
+      body,
+      votes,
+      author,
+      article_id,
+      TO_CHAR(created_at, 'YYYY-MM-DD HH:MM:SS') AS created_at
+  `, [comment_id, inc_votes])
+  .then(({rows})=>{
+    if(rows.length === 0) {
+      return Promise.reject({status: 404, msg: "Not found"})
+    }
+    return rows[0]
+  })
+}
 
-module.exports = {selectCommentsByArticle, insertComment, removeComment}
+
+module.exports = {selectCommentsByArticle, insertComment, removeComment, updateComment}
