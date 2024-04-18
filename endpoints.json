@@ -12,8 +12,8 @@
   },
 
   "GET /api/articles": {
-    "description": "serves an array of all articles, sorted by created_at in descending order",
-    "queries": ["topic"],
+    "description": "serves an array of all articles sorted by created_at in descending order as default. Sort_dir can be 'asc' or 'desc' ",
+    "queries": ["sort_by", "sort_dir", "title", "topic", "author", "votes", "comment_count"],
     "exampleResponse": {
       "articles": [
         {
