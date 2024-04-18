@@ -1,6 +1,6 @@
 ![NC News](/assets/images/nc-news-project.png)
 
-**NC NEWS** is my first solo full-stack project, with the aim of highlighting my capabilities as a new software developer. It is a hosted news application featuring a variety of fun articles, each with topic tags, a comments section and the ability to upvote. Current user functionality allows for the retrieval of articles, comments topics and users, and the addition and deletion of comments. Additionally, responses from /api/articles can be queried and sorted. The front end is yet to be developed to stay tuned!
+**NC NEWS** is my first solo full-stack project, with the aim of highlighting my capabilities as a new software developer. It is a hosted news site build using Node.js and PSQL. The database features a variety of fun articles, each with topic tags, a comments section and the ability to upvote. Current user functionality allows for the retrieval of articles, comments topics and users, and the addition and deletion of comments. Additionally, responses from /api/articles can be queried and sorted. The front end is yet to be developed to stay tuned!
 
 You can test the app here: [NC NEWS](https://nc-news-ngma.onrender.com)
 
@@ -57,3 +57,8 @@ To run tests please ensure the following packages are installed as dev dependenc
 To run the test suite `npm test`. You may further specify either `utils` or `integration` test file.
 - `integration.test.js` contains the funcationality testing for all request paths.
 - `utils.test.js` contains a few unit tests, mainly for seeding purposes.
+
+
+### Acknowledgements
+
+Project boilerplate (inc seed files) was provided by Northcoders as part of our bootcamp curriculum.
