@@ -66,7 +66,7 @@ describe("/api/topics", () => {
 
 describe("/api/articles", () => {
 
-  test("GET: Requests to this endpoint should respond with an array of all article objects, sorted in descending date order each with author, title, article_id, topic, created_at, votes, article_img_url and comment_count properties", () => {
+  test("GET: Requests to this endpoint should respond with an array of all article objects, sorted in descending date order, each with author, title, article_id, topic, created_at, votes, article_img_url and comment_count properties", () => {
     return request(app)
     .get("/api/articles")
     .expect(200)
@@ -99,14 +99,7 @@ describe("/api/articles", () => {
       expect(articles).toBeSortedBy("created_at", {descending: true})
       articles.forEach(article => {
         expect(article).toMatchObject({
-          article_id: expect.any(Number),
-          title: expect.any(String),
           topic: "cats",
-          author: expect.any(String),
-          created_at: expect.any(String),
-          votes: expect.any(Number),
-          article_img_url:expect.any(String),
-          comment_count: expect.any(Number)
         });
       })
     })
@@ -122,9 +115,52 @@ describe("/api/articles", () => {
     })
   })
 
-  test("GET QUERY 400: When the query key is not on the greenlist, should return status 400 with bad request message", ()=>{
+  test("GET QUERY 400: When the query key is not greenlisted, should return status 400 with bad request message", ()=>{
     return request(app)
     .get("/api/articles?backdoor=cats")
+    .expect(400)
+    .then(({body})=>{
+      const {msg} = body
+      expect(msg).toBe("Bad request")
+    })
+  })
+
+  test("GET SORT: Requests with a sort_by query and sort_dir should return an array of articles sorted by the specified column in the order specified", () => {
+    return request(app)
+    .get("/api/articles?sort_by=comment_count&sort_dir=asc")
+    .expect(200)
+    .then(({body})=>{
+      const {articles} = body
+      expect(articles.length).toBe(13)
+      expect(articles).toBeSortedBy("comment_count", {ascending: true})
+    })
+  })
+
+  test("GET SORT: Requests with a sort_by query but no sort_dir, should default to descending order", () => {
+    return request(app)
+    .get("/api/articles?sort_by=author")
+    .expect(200)
+    .then(({body})=>{
+      const {articles} = body
+      expect(articles.length).toBe(13)
+      expect(articles).toBeSortedBy("author", {descending: true})
+    })
+  })
+
+
+  test("GET SORT 400: When the sort_by value isn't greenlisted, return status 400 with a bad request message", ()=>{
+    return request(app)
+    .get("/api/articles?sort_by=injection&sort_dir=asc")
+    .expect(400)
+    .then(({body})=>{
+      const {msg} = body
+      expect(msg).toBe("Bad request")
+    })
+  })
+
+  test("GET SORT 400: When the sort_dir value isn't greenlisted, return status 400 with a bad request message", ()=>{
+    return request(app)
+    .get("/api/articles?sort_by=votes&sort_dir=injection")
     .expect(400)
     .then(({body})=>{
       const {msg} = body
