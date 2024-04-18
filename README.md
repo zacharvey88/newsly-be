@@ -8,6 +8,8 @@ Simply enter a valid URL path to retrieve information from the database. (Best v
 
 To get a detailed list of available paths, append the URL with `/api`
 
+## Create a clone
+
 Alternatively, to make a local clone of the repo for yourself:
 1. copy this URL: https://github.com/zacharvey88/nc-news.git.
 2. In your terminal, navigate to the folder you'd like to create the repo in.
