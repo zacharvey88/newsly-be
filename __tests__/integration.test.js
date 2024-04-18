@@ -531,3 +531,33 @@ describe("/api/users", () => {
   })
 
 });
+
+// api/users:username
+
+describe("/api/users/:username", () => {
+
+  test("GET: Successful requests should return a single user matched to the username, with username, name and avatar_url properties", () => {
+    return request(app)
+    .get("/api/users/theRealDumbledore")
+    .expect(200)
+    .then(({body})=>{
+      const {user} = body
+      expect(user).toMatchObject({
+        username: "theRealDumbledore",
+        name: "Albus",
+        avatar_url: expect.any(String)
+      });
+    })
+  })
+
+  test("GET 404: If the username doesn't exist, should return a 404 status with not found message", () => {
+    return request(app)
+    .get("/api/users/notthedarklord")
+    .expect(404)
+    .then(({body})=>{
+      const {msg} = body
+      expect(msg).toBe("Not found")
+    })
+  })
+
+});
