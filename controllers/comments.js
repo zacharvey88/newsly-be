@@ -1,5 +1,10 @@
 const { checkExists } = require('../db/seeds/utils');
-const {selectCommentsByArticle, insertComment, removeComment} = require('../models/comments')
+const {
+  selectCommentsByArticle, 
+  insertComment, 
+  removeComment, 
+  updateComment
+} = require('../models/comments')
 
 function getCommentsByArticle(req,res,next) {
   const {article_id} = req.params
@@ -35,7 +40,19 @@ function deleteComment(req,res,next) {
     })
 }
 
+function patchComment(req,res,next) {
+  const {comment_id} = req.params
+  const {inc_votes} = req.body
+  updateComment(comment_id, inc_votes)
+    .then((comment)=>{
+      res.status(200).send(comment)
+    })
+    .catch((err)=>{
+      next(err)
+    })
+}
 
-module.exports = {getCommentsByArticle, postComment, deleteComment}
+
+module.exports = {getCommentsByArticle, postComment, deleteComment, patchComment}
 
 

@@ -22,8 +22,8 @@ Alternatively, to make a local clone of the repo for yourself:
 To get started, install dependencies. Run command `npm install`
 
 > Minimum versions required:
-> - Node.js 21.4.0
-> - Postgres 14.10
+> - Node.js `21.4.0`
+> - Postgres `14.10`
 
 In order to connect to the database you will need to set local variables for PGDATABASE. 
 
@@ -49,10 +49,10 @@ To get a list of available request paths, use a **GET** request to the path `/ap
 
 To run tests please ensure the following packages are installed as dev dependencies.
 
-- jest: 27.5.1
-- jest-extended: 2.0.0
-- jest-sorted: 1.0.15
-- supertest: 6.3.4
+- jest: 27.5.1 `npm i jest -D`
+- jest-extended: 2.0.0 `npm i jest-extended -D`
+- jest-sorted: 1.0.15 `npm i jest-sorted -D`
+- supertest: 6.3.4 `npm i supertest -D`
 
 To run the test suite `npm test`. You may further specify either `utils` or `integration` test file.
 - `integration.test.js` contains the funcationality testing for all request paths.

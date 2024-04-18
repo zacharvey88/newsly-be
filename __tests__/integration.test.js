@@ -507,6 +507,76 @@ describe("/api/comments/:comment_id", () => {
     })
   })
 
+  test("PATCH 200: Successful patch request should return status 200 with the updated comment", () => {
+    return request(app)
+    .patch("/api/comments/5")
+    .send({
+      inc_votes: 10
+    })
+    .expect(200)
+    .then(({body})=>{
+      const comment = body
+      expect(comment).toMatchObject({
+        comment_id: 5,
+        body: "I hate streaming noses",
+        votes: 10,
+        author: "icellusedkars",
+        article_id: 1,
+        created_at: "2020-11-03 09:11:00"
+      })
+    })
+  })
+
+  test("PATCH 404: When the provided comment_id doesn't exist, should respond with 404 error and not found message", () => {
+    return request(app)
+    .patch("/api/comments/55378008")
+    .send({
+      inc_votes: 10
+    })
+    .expect(404)
+    .then(({body})=>{
+      const {msg} = body
+      expect(msg).toBe("Not found")
+    })
+  })
+
+  test("PATCH 400 comment_id: When provided an invalid comment_id, should respond with a 400 error and bad request message", () => {
+    return request(app)
+    .patch("/api/comments/nomnomnom")
+    .send({
+      inc_votes: 10
+    })
+    .expect(400)
+    .then(({body})=>{
+      const {msg} = body
+      expect(msg).toBe("Bad request")
+    })
+  })
+
+  test("PATCH 400 inc_votes: When provided an invalid datatype for the key, should respond with a 400 error and bad request message", () => {
+    return request(app)
+    .patch("/api/comments/999")
+    .send({
+      inc_votes: "yikes"
+    })
+    .expect(400)
+    .then(({body})=>{
+      const {msg} = body
+      expect(msg).toBe("Bad request")
+    })
+  })
+
+  test("PATCH 400 missing body: When the request has no inc_votes property, should respond with a 400 error and bad request message", () => {
+    return request(app)
+    .patch("/api/comments/5")
+    .send({})
+    .expect(400)
+    .then(({body})=>{
+      const {msg} = body
+      expect(msg).toBe("Bad request")
+    })
+  })
+
 })
 
 // api/users
