@@ -59,6 +59,51 @@ describe("/api/topics", () => {
     })
   })
 
+  test("POST 201: Successful post requests will add a new topic to the database and return the new topic with slug and description properties", ()=>{
+    return request(app)
+    .post("/api/topics")
+    .send({
+      slug: "blackholes",
+      description: "nothing to see here"
+    })
+    .expect(201)
+      .then(({body})=>{
+      const {topic} = body
+      expect(topic).toMatchObject({
+        slug: "blackholes",
+        description: "nothing to see here"
+      })
+    })
+  })
+
+  test("POST 201 Unexpected Property: When an unexpected property exists, the insertion should go ahead whilst ignoring the unexpected property", ()=>{
+    return request(app)
+    .post("/api/topics")
+    .send({
+      slug: "blackholes",
+      description: "nothing to see here",
+      surprise: "SURPRIIIISEEE!"
+    })
+    .expect(201)
+    .then(({body})=>{
+      const {topic} = body
+      expect(topic).not.toHaveProperty("surprise")
+    })
+  })
+  
+  test("POST 400 Missing Property: Post rquests that are missing properties will return a 400 error with bad request message", ()=>{
+    return request(app)
+    .post("/api/topics")
+    .send({
+      description: "nothing to see here"
+    })
+    .expect(400)
+    .then(({body})=>{
+      const {msg} = body
+      expect(msg).toBe("Bad request")
+    })
+  })
+
 });
 
 // api/articles
@@ -193,6 +238,23 @@ describe("/api/articles", () => {
       })
     })
 
+    test("POST 201 article_img_url: If a url does not include a scheme, it should be added", ()=>{
+      return request(app)
+      .post("/api/articles")
+      .send({
+        title: "Adventures in Web Wizardry",
+        author: "syntaxsorcerer",
+        body: "The cake is a lie",
+        topic: "code",
+        article_img_url: "some-server/test-image.jpg"
+      })
+      .expect(201)
+      .then(({body})=>{
+        const {article} = body
+        expect(article.article_img_url).toBe("http://some-server/test-image.jpg")
+      })
+    })
+
   test("POST 400 Missing Property: Post rquests that are missing properties will return a 400 error with bad request message", ()=>{
     return request(app)
     .post("/api/articles")
@@ -205,23 +267,6 @@ describe("/api/articles", () => {
     .then(({body})=>{
       const {msg} = body
       expect(msg).toBe("Bad request")
-    })
-  })
-
-  test("POST 201 article_img_url: If a url does not include a scheme, it should be added", ()=>{
-    return request(app)
-    .post("/api/articles")
-    .send({
-      title: "Adventures in Web Wizardry",
-      author: "syntaxsorcerer",
-      body: "The cake is a lie",
-      topic: "code",
-      article_img_url: "some-server/test-image.jpg"
-    })
-    .expect(201)
-    .then(({body})=>{
-      const {article} = body
-      expect(article.article_img_url).toBe("http://some-server/test-image.jpg")
     })
   })
 
