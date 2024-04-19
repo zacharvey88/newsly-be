@@ -44,21 +44,21 @@ Create the following files. In each, initialise PGDATABASE with the relevant dat
 
 To get a full list of available request paths with further information, make a **GET** request to the path `/api`. This will provide a JSON object with a description of each path.
 
-/api/articles `GET` `POST`  
-
-/api/articles/:article_id `GET` `PATCH` `DELETE`  
-
-/api/articles/:article_id/comments `GET` `POST`  
-
-/api/comments/comment_id `PATCH` `DELETE`  
-
-/api/users `GET` `POST`  
-
-/api/users/username `GET`  
-
-/api/topics `GET` `POST`  
-
-/api/topics_id `GET`
+>/api/articles `GET` `POST`  
+>
+>/api/articles/:article_id `GET` `PATCH` `DELETE`  
+>
+>/api/articles/:article_id/comments `GET` `POST`  
+>
+>/api/comments/comment_id `PATCH` `DELETE`  
+>
+>/api/users `GET` `POST`  
+>
+>/api/users/username `GET`  
+>
+>/api/topics `GET` `POST`  
+>
+>/api/topics_id `GET`
 
 
 ## Testing
