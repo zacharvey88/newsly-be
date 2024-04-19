@@ -90,6 +90,12 @@
     }
   },
 
+  "DELETE /api/articles/:article_id": {
+    "description": "Deletes the specified article",
+    "queries": [],
+    "exampleResponse": "Status 204"
+  },
+
   "GET /api/articles/:article_id/comments": {
     "description": "serves an array of all comments related to the specified article_id sorted by created_at in descending order",
     "queries": [],
