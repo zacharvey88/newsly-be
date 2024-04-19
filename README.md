@@ -11,52 +11,59 @@ To get a detailed list of available paths, append the URL with `/api`
 ## Create a clone
 
 Alternatively, to make a local clone of the repo for yourself:
-1. copy this URL: https://github.com/zacharvey88/nc-news.git.
-2. In your terminal, navigate to the folder you'd like to create the repo in.
-3. enter command `git clone` followed by the repo URL.
-4. Finally open the directory in your chosen code editor and refer to further instructions below.
+1. In your terminal, navigate to the desired directory
+2. Run this command: `git clone https://github.com/zacharvey88/nc-news.git` 
+3. Open the directory in your chosen code editor and refer to further instructions below.
 
 
 ## Environment Set-up
 
-To get started, install dependencies. Run command `npm install`
+Minimum versions required:
+> Node.js `21.4.0`
+> Postgres `14.10`
 
-> Minimum versions required:
-> - Node.js `21.4.0`
-> - Postgres `14.10`
+First, install dependencies `npm install`
 
 In order to connect to the database you will need to set local variables for PGDATABASE. 
 
 Create the following files. In each, initialise PGDATABASE with the relevant database name as provided privately.
 
-- .env.test
-- .env.development
-
+`.env.test`
+`.env.development`
 
 
 ## Database Set-up
 
-1. To create the database run command `npm run setup-dbs`
-2. To create tables and populate the database run command `npm run seed`
+1. Create the database `npm run setup-dbs`
+2. Create tables and seed the database `npm run seed`
 
 
 ## Available Paths
 
-To get a list of available request paths, use a **GET** request to the path `/api`. This will provide a JSON object with a description of each path.
+To get a full list of available request paths with further information, make a **GET** request to the path `/api`. This will provide a JSON object with a description of each path.
+
+/api/articles `GET` `POST`
+/api/articles/:article_id `GET` `PATCH` `DELETE`
+/api/articles/:article_id/comments `GET` `POST`
+/api/comments/comment_id `PATCH` `DELETE`
+/api/users `GET` `POST`
+/api/users/username `GET`
+/api/topics `GET` `POST`
+/api/topics_id `GET`
 
 
 ## Testing
 
 To run tests please ensure the following packages are installed as dev dependencies.
 
-- jest: 27.5.1 `npm i jest -D`
-- jest-extended: 2.0.0 `npm i jest-extended -D`
-- jest-sorted: 1.0.15 `npm i jest-sorted -D`
-- supertest: 6.3.4 `npm i supertest -D`
+`npm i jest -D` 27.5.1
+`npm i jest-extended -D` 2.0.0
+`npm i jest-sorted -D` 1.0.15
+`npm i supertest -D` 6.3.4 
 
 To run the test suite `npm test`. You may further specify either `utils` or `integration` test file.
-- `integration.test.js` contains the functionality testing for all request paths.
-- `utils.test.js` contains a few unit tests, mainly for seeding purposes.
+`integration.test.js` contains the functionality testing for all request paths.
+`utils.test.js` contains a few unit tests, mainly for seeding purposes.
 
 
 ### Acknowledgements
