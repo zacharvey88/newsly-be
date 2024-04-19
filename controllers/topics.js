@@ -1,4 +1,4 @@
-const {selectTopics} = require('../models/topics')
+const {selectTopics, insertTopic} = require('../models/topics')
 
 function getTopics (req,res,next) {
   return selectTopics().then((topics)=>{
@@ -9,5 +9,15 @@ function getTopics (req,res,next) {
   })
 }
 
+function postTopic(req,res,next) {
+  const newTopic = req.body
+  insertTopic(newTopic)
+  .then((topic)=>{
+    res.status(201).send({topic})
+  })
+  .catch((err)=>{
+    next(err)
+  })
+}
 
-module.exports = {getTopics}
+module.exports = {getTopics, postTopic}

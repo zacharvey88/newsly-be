@@ -164,6 +164,15 @@
     }
   },
 
+  "POST /api/topics": {
+    "description": "inserts a new topic given the correct required properties and returns the new topic with all properties",
+    "queries": [],
+    "requestBody": {"slug": "blackholes", "description": "nothing to see here"},
+    "exampleResponse": {
+      "topic": [{"slug": "blackholes", "description": "nothing to see here"}]
+    }
+  },
+
   "GET /api/users": {
     "description": "serves an array of all users",
     "queries": [],
