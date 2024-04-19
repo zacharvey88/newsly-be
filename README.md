@@ -1,10 +1,12 @@
 ![NC News](/assets/images/nc-news-project.png)
 
-**NC NEWS** is my first solo full-stack project, with the aim of highlighting my capabilities as a new software developer. It is a hosted news site build using Node.js and PSQL. The database features a variety of fun articles, each with topic tags, a comments section and the ability to upvote. Current user functionality allows for the retrieval of articles, comments topics and users, and the addition and deletion of comments. Additionally, responses from /api/articles can be queried and sorted. The front end is yet to be developed to stay tuned!
+**NC NEWS** is my first solo full-stack project, with the aim of highlighting my capabilities as a new software developer. It is a hosted news site build using Node.js and PSQL. 
 
-You can test the app here: [NC NEWS](https://nc-news-ngma.onrender.com)
+The database features a variety of fun articles, each with topic tags, a comments section and the ability to upvote. Current user functionality allows for the retrieval of articles, comments topics and users, and the addition and deletion of comments. Additionally, responses from /api/articles can be queried and sorted. 
 
-Simply enter a valid URL path to retrieve information from the database. (Best viewed with a browser JSON formatter)
+The front end is yet to be developed to stay tuned!
+
+You can test the app here: [NC NEWS](https://nc-news-ngma.onrender.com). Simply enter a valid path to retrieve information from the database. (Best viewed with a browser JSON formatter)
 
 To get a detailed list of available paths, append the URL with `/api`
 
