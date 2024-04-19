@@ -49,7 +49,7 @@ describe("/api/topics", () => {
     .expect(200)
     .then(({body})=>{
       const {topics} = body
-      expect(topics.length).toBe(3)
+      expect(topics.length).toBe(4)
       topics.forEach(topic => {
         expect(topic).toMatchObject({
           slug: expect.any(String),
@@ -166,6 +166,33 @@ describe("/api/articles", () => {
       expect(msg).toBe("Bad request")
     })
   })
+
+  test("POST: Successfull posts to this endpoint should respond with status 201 and the newly added article inluding all properties", () => {
+    return request(app)
+    .post("/api/articles")
+    .send({
+      title: "Adventures in Web Wizardry",
+      author: "syntaxsorcerer",
+      body: "In the land of JavaScript, where curly braces reign supreme and semicolons are the knights of punctuation, even the simplest task can turn into an epic quest through the maze of callbacks, promises, and unexpected NaNs. Brace yourselves, fellow coders, for we journey forth into the realm of 'undefined' possibilities!",
+      topic: "code"
+    })
+    .expect(201)
+    .then(({body})=>{
+      const article = body
+      expect(article).toMatchObject({
+        article_id: 14,
+        created_at: expect.any(String),
+        title: "Adventures in Web Wizardry",
+        author: "syntaxsorcerer",
+        body: "In the land of JavaScript, where curly braces reign supreme and semicolons are the knights of punctuation, even the simplest task can turn into an epic quest through the maze of callbacks, promises, and unexpected NaNs. Brace yourselves, fellow coders, for we journey forth into the realm of 'undefined' possibilities!",
+        topic: "code",
+        votes: 0,
+        comment_count: 0,
+        article_img_url: "https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700"
+      })
+      })
+    })
+
 
 });
 
@@ -598,7 +625,7 @@ describe("/api/users", () => {
     .expect(200)
     .then(({body})=>{
       const {users} = body
-      expect(users.length).toBe(7)
+      expect(users.length).toBe(8)
       users.forEach(user => {
         expect(user).toMatchObject({
           username: expect.any(String),

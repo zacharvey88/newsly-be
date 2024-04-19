@@ -1,4 +1,4 @@
-const {selectArticle, selectArticles, updateArticle} = require('../models/articles')
+const {selectArticle, selectArticles, updateArticle, insertArticle} = require('../models/articles')
 
 
 function getArticles(req,res,next) {
@@ -35,4 +35,15 @@ function patchArticle(req,res,next) {
   })  
 }
 
-module.exports = {getArticle, getArticles, patchArticle}
+function postArticle(req,res,next) {
+  const newArticle = req.body
+  insertArticle(newArticle)
+  .then((article)=>{
+    res.status(201).send(article)
+  })
+  .catch((err)=>{
+    next(err)
+  })
+}
+
+module.exports = {getArticle, getArticles, patchArticle, postArticle}

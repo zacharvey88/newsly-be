@@ -10,5 +10,9 @@ module.exports = [
   {
     description: 'what books are made of',
     slug: 'paper'
-  }
+  },
+  {
+    description: 'ones and zeros',
+    slug: 'code'
+  },
 ];
