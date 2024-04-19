@@ -39,7 +39,7 @@ function postArticle(req,res,next) {
   const newArticle = req.body
   insertArticle(newArticle)
   .then((article)=>{
-    res.status(201).send(article)
+    res.status(201).send({article})
   })
   .catch((err)=>{
     next(err)

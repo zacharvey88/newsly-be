@@ -1,4 +1,5 @@
-const db = require('../db/connection')
+const db = require('../db/connection');
+const {validateUrl} = require('../db/seeds/utils');
 
 function selectArticles(query) {
   const greenlist = ["sort_by", "sort_dir", "topic", "author", "title", "votes", "comment_count", "asc", "desc"]
@@ -124,8 +125,9 @@ function insertArticle(newArticle) {
     queryValues.push(newArticle.title, newArticle.author, newArticle.body, newArticle.topic)
   }
   else {
+    const article_img_url = validateUrl(newArticle.article_img_url)
     sqlQuery += "INSERT INTO articles (title, author, body, topic, article_img_url) VALUES ($1, $2, $3, $4, $5) RETURNING article_id"
-    queryValues.push(newArticle.title, newArticle.author, newArticle.body, newArticle.topic, newArticle.article_img_url)
+    queryValues.push(newArticle.title, newArticle.author, newArticle.body, newArticle.topic, article_img_url)
   }
 
   return db.query(sqlQuery, queryValues)
