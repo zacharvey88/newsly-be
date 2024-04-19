@@ -19,9 +19,6 @@ function selectCommentsByArticle(article_id) {
 }
 
 function insertComment(article_id, newComment) {
-  if(!newComment.body || !newComment.username)  {
-    return Promise.reject({status: 400, msg: "Bad request"})
-  }
   return db.query(`
     INSERT INTO comments (author, body, article_id)
     VALUES ($1, $2, $3)

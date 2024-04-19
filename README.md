@@ -14,7 +14,7 @@ Alternatively, to make a local clone of the repo for yourself:
 1. copy this URL: https://github.com/zacharvey88/nc-news.git.
 2. In your terminal, navigate to the folder you'd like to create the repo in.
 3. enter command `git clone` followed by the repo URL.
-4. Finally open the directory in your chosen code editor and refer to further instrctions below.
+4. Finally open the directory in your chosen code editor and refer to further instructions below.
 
 
 ## Environment Set-up
@@ -55,7 +55,7 @@ To run tests please ensure the following packages are installed as dev dependenc
 - supertest: 6.3.4 `npm i supertest -D`
 
 To run the test suite `npm test`. You may further specify either `utils` or `integration` test file.
-- `integration.test.js` contains the funcationality testing for all request paths.
+- `integration.test.js` contains the functionality testing for all request paths.
 - `utils.test.js` contains a few unit tests, mainly for seeding purposes.
 
 

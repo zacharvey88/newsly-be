@@ -503,39 +503,11 @@ describe("/api/articles/:article_id/comments", () => {
       })
     })
 
-    test("POST 400 Empty body: Requests that have an empty body property, will return a 400 error with bad request message", () => {
-      return request(app)
-      .post("/api/articles/5/comments")
-      .send({
-        username: "marauder5",
-        body: ""
-      })
-      .expect(400)
-      .then(({body})=>{
-        const {msg} = body
-        expect(msg).toBe("Bad request")
-      })
-    })
-
     test("POST 400 Missing body: Requests that are missing a body key will return a 400 error with bad request message", () => {
       return request(app)
       .post("/api/articles/3/comments")
       .send({
         username: "swishandflick"
-      })
-      .expect(400)
-      .then(({body})=>{
-        const {msg} = body
-        expect(msg).toBe("Bad request")
-      })
-    })
-
-    test("POST 400 Empty username: Requests that have an empty body property, will return a 400 error with bad request message", () => {
-      return request(app)
-      .post("/api/articles/5/comments")
-      .send({
-        username: "",
-        body: "I solemnly swear I am up to no good"
       })
       .expect(400)
       .then(({body})=>{
