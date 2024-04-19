@@ -1,4 +1,10 @@
-const {selectArticle, selectArticles, updateArticle, insertArticle} = require('../models/articles')
+const {
+  selectArticle, 
+  selectArticles, 
+  updateArticle, 
+  insertArticle, 
+  removeArticle
+} = require('../models/articles')
 
 
 function getArticles(req,res,next) {
@@ -46,4 +52,15 @@ function postArticle(req,res,next) {
   })
 }
 
-module.exports = {getArticle, getArticles, patchArticle, postArticle}
+function deleteArticle(req,res,next) {
+  const {article_id} = req.params
+  removeArticle(article_id)
+  .then(()=>{
+    res.status(204).send()
+  })
+  .catch((err)=>{
+    next(err)
+  })
+}
+
+module.exports = {getArticle, getArticles, patchArticle, postArticle, deleteArticle}

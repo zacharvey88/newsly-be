@@ -425,6 +425,34 @@ describe("/api/articles/:article_id", () => {
       expect(msg).toBe("Bad request")
     })
   })
+
+  test("DELETE 204: Successful request will delete the specified article and return a 204 status with no content", () => {
+    return request(app)
+    .delete("/api/articles/13")
+    .expect(204)
+  })
+
+
+  test("DELETE 404: When provided an article_id that's not in the database will return a 404 error and not found message", () => {
+    return request(app)
+    .delete("/api/articles/420")
+    .expect(404)
+    .then(({body})=>{
+      const {msg} = body
+      expect(msg).toBe("Not found")
+    })
+  })
+
+
+  test("DELETE 400: Delete requests with an invalid article_id should return a 400 error and bad request message", () => {
+    return request(app)
+    .delete("/api/articles/sujide-wa-arimasen")
+    .expect(400)
+    .then(({body})=>{
+      const {msg} = body
+      expect(msg).toBe("Bad request")
+    })
+  })
   
 });
 
