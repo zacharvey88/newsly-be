@@ -1,4 +1,5 @@
-const db = require('../db/connection')
+const db = require('../db/connection');
+const {validateUrl} = require('../db/seeds/utils');
 
 function selectArticles(query) {
   const greenlist = ["sort_by", "sort_dir", "topic", "author", "title", "votes", "comment_count", "asc", "desc"]
@@ -115,4 +116,42 @@ function updateArticle(article_id, inc_votes) {
   })
 }
 
-module.exports = {selectArticle, selectArticles, updateArticle}
+function insertArticle(newArticle) {
+  let sqlQuery = ""
+  let queryValues = []
+
+  if (!newArticle.article_img_url) {
+    sqlQuery += "INSERT INTO articles (title, author, body, topic) VALUES ($1, $2, $3, $4) RETURNING article_id"
+    queryValues.push(newArticle.title, newArticle.author, newArticle.body, newArticle.topic)
+  }
+  else {
+    const article_img_url = validateUrl(newArticle.article_img_url)
+    sqlQuery += "INSERT INTO articles (title, author, body, topic, article_img_url) VALUES ($1, $2, $3, $4, $5) RETURNING article_id"
+    queryValues.push(newArticle.title, newArticle.author, newArticle.body, newArticle.topic, article_img_url)
+  }
+
+  return db.query(sqlQuery, queryValues)
+  .then(({rows})=>{
+    const {article_id} = rows[0]
+    return db.query(`
+    SELECT 
+      articles.article_id, 
+      title, 
+      topic, 
+      articles.author, 
+      articles.body, 
+      articles.votes, 
+      article_img_url, 
+      TO_CHAR(articles.created_at, 'YYYY-MM-DD HH:MM:SS') AS created_at,
+      CAST(COUNT(comment_id) AS INT) AS comment_count
+    FROM articles
+    LEFT JOIN comments ON comments.article_id = articles.article_id
+    WHERE articles.article_id = $1
+    GROUP BY articles.article_id`, [article_id])
+  })
+  .then(({rows})=>{
+    return rows[0]
+  })
+}
+
+module.exports = {selectArticle, selectArticles, updateArticle, insertArticle}

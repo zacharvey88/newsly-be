@@ -31,3 +31,12 @@ exports.formatComments = (comments, idLookup) => {
     };
   });
 };
+
+
+exports.validateUrl = (url) => {
+  if ((url.startsWith("http://") || url.startsWith("https://"))) {
+    return url
+  }
+  const validUrl = `http://${url}`
+  return validUrl
+} 

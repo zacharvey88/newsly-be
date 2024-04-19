@@ -49,7 +49,7 @@ describe("/api/topics", () => {
     .expect(200)
     .then(({body})=>{
       const {topics} = body
-      expect(topics.length).toBe(3)
+      expect(topics.length).toBe(4)
       topics.forEach(topic => {
         expect(topic).toMatchObject({
           slug: expect.any(String),
@@ -166,6 +166,82 @@ describe("/api/articles", () => {
       expect(msg).toBe("Bad request")
     })
   })
+
+  test("POST 201: Successfull posts to this endpoint should respond with status 201 and the newly added article inluding all properties", () => {
+    return request(app)
+    .post("/api/articles")
+    .send({
+      title: "Adventures in Web Wizardry",
+      author: "syntaxsorcerer",
+      body: "In the land of JavaScript, where curly braces reign supreme and semicolons are the knights of punctuation, even the simplest task can turn into an epic quest through the maze of callbacks, promises, and unexpected NaNs. Brace yourselves, fellow coders, for we journey forth into the realm of 'undefined' possibilities!",
+      topic: "code"
+    })
+    .expect(201)
+    .then(({body})=>{
+      const {article} = body
+      expect(article).toMatchObject({
+        article_id: 14,
+        created_at: expect.any(String),
+        title: "Adventures in Web Wizardry",
+        author: "syntaxsorcerer",
+        body: "In the land of JavaScript, where curly braces reign supreme and semicolons are the knights of punctuation, even the simplest task can turn into an epic quest through the maze of callbacks, promises, and unexpected NaNs. Brace yourselves, fellow coders, for we journey forth into the realm of 'undefined' possibilities!",
+        topic: "code",
+        votes: 0,
+        comment_count: 0,
+        article_img_url: "https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700"
+      })
+      })
+    })
+
+  test("POST 400 Missing Property: Post rquests that are missing properties will return a 400 error with bad request message", ()=>{
+    return request(app)
+    .post("/api/articles")
+    .send({
+      title: "Adventures in Web Wizardry",
+      author: "syntaxsorcerer",
+      topic: "code"
+    })
+    .expect(400)
+    .then(({body})=>{
+      const {msg} = body
+      expect(msg).toBe("Bad request")
+    })
+  })
+
+  test("POST 201 article_img_url: If a url does not include a scheme, it should be added", ()=>{
+    return request(app)
+    .post("/api/articles")
+    .send({
+      title: "Adventures in Web Wizardry",
+      author: "syntaxsorcerer",
+      body: "The cake is a lie",
+      topic: "code",
+      article_img_url: "some-server/test-image.jpg"
+    })
+    .expect(201)
+    .then(({body})=>{
+      const {article} = body
+      expect(article.article_img_url).toBe("http://some-server/test-image.jpg")
+    })
+  })
+
+  test("POST 201 Unexpected Property: When an unexpected property exists, the insertion should go ahead whilst ignoring the unexpected property", ()=>{
+    return request(app)
+    .post("/api/articles")
+    .send({
+      title: "Adventures in Web Wizardry",
+      author: "syntaxsorcerer",
+      topic: "code",
+      body: "The cake is a lie",
+      notacolumn: "injection"
+    })
+    .expect(201)
+    .then(({body})=>{
+      const {article} = body
+      expect(article).not.toHaveProperty("notacolumn")
+    })
+  })
+
 
 });
 
@@ -524,7 +600,7 @@ describe("/api/comments/:comment_id", () => {
     })
     .expect(200)
     .then(({body})=>{
-      const comment = body
+      const {comment} = body
       expect(comment).toMatchObject({
         comment_id: 5,
         body: "I hate streaming noses",
@@ -598,7 +674,7 @@ describe("/api/users", () => {
     .expect(200)
     .then(({body})=>{
       const {users} = body
-      expect(users.length).toBe(7)
+      expect(users.length).toBe(8)
       users.forEach(user => {
         expect(user).toMatchObject({
           username: expect.any(String),

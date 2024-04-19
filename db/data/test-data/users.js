@@ -38,5 +38,11 @@ module.exports = [
     name: 'Harry',
     avatar_url:
       'https://www.golenbock.com/wp-content/uploads/2015/01/placeholder-user.png'
+  },
+  {
+    username: 'syntaxsorcerer',
+    name: 'Dex Syntax',
+    avatar_url:
+      'https://www.golenbock.com/wp-content/uploads/2015/01/placeholder-user.png'
   }
 ];
