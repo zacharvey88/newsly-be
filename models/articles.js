@@ -20,6 +20,7 @@ function selectArticles(query) {
     title,
     articles.author,
     topic,
+    articles.body,
     articles.votes,
     TO_CHAR(articles.created_at, 'YYYY-MM-DD HH:MM:SS') AS created_at, 
     CAST(COUNT(comment_id) AS INT) AS comment_count,
