@@ -8,8 +8,10 @@ function selectCommentsByArticle(article_id) {
       votes,
       article_id,
       TO_CHAR(comments.created_at, 'YYYY-MM-DD HH:MM:SS') AS created_at,
-      body
+      body,
+      users.avatar_url
     FROM comments
+    LEFT JOIN users ON users.username = comments.author
     WHERE article_id = $1
     ORDER BY TO_CHAR(comments.created_at, 'YYYY-MM-DD HH:MM:SS') DESC
   `, [article_id])
