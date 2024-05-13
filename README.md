@@ -6,7 +6,7 @@ The database features a variety of fun articles, each with topic tags, a comment
 
 The front end is yet to be developed to stay tuned!
 
-You can test the API[here](https://nc-news-ngma.onrender.com): Simply enter a valid path to retrieve information from the database. (Best viewed with a browser JSON formatter)
+You can test the API [here](https://nc-news-ngma.onrender.com): Simply enter a valid path to retrieve information from the database. (Best viewed with a browser JSON formatter)
 
 To get a detailed list of available paths, append the URL with `/api`
 
