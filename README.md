@@ -1,4 +1,4 @@
-![NC News](/assets/images/nc-news-project.png)
+![Newsly](/assets/images/newsly-logo.png)
 
 NC News is my first solo full-stack project, with the aim of highlighting my capabilities as a new software developer. It is a hosted news site build using Node.js and PSQL. 
 
