@@ -1,12 +1,12 @@
-![Newsly](/assets/images/newsly-logo.png)
+<img src="/assets/images/newsly-logo.png" width="300">
 
-NC News is my first solo full-stack project, with the aim of highlighting my capabilities as a new software developer. It is a hosted news site build using Node.js and PSQL. 
+Newsly is my first solo full-stack project, with the aim of highlighting my capabilities as a new software developer. It is a hosted news site build using Node.js and PSQL. 
 
 The database features a variety of fun articles, each with topic tags, a comments section and the ability to upvote. Current user functionality allows for the retrieval of articles, comments topics and users, and the addition and deletion of comments. Additionally, responses from /api/articles can be queried and sorted. 
 
 The front end is yet to be developed to stay tuned!
 
-You can test the app here: [NC NEWS](https://nc-news-ngma.onrender.com). Simply enter a valid path to retrieve information from the database. (Best viewed with a browser JSON formatter)
+You can test the app here: [Newsly](https://nc-news-ngma.onrender.com). Simply enter a valid path to retrieve information from the database. (Best viewed with a browser JSON formatter)
 
 To get a detailed list of available paths, append the URL with `/api`
 
@@ -14,7 +14,7 @@ To get a detailed list of available paths, append the URL with `/api`
 
 Alternatively, to make a local clone of the repo for yourself:
 1. In your terminal, navigate to the desired directory
-2. Run this command: `git clone https://github.com/zacharvey88/nc-news.git` 
+2. Run this command: `git clone https://github.com/zacharvey88/newsly-be.git` 
 3. Open the directory in your chosen code editor and refer to further instructions below.
 
 
