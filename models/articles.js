@@ -2,7 +2,7 @@ const db = require('../db/connection');
 const {validateUrl} = require('../db/seeds/utils');
 
 function selectArticles(query) {
-  const greenlist = ["sort_by", "sort_dir", "topic", "author", "title", "votes", "comment_count", "asc", "desc"]
+  const greenlist = ["sort_by", "sort_dir", "topic", "author", "title", "votes", "comment_count", "asc", "desc", "created_at"]
   const queryValues = []
 
   for(const [key, value] of Object.entries(query)) {
