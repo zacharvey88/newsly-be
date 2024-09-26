@@ -149,6 +149,22 @@ describe("/api/articles", () => {
     })
   })
 
+  test("GET QUERY: Requests with an author query should return an array of all articles with the matching author ", () => {
+    return request(app)
+    .get("/api/articles?author=rogersop")
+    .expect(200)
+    .then(({body})=>{
+      const {articles} = body
+      expect(articles.length).toBe(3)
+      expect(articles).toBeSortedBy("created_at", {descending: true})
+      articles.forEach(article => {
+        expect(article).toMatchObject({
+          author: "rogersop",
+        });
+      })
+    })
+  })
+
   test("GET QUERY 404: When the query value doesn't exist in the database, should return status 404 with not found message", ()=>{
     return request(app)
     .get("/api/articles?topic=blackholes")
