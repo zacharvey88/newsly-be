@@ -22,10 +22,11 @@ function getUser(req,res,next) {
 }
 
 function patchUser(req,res,next) {
-  const {username, name} = req.params
+  const {username} = req.params
+  const {name} = req.body
   updateUser(username, name)
-    .then((comment)=>{
-      res.status(200).send({comment})
+    .then((user)=>{
+      res.status(200).send({user})
     })
     .catch((err)=>{
       next(err)
