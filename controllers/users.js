@@ -1,4 +1,4 @@
-const {selectUsers, selectUser} = require("../models/users");
+const {selectUsers, selectUser, updateUser, removeUser} = require("../models/users");
 
 function getUsers(req,res,next) {
   selectUsers()
@@ -21,4 +21,26 @@ function getUser(req,res,next) {
   })
 }
 
-module.exports = {getUsers, getUser}
+function patchUser(req,res,next) {
+  const {username, name} = req.params
+  updateUser(username, name)
+    .then((comment)=>{
+      res.status(200).send({comment})
+    })
+    .catch((err)=>{
+      next(err)
+    })
+}
+
+function deleteUser(req,res,next) {
+  const {username} = req.params
+  removeUser(username)
+    .then(()=>{
+      res.status(204).send()
+    })
+    .catch((err)=>{
+      next(err)
+    })
+}
+
+module.exports = {getUsers, getUser, patchUser, deleteUser}
