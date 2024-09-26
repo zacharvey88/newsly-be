@@ -760,4 +760,23 @@ describe("/api/users/:username", () => {
     })
   })
 
+  test("PATCH 200: ", () => {
+    return request(app)
+    .patch("/api/users/theRealDumbledore")
+    .send({
+      name: 'Dumbledore'
+    })
+    .expect(200)
+    .then(({body})=>{
+      const {user} = body
+      expect(user.name).toBe("Dumbledore")
+    })
+  })
+
+  test("DELETE 204: ", () => {
+    return request(app)
+    .delete("/api/users/theRealDumbledore")
+    .expect(204)
+  })
+
 });
