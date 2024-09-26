@@ -35,6 +35,13 @@ function selectArticles(query) {
     sqlQuery += ` WHERE topic=$1`
   }
 
+  if (query.author) {
+    if(!typeof query.author === "string") {
+      return Promise.reject({status: 400, msg: "Bad request"})
+    }
+    sqlQuery += ` WHERE author=$1`
+  }
+
   sqlQuery += ` GROUP BY articles.article_id`
     
   if (query.sort_by) {
