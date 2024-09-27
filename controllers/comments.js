@@ -3,8 +3,20 @@ const {
   selectCommentsByArticle, 
   insertComment, 
   removeComment, 
-  updateComment
+  updateComment,
+  selectCommentsByUsername
 } = require('../models/comments')
+
+function getCommentsByUsername(req,res,next) {
+  const {username} = req.params  
+  return selectCommentsByUsername(username)
+  .then((comments)=>{
+    res.status(200).send({comments})
+  })
+  .catch((err)=>{
+    next(err)
+  })
+}
 
 function getCommentsByArticle(req,res,next) {
   const {article_id} = req.params
@@ -16,6 +28,7 @@ function getCommentsByArticle(req,res,next) {
       next(err)
     })
 }
+
 
 function postComment(req,res,next) {
   const {article_id} = req.params
@@ -53,6 +66,6 @@ function patchComment(req,res,next) {
 }
 
 
-module.exports = {getCommentsByArticle, postComment, deleteComment, patchComment}
+module.exports = {getCommentsByArticle, postComment, deleteComment, patchComment, getCommentsByUsername}
 
 

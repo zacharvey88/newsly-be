@@ -796,3 +796,31 @@ describe("/api/users/:username", () => {
   })
 
 });
+
+// api/users:username/comments
+
+describe("/api/users/:username/comments", () => {
+
+  test("GET: Requests to this endpoint should respond with an array of all the comments with the requested username, each with the following properties; comment_id, author, body, votes, created_at, article_id, article title", () => {
+    return request(app)
+    .get("/api/users/icellusedkars/comments")
+    .expect(200)
+    .then(({body})=>{
+      const {comments} = body
+      expect(comments.length).toBe(13)
+      expect(comments).toBeSortedBy("created_at", {descending: true})
+      comments.forEach(comment => {
+        expect(comment).toMatchObject({
+          comment_id: expect.any(Number),
+          article_id: expect.any(Number),
+          author: 'icellusedkars',
+          title: expect.any(String),
+          body: expect.any(String),
+          created_at: expect.any(String),
+          votes: expect.any(Number),
+        })
+      })
+    })
+  })
+
+});

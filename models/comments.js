@@ -1,5 +1,25 @@
 const db = require('../db/connection')
 
+function selectCommentsByUsername(username) {    
+  return db.query(`
+      SELECT
+        comment_id,
+        comments.author,
+        comments.body,
+        comments.votes,
+        comments.article_id,
+        articles.title,
+        TO_CHAR(comments.created_at, 'YYYY-MM-DD HH:MM:SS') AS created_at
+      FROM comments
+      LEFT JOIN articles ON articles.article_id = comments.article_id
+      WHERE comments.author = $1
+      ORDER BY TO_CHAR(comments.created_at, 'YYYY-MM-DD HH:MM:SS') DESC
+    `, [username])
+    .then(({rows})=>{
+      return rows
+    })
+  }
+
 function selectCommentsByArticle(article_id) {
   return db.query(`
     SELECT
@@ -19,6 +39,7 @@ function selectCommentsByArticle(article_id) {
     return rows
   })
 }
+
 
 function insertComment(article_id, newComment) {
   return db.query(`
@@ -75,4 +96,4 @@ function updateComment(comment_id, inc_votes) {
 }
 
 
-module.exports = {selectCommentsByArticle, insertComment, removeComment, updateComment}
+module.exports = {selectCommentsByArticle, insertComment, removeComment, updateComment, selectCommentsByUsername}
