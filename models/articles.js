@@ -40,8 +40,6 @@ function selectArticles(query) {
       return Promise.reject({status: 400, msg: "Bad request"})
     }
     sqlQuery += ` WHERE articles.author=$1`
-    console.log(sqlQuery);
-    
   }
 
   sqlQuery += ` GROUP BY articles.article_id`

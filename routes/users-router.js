@@ -1,6 +1,6 @@
 const usersRouter = require('express').Router();
 const {getUser, getUsers, patchUser, deleteUser} = require("../controllers/users")
-const {getComments} = require("../controllers/comments")
+const {getCommentsByUsername} = require("../controllers/comments")
 
 usersRouter
   .route('/')
@@ -14,6 +14,6 @@ usersRouter
 
   usersRouter
   .route('/:username/comments')
-  .get(getComments)
+  .get(getCommentsByUsername)
 
 module.exports = usersRouter;

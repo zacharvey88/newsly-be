@@ -4,12 +4,12 @@ const {
   insertComment, 
   removeComment, 
   updateComment,
-  selectComments
+  selectCommentsByUsername
 } = require('../models/comments')
 
-function getComments(req,res,next) {
-  const query = req.query
-  return selectComments(query)
+function getCommentsByUsername(req,res,next) {
+  const {username} = req.params  
+  return selectCommentsByUsername(username)
   .then((comments)=>{
     res.status(200).send({comments})
   })
@@ -66,6 +66,6 @@ function patchComment(req,res,next) {
 }
 
 
-module.exports = {getCommentsByArticle, postComment, deleteComment, patchComment, getComments}
+module.exports = {getCommentsByArticle, postComment, deleteComment, patchComment, getCommentsByUsername}
 
 

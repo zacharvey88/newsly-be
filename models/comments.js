@@ -1,46 +1,24 @@
 const db = require('../db/connection')
 
-function selectComments(query) {
-  const greenlist = ["author"]
-  const queryValues = []
-
-  for(const [key, value] of Object.entries(query)) {
-    if(!greenlist.includes(key)) {
-      return Promise.reject({status: 400, msg: "Bad request"})
-    }
-    if(key !== "sort_by" && key !== "sort_dir") {
-      queryValues.push(value)
-    }
+function selectCommentsByUsername(username) {    
+  return db.query(`
+      SELECT
+        comment_id,
+        comments.author,
+        comments.body,
+        comments.votes,
+        comments.article_id,
+        articles.title,
+        TO_CHAR(comments.created_at, 'YYYY-MM-DD HH:MM:SS') AS created_at
+      FROM comments
+      LEFT JOIN articles ON articles.article_id = comments.article_id
+      WHERE comments.author = $1
+      ORDER BY TO_CHAR(comments.created_at, 'YYYY-MM-DD HH:MM:SS') DESC
+    `, [username])
+    .then(({rows})=>{
+      return rows
+    })
   }
-
-  let sqlQuery = `
-  SELECT 
-    comments.comment_id, 
-    comments.author,
-    comments.body,
-    articles.votes,
-    articles.title,
-    TO_CHAR(comments.created_at, 'YYYY-MM-DD HH:MM:SS') AS created_at, 
-  FROM comments 
-  LEFT JOIN articles ON comments.article_id = articles.article_id`
-
-  if (query.author) {
-    if(!typeof query.author === "string") {
-      return Promise.reject({status: 400, msg: "Bad request"})
-    }
-    sqlQuery += ` WHERE articles.author=$1 ORDER BY TO_CHAR(articles.created_at, 'YYYY-MM-DD HH:MM:SS') DESC`
-    
-  }
-
-  return db.query(sqlQuery)
-  .then(({rows})=>{
-    if(rows.length === 0) {
-      return Promise.reject({status: 404, msg: "Not found"})
-    }
-    return rows
-  })
-}
-
 
 function selectCommentsByArticle(article_id) {
   return db.query(`
@@ -118,4 +96,4 @@ function updateComment(comment_id, inc_votes) {
 }
 
 
-module.exports = {selectCommentsByArticle, insertComment, removeComment, updateComment, selectComments}
+module.exports = {selectCommentsByArticle, insertComment, removeComment, updateComment, selectCommentsByUsername}
