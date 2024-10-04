@@ -2,14 +2,14 @@ const db = require('../db/connection');
 const {validateUrl} = require('../db/seeds/utils');
 
 function selectArticles(query) {
-  const greenlist = ["sort_by", "sort_dir", "topic", "author", "title", "votes", "comment_count", "asc", "desc", "created_at"]
+  const greenlist = ["sort_by", "sort_dir", "topic", "author", "title", "votes", "comment_count", "asc", "desc", "created_at", "limit", "offset"]
   const queryValues = []
 
   for(const [key, value] of Object.entries(query)) {
     if(!greenlist.includes(key)) {
       return Promise.reject({status: 400, msg: "Bad request"})
     }
-    if(key !== "sort_by" && key !== "sort_dir") {
+    if(key !== "sort_by" && key !== "sort_dir" && key !== "limit" && key !== "offset") {
       queryValues.push(value)
     }
   }
@@ -62,6 +62,19 @@ function selectArticles(query) {
     sqlQuery += ` ORDER BY TO_CHAR(articles.created_at, 'YYYY-MM-DD HH:MM:SS') DESC`
   }
 
+  if (query.limit) {
+    if (isNaN(query.limit) || query.limit <= 0) {
+      return Promise.reject({ status: 400, msg: "Bad request" })
+    }
+    sqlQuery += ` LIMIT ${query.limit}`
+  }
+
+  if (query.offset) {
+    if (isNaN(query.offset) || query.offset < 0) {
+      return Promise.reject({ status: 400, msg: "Bad request" })
+    }
+    sqlQuery += ` OFFSET ${query.offset}`
+  }
 
   return db.query(sqlQuery, queryValues)
   .then(({rows})=>{

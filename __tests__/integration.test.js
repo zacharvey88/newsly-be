@@ -133,6 +133,35 @@ describe("/api/articles", () => {
     })
   })
 
+  test("GET LIMIT: Requests with a limit should only return the specified number of articles", () => {
+    return request(app)
+    .get("/api/articles?limit=10")
+    .expect(200)
+    .then(({body})=>{
+      const {articles} = body
+      expect(articles.length).toBe(10)
+    })
+  })
+
+  test("GET OFFSET: Requests with an offset should return articles starting from the specified position", () => {
+    return request(app)
+      .get("/api/articles?limit=10")
+      .expect(200)
+      .then(({ body }) => {
+        const { articles: firstPage } = body;
+  
+    return request(app)
+      .get("/api/articles?limit=5&offset=5")
+      .expect(200)
+      .then(({ body }) => {
+        const { articles: secondPage } = body;
+
+        expect(secondPage[0]).not.toEqual(firstPage[0]); 
+        expect(secondPage[0].article_id).toBe(firstPage[5].article_id);
+      });
+      });
+  });  
+
   test("GET QUERY: Requests with a topic query should return an array of all articles with the matching topic ", () => {
     return request(app)
     .get("/api/articles?topic=cats")
