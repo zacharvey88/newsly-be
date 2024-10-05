@@ -85,7 +85,6 @@ function selectArticles(query) {
   })
 }
 
-
 function selectArticle(article_id) {
   return db.query(`
     SELECT 
