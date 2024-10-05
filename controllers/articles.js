@@ -11,7 +11,8 @@ function getArticles(req,res,next) {
   const query = req.query
   return selectArticles(query)
   .then((articles)=>{
-    res.status(200).send({articles})
+    const total_count = articles.length
+    res.status(200).send({articles, total_count})
   })
   .catch((err)=>{
     next(err)
