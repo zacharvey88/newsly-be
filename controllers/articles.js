@@ -3,21 +3,23 @@ const {
   selectArticles, 
   updateArticle, 
   insertArticle, 
-  removeArticle
+  removeArticle,
+  getTotalArticles
 } = require('../models/articles')
 
 
-function getArticles(req,res,next) {
-  const query = req.query
-  return selectArticles(query)
-  .then((articles)=>{
-    const total_count = articles.length
-    res.status(200).send({articles, total_count})
-  })
-  .catch((err)=>{
-    next(err)
-  })
+function getArticles(req, res, next) {
+  const query = req.query;
+  
+  return Promise.all([selectArticles(query), getTotalArticles()])
+    .then(([articles, total_count]) => {
+      res.status(200).send({ articles, total_count });
+    })
+    .catch((err) => {
+      next(err);
+    });
 }
+
 
 function getArticle(req,res,next) {
   const {article_id} = req.params

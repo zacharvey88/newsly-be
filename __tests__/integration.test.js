@@ -171,7 +171,7 @@ describe("/api/articles", () => {
     .then(({body})=>{
       const {articles} = body
       const {total_count} = body
-      expect(total_count).toEqual(3)
+      expect(total_count).toEqual(13)
       expect(articles.length).toBe(3)
       expect(articles).toBeSortedBy("created_at", {descending: true})
       articles.forEach(article => {
@@ -335,7 +335,6 @@ describe("/api/articles", () => {
       expect(article).not.toHaveProperty("notacolumn")
     })
   })
-
 
 });
 
