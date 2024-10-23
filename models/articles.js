@@ -7,8 +7,6 @@ function getTotalArticles() {
       if (rows.length === 0) {
         return Promise.reject({ status: 404, msg: "Not found" });
       }
-      console.log(rows[0].total_count);
-      
       return Number(rows[0].total_count);
     });
 }
