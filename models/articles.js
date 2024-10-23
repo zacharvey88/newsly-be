@@ -1,6 +1,19 @@
 const db = require('../db/connection');
 const {validateUrl} = require('../db/seeds/utils');
 
+function getTotalArticles() {
+  return db.query(`SELECT COUNT(article_id) AS total_count FROM articles`)
+    .then(({ rows }) => {
+      if (rows.length === 0) {
+        return Promise.reject({ status: 404, msg: "Not found" });
+      }
+      console.log(rows[0].total_count);
+      
+      return Number(rows[0].total_count);
+    });
+}
+
+
 function selectArticles(query) {
   const greenlist = ["sort_by", "sort_dir", "topic", "author", "title", "votes", "comment_count", "asc", "desc", "created_at", "limit", "offset"]
   const queryValues = []
@@ -186,4 +199,4 @@ function removeArticle(article_id) {
   })
 }
 
-module.exports = {selectArticle, selectArticles, updateArticle, insertArticle, removeArticle}
+module.exports = {selectArticle, selectArticles, updateArticle, insertArticle, removeArticle, getTotalArticles}
