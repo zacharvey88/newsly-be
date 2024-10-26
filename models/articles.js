@@ -13,88 +13,84 @@ function getTotalArticles() {
 
 
 function selectArticles(query) {
-  const greenlist = ["sort_by", "sort_dir", "topic", "author", "title", "votes", "comment_count", "asc", "desc", "created_at", "limit", "offset"]
-  const queryValues = []
+  const greenlist = ["sort_by", "sort_dir", "topic", "author", "title", "votes", "comment_count", "asc", "desc", "created_at", "limit", "offset", "search"];
+  const queryValues = [];
 
-  for(const [key, value] of Object.entries(query)) {
-    if(!greenlist.includes(key)) {
-      return Promise.reject({status: 400, msg: "Bad request"})
+  for (const [key, value] of Object.entries(query)) {
+    if (!greenlist.includes(key)) {
+      return Promise.reject({ status: 400, msg: "Bad request" });
     }
-    if(key !== "sort_by" && key !== "sort_dir" && key !== "limit" && key !== "offset") {
-      queryValues.push(value)
+    if (["topic", "author", "search"].includes(key) && typeof value !== "string") {
+      return Promise.reject({ status: 400, msg: "Bad request" });
+    }
+    if (["limit", "offset"].includes(key) && (isNaN(value) || value < 0)) {
+      return Promise.reject({ status: 400, msg: "Bad request" });
     }
   }
 
   let sqlQuery = `
-  SELECT 
-    articles.article_id, 
-    title,
-    articles.author,
-    topic,
-    articles.body,
-    articles.votes,
-    TO_CHAR(articles.created_at, 'YYYY-MM-DD HH:MM:SS') AS created_at, 
-    CAST(COUNT(comment_id) AS INT) AS comment_count,
-    article_img_url 
-  FROM articles 
-  LEFT JOIN comments ON comments.article_id = articles.article_id`
+    SELECT 
+      articles.article_id, 
+      title,
+      articles.author,
+      topic,
+      articles.body,
+      articles.votes,
+      TO_CHAR(articles.created_at, 'YYYY-MM-DD HH:MM:SS') AS created_at, 
+      CAST(COUNT(comment_id) AS INT) AS comment_count,
+      article_img_url 
+    FROM articles 
+    LEFT JOIN comments ON comments.article_id = articles.article_id`;
 
+  const conditions = [];
+  
   if (query.topic) {
-    if(!typeof query.topic === "string") {
-      return Promise.reject({status: 400, msg: "Bad request"})
-    }
-    sqlQuery += ` WHERE topic=$1`
+    conditions.push(`topic = $${queryValues.length + 1}`);
+    queryValues.push(query.topic);
   }
 
   if (query.author) {
-    if(!typeof query.author === "string") {
-      return Promise.reject({status: 400, msg: "Bad request"})
-    }
-    sqlQuery += ` WHERE articles.author=$1`
+    conditions.push(`articles.author = $${queryValues.length + 1}`);
+    queryValues.push(query.author);
   }
 
-  sqlQuery += ` GROUP BY articles.article_id`
-    
+  if (query.search) {
+    conditions.push(`(title ILIKE $${queryValues.length + 1} OR articles.body ILIKE $${queryValues.length + 1})`);
+    queryValues.push(`%${query.search}%`);
+  }
+
+  if (conditions.length) {
+    sqlQuery += ` WHERE ${conditions.join(" AND ")}`;
+  }
+
+  sqlQuery += ` GROUP BY articles.article_id`;
+
   if (query.sort_by) {
     if (!greenlist.includes(query.sort_by)) {
-      return Promise.reject({status: 400, msg: "Bad request"})
+      return Promise.reject({ status: 400, msg: "Bad request" });
     }
-    if(query.sort_dir) {
+    sqlQuery += ` ORDER BY ${query.sort_by}`;
+    
+    if (query.sort_dir) {
       if (!greenlist.includes(query.sort_dir)) {
-        return Promise.reject({status: 400, msg: "Bad request"})
+        return Promise.reject({ status: 400, msg: "Bad request" });
       }
-    sqlQuery += ` ORDER BY ${query.sort_by} ${query.sort_dir}`
-    } 
-    else {
-      sqlQuery += ` ORDER BY ${query.sort_by} DESC`
+      sqlQuery += ` ${query.sort_dir}`;
+    } else {
+      sqlQuery += ` DESC`; 
     }
-  }
-  else {
-    sqlQuery += ` ORDER BY TO_CHAR(articles.created_at, 'YYYY-MM-DD HH:MM:SS') DESC`
+  } else {
+    sqlQuery += ` ORDER BY TO_CHAR(articles.created_at, 'YYYY-MM-DD HH:MM:SS') DESC`; 
   }
 
-  if (query.limit) {
-    if (isNaN(query.limit) || query.limit <= 0) {
-      return Promise.reject({ status: 400, msg: "Bad request" })
-    }
-    sqlQuery += ` LIMIT ${query.limit}`
-  }
-
-  if (query.offset) {
-    if (isNaN(query.offset) || query.offset < 0) {
-      return Promise.reject({ status: 400, msg: "Bad request" })
-    }
-    sqlQuery += ` OFFSET ${query.offset}`
-  }
+  if (query.limit) sqlQuery += ` LIMIT ${query.limit}`;
+  if (query.offset) sqlQuery += ` OFFSET ${query.offset}`;
 
   return db.query(sqlQuery, queryValues)
-  .then(({rows})=>{
-    if(rows.length === 0) {
-      return Promise.reject({status: 404, msg: "Not found"})
-    }
-    return rows
-  })
+    .then(({ rows }) => rows.length ? rows : Promise.reject({ status: 404, msg: "Not found" }));
 }
+
+
 
 function selectArticle(article_id) {
   return db.query(`

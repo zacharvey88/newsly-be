@@ -261,6 +261,17 @@ describe("/api/articles", () => {
     })
   })
 
+  test("GET SEARCH: Requests with a search query should return a list of articles containing the query value, in this case 1", () => {
+    return request(app)
+    .get("/api/articles?search=bastet")
+    .expect(200)
+    .then(({body})=>{
+      const {articles} = body
+      expect(articles.length).toBe(1)
+      expect(articles[0].article_id).toBe(5)
+      })
+    })
+
   test("POST 201: Successfull posts to this endpoint should respond with status 201 and the newly added article inluding all properties", () => {
     return request(app)
     .post("/api/articles")
