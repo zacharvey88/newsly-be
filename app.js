@@ -3,7 +3,9 @@ const app = express()
 const apiRouter = require('./routes/api-router');
 const cors = require('cors');
 
-app.use(cors());
+app.use(cors({
+  origin: 'https://zacharvey-newsly.netlify.app'
+}));
 app.use(express.json());
 app.use('/api', apiRouter);
 
@@ -38,7 +40,7 @@ app.use((err, req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-  res.status(500).send("Internal server error: " + err);
+  res.status(500).send("Internal server error");
 });
 
 module.exports = app;
