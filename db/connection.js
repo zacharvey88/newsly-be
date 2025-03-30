@@ -13,8 +13,10 @@ if (!process.env.PGDATABASE && !process.env.DATABASE_URL) {
 
 if (ENV === 'production') {
   config.connectionString = process.env.DATABASE_URL;
+  console.log('DATABASE_URL', process.env.DATABASE_URL);
   config.max = 2;
   if (process.env.DATABASE_CA_CERT) {
+    console.log('DATABASE_CA_CERT', process.env.DATABASE_CA_CERT);
     config.ssl = {
       ca: process.env.DATABASE_CA_CERT,
     }
