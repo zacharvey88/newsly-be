@@ -83,4 +83,4 @@ To run the test suite use command `npm test`. You may further specify either `ut
 
 ### Acknowledgements
 
-The boilerplate for this repository (inc seed files) was provided by Northcoders as part of our bootcamp curriculum.
+The boilerplate for this repository (inc seed files) was provided by Northcoders as part of our bootcamp curriculum. However, I have since re-seeded the database with my own data.

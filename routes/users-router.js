@@ -1,5 +1,5 @@
 const usersRouter = require('express').Router();
-const {getUser, getUsers, patchUser, deleteUser} = require("../controllers/users")
+const {getUser, getUsers, patchUser, deleteUser, login} = require("../controllers/users")
 const {getCommentsByUsername} = require("../controllers/comments")
 
 usersRouter
@@ -12,8 +12,12 @@ usersRouter
   .patch(patchUser)
   .delete(deleteUser)
 
-  usersRouter
+usersRouter
   .route('/:username/comments')
   .get(getCommentsByUsername)
+
+usersRouter
+  .route('/login')
+  .post(login)
 
 module.exports = usersRouter;
