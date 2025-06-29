@@ -1,433 +1,497 @@
 module.exports = [
   {
-    title: "Running a Node App",
-    topic: "coding",
-    author: "jessjelly",
-    body: "This is part two of a series on how to get up and running with Systemd and Node.js. This part dives deeper into how to successfully run your app with systemd long-term, and how to set it up in a production environment.",
+    title: "Mastering Systemd for Node.js Apps",
+    topic: "development",
+    author: "chookity",
+    body: "<h2>Mastering Systemd for Node.js</h2><p>Welcome to part two of our cosmic coding journey! I’m Mooncake, your floating guide from <em>Final Space</em>, here to help you run a Node.js app with Systemd for long-term stability in production. Systemd is like a trusty spaceship, keeping your app orbiting smoothly. Let’s dive in!</p><h3>Step 1: Crafting the Service File</h3><p>First, create a <strong>.service</strong> file in <em>/etc/systemd/system</em>, say <em>myapp.service</em>. Define your app’s path, user, and environment variables. For example: <em>[Service] ExecStart=/usr/bin/node /path/to/app.js</em>. Set <em>Restart=always</em> to ensure your app relaunches after crashes—resilient, like me dodging lasers!</p><h3>Step 2: Managing Logs</h3><p>Systemd logs are your mission control. Use <em>journalctl -u myapp.service</em> to monitor output. Configure log rotation to avoid disk overload, like clearing space debris. Pro tip: add <em>StandardOutput=journal</em> in your service file for clean logging.</p><h3>Step 3: Production Hardening</h3><p>In production, secure your app with a non-root user and environment files for sensitive data (like API keys). Use <em>pm2</em> or <em>forever</em> for extra monitoring, but Systemd’s built-in tools are often enough. Test failover by killing the process—your app should restart like a phoenix!</p><h3>Troubleshooting Tips</h3><p>If your app fails, check <em>systemctl status myapp.service</em> for errors. Common issues include wrong paths or permissions. Mooncake’s wisdom: always test locally first! This setup ensures your Node.js app runs like a well-oiled starship, ready for cosmic deployments. Happy coding!</p>",
     created_at: 1604728980000,
     votes: 0,
-    article_img_url:
-      "https://images.pexels.com/photos/11035380/pexels-photo-11035380.jpeg?w=700&h=700",
+    article_img_url: "https://images.pexels.com/photos/11035380/pexels-photo-11035380.jpeg?w=700&h=700"
   },
   {
-    title: "The Rise Of Thinking Machines: How IBM's Watson Takes On The World",
-    topic: "coding",
-    author: "jessjelly",
-    body: "Many people know Watson as the IBM-developed cognitive super computer that won the Jeopardy! gameshow in 2011. In truth, Watson is not actually a computer but a set of algorithms and APIs, and since winning TV fame (and a $1 million prize) IBM has put it to use tackling tough problems in every industry from healthcare to finance. Most recently, IBM has announced several new partnerships which aim to take things even further, and put its cognitive capabilities to use solving a whole new range of problems around the world.",
-    created_at: 1589418120000,
-    votes: 0,
-    article_img_url:
-      "https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg?w=700&h=700",
+    title: "Building Scalable Express APIs",
+    topic: "development",
+    author: "bladerunner",
+    body: "<h2>Crafting Scalable APIs with Express</h2><p>I’m Rick Deckard, navigating the neon-lit alleys of code like a <em>Blade Runner</em>. Today, we’re building scalable RESTful APIs with Express.js, a minimalist Node.js framework. Let’s construct an API that’s as resilient as a replicant and ready for high traffic.</p><h3>Setting Up Express</h3><p>Start by installing Express: <em>npm install express</em>. Create a basic server in <em>index.js</em>: <em>const express = require('express'); const app = express(); app.listen(3000);</em>. Add middleware like <em>body-parser</em> for JSON payloads. Deckard’s tip: structure your project with separate <em>routes</em>, <em>controllers</em>, and <em>models</em> folders for clarity.</p><h3>Designing Routes</h3><p>Define routes for CRUD operations. For a user API, create <em>/users</em> endpoints: <em>app.get('/users', getUsers); app.post('/users', createUser);</em>. Use async/await for database calls (e.g., MongoDB). Group related routes in a <em>users.js</em> router file to keep <em>index.js</em> clean. Scalability demands modularity—think like a replicant organizing a rebellion.</p><h3>Securing the API</h3><p>Protect your API with JWT authentication. Install <em>jsonwebtoken</em> and create a middleware to verify tokens: <em>const jwt = require('jsonwebtoken'); function auth(req, res, next) { /* verify token */ }</em>. Add rate-limiting with <em>express-rate-limit</em> to prevent abuse. Deckard’s rule: always validate inputs with <em>express-validator</em> to avoid security breaches.</p><h3>Scaling with Load Balancers</h3><p>For high traffic, deploy behind a load balancer like Nginx. Use PM2 for process management and Redis for caching. Test your API with tools like Postman or Artillery to ensure it handles thousands of requests. In a dystopian world, only the robust survive—your API must be one of them. <em>Blade Runner’s precision</em> guides this tutorial. Build your API and conquer the digital frontier!</p>",
+    created_at: 1735689600000,
+    votes: 7,
+    article_img_url: "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?w=700&h=700"
   },
   {
-    title: "22 Amazing open source React projects",
-    topic: "coding",
-    author: "happyamy2016",
-    body: "This is a collection of open source apps built with React.JS library. In this observation, we compared nearly 800 projects to pick the top 22. (React Native: 11, React: 11). To evaluate the quality, Mybridge AI considered a variety of factors to determine how useful the projects are for programmers. To give you an idea on the quality, the average number of Github stars from the 22 projects was 1,681.",
-    created_at: 1582974720000,
-    votes: 0,
-    article_img_url:
-      "https://images.pexels.com/photos/11035471/pexels-photo-11035471.jpeg?w=700&h=700",
+    title: "Debugging JavaScript and Python",
+    topic: "development",
+    author: "youshallnotpass",
+    body: "<h2>Conquering Bugs with Debugging Techniques</h2><p>I am Gandalf, guardian of Middle-earth and vanquisher of buggy code. Debugging is like facing a Balrog—daunting but conquerable. This guide unveils my <strong>debugging secrets</strong> for JavaScript, Python, and beyond, ensuring <em>you shall not pass</em> flawed programs.</p><h3>Step 1: Understanding the Bug</h3><p>First, replicate the issue. Use test cases to isolate the problem, like tracking orc footprints. Log inputs and outputs with <em>console.log</em> or Python’s <em>print</em>. Gandalf’s wisdom: clarity precedes victory. If a function fails, check its inputs and assumptions. Tools like Postman for APIs or unit tests help pinpoint errors.</p><h3>Step 2: Using Debuggers</h3><p>Modern IDEs like VS Code offer powerful debuggers. Set breakpoints to pause execution and inspect variables. For JavaScript, Chrome DevTools is invaluable—watch expressions and call stacks reveal hidden flaws. In Python, <em>pdb</em> or PyCharm’s debugger lets you step through code. Think of breakpoints as beacons guiding you through Moria’s mines.</p><h3>Step 3: Logging and Tracing</h3><p>When debuggers aren’t enough, add detailed logs. Use structured logging libraries like <em>Winston</em> (Node.js) or <em>logging</em> (Python). Trace execution flow to catch logic errors. Gandalf’s tip: log edge cases, like null values or empty arrays, which often cause crashes. Review logs with tools like <em>journalctl</em> for production issues.</p><h3>Step 4: Preventing Future Bugs</h3><p>Write tests to catch regressions—unit tests for functions, integration tests for APIs. Use linters (e.g., ESLint, Pylint) to enforce code quality. Refactor complex code into smaller, testable units. In Middle-earth, preparation defeats chaos; in coding, it prevents bugs. <em>A wizard is never late</em>—debug with precision and banish errors forever!</p>",
+    created_at: 1735776000000,
+    votes: 8,
+    article_img_url: "https://images.pexels.com/photos/1181673/pexels-photo-1181673.jpeg?w=700&h=700"
   },
   {
-    title: "Making sense of Redux",
-    topic: "coding",
-    author: "jessjelly",
-    body: "When I first started learning React, I remember reading lots of articles about the different technologies associated with it. In particular, this one article stood out. It mentions how confusing the ecosystem is, and how developers often feel they have to know ALL of the ecosystem before using React. And as someone who’s used React daily for the past 8 months or so, I can definitely say that I’m still barely scratching the surface in terms of understanding how the entire ecosystem works! But my time spent using React has given me some insight into when and why it might be appropriate to use another technology — Redux (a variant of the Flux architecture).",
-    created_at: 1599858720000,
-    votes: 0,
-    article_img_url:
-      "https://images.pexels.com/photos/4974912/pexels-photo-4974912.jpeg?w=700&h=700",
+    title: "Automating CI/CD with GitHub Actions",
+    topic: "development",
+    author: "whitewolf",
+    body: "<h2>Automating Workflows with GitHub Actions</h2><p>I’m Geralt of Rivia, and just as I hunt monsters, I slay inefficiencies with <strong>CI/CD pipelines</strong> using GitHub Actions. This guide teaches you to automate testing, building, and deployment, ensuring your code is battle-ready. <em>Toss a coin to automation</em>—let’s begin!</p><h3>Step 1: Setting Up a Workflow</h3><p>Create a <em>.github/workflows/ci.yml</em> file. Define triggers like <em>push</em> or <em>pull_request</em>. A basic workflow runs on Ubuntu: <em>name: CI on: [push] jobs: build: runs-on: ubuntu-latest</em>. Add steps to install Node.js, cache dependencies, and run tests. Geralt’s rule: keep workflows modular for reusability.</p><h3>Step 2: Running Tests</h3><p>Configure steps to execute tests: <em>steps: - uses: actions/checkout@v3 - uses: actions/setup-node@v3 with: node-version: '16' - run: npm ci - run: npm test</em>. Use Jest or Mocha for JavaScript tests. For Python, add <em>pytest</em>. Test failures halt the pipeline, like a Witcher sensing danger.</p><h3>Step 3: Deploying to AWS</h3><p>Deploy to AWS using secrets for credentials. Store <em>AWS_ACCESS_KEY_ID</em> and <em>AWS_SECRET_ACCESS_KEY</em> in GitHub Secrets. Add a deployment step: <em>- run: aws s3 sync ./dist s3://my-bucket</em>. Use <em>aws-actions</em> for EC2 or Lambda. Geralt’s tip: test deployments locally with <em>aws-cli</em> first.</p><h3>Step 4: Monitoring and Scaling</h3><p>Monitor workflows via GitHub’s Actions tab. Use notifications (e.g., Slack integrations) for failures. For large projects, parallelize jobs or use self-hosted runners. Automation is your silver sword—sharp and reliable. <em>Hunt bugs like a Witcher</em> and deliver code with confidence!</p>",
+    created_at: 1735862400000,
+    votes: 5,
+    article_img_url: "https://images.pexels.com/photos/11035471/pexels-photo-11035471.jpeg?w=700&h=700"
   },
   {
-    title: "Please stop worrying about Angular 3",
-    topic: "coding",
-    author: "jessjelly",
-    body: "Another Angular version planned already? Whaaaat? Didn’t Angular 2 just ship? Why Angular 3? What? Why? First off, there is no massive rewrite, and won’t be for Angular 3. Secondly, let me explain the future of Angular 2 and what Angular 3, Angular 4 will mean for you.",
-    created_at: 1587488760000,
-    votes: 0,
-    article_img_url:
-      "https://images.pexels.com/photos/14011035/pexels-photo-14011035.jpeg?w=700&h=700",
+    title: "Introduction to Microservices Architecture",
+    topic: "development",
+    author: "dragonrider",
+    body: "<h2>Understanding Microservices Architecture</h2><p>I am Daenerys Targaryen, breaker of chains and monoliths. <strong>Microservices architecture</strong> lets you build scalable, modular apps, like ruling Westeros’ cities independently. This guide covers Docker, Kubernetes, and API gateways. <em>Mother of Dragons, architect of code</em>—let’s conquer complexity!</p><h3>Why Microservices?</h3><p>Monolithic apps are like old kingdoms—hard to manage. Microservices split functionality into small, independent services (e.g., user auth, payments). Each service runs its own process, communicates via APIs, and scales separately. Benefits include faster development and fault isolation. Daenerys’ lesson: divide to conquer.</p><h3>Containerizing with Docker</h3><p>Use Docker to package services. Write a <em>Dockerfile</em>: <em>FROM node:16 WORKDIR /app COPY . . RUN npm install CMD ['node', 'index.js']</em>. Build and run: <em>docker build -t my-service .; docker run -p 3000:3000 my-service</em>. Containers are like dragons—portable and powerful. Push images to Docker Hub for sharing.</p><h3>Orchestrating with Kubernetes</h3><p>Kubernetes manages containers at scale. Define pods in <em>deployment.yaml</em>: <em>apiVersion: apps/v1 kind: Deployment spec: replicas: 3</em>. Deploy with <em>kubectl apply -f deployment.yaml</em>. Use services for load balancing. Daenerys’ tip: monitor with <em>kubectl get pods</em> to ensure your army of services is ready.</p><h3>API Gateways</h3><p>Route traffic with an API gateway like Kong or AWS API Gateway. Gateways handle authentication, rate-limiting, and routing (e.g., <em>/users</em> to the user service). This keeps services secure and organized, like a queen’s council. Test your setup with Postman. <em>Rule the digital realm</em>—build microservices fit for a throne!</p>",
+    created_at: 1735948800000,
+    votes: 7,
+    article_img_url: "https://images.pexels.com/photos/11035482/pexels-photo-11035482.jpeg?w=700&h=700"
   },
   {
-    title:
-      "JavaScript’s Apply, Call, and Bind Methods are Essential for JavaScript Professionals",
-    topic: "coding",
-    author: "grumpy19",
-    body: "Functions are objects in JavaScript, as you should know by now, if you have read any of the prerequisite articles. And as objects, functions have methods, including the powerful Apply, Call, and Bind methods. On the one hand, Apply and Call are nearly identical and are frequently used in JavaScript for borrowing methods and for setting the this value explicitly. We also use Apply for variable-arity functions; you will learn more about this in a bit.",
-    created_at: 1605107340000,
-    votes: 0,
-    article_img_url:
-      "https://images.pexels.com/photos/4383298/pexels-photo-4383298.jpeg?w=700&h=700",
+    title: "Vegan Feast Recipes",
+    topic: "vegan-cooking",
+    author: "dragonrider",
+    body: "<h2>A Plant-Based Banquet</h2><p>I am Daenerys Targaryen, Mother of Dragons, and my <strong>vegan feast</strong> brings peace to the Seven Kingdoms’ tables. These plant-based recipes—spicy chickpea curry, roasted root vegetables, and coconut milk panna cotta—are cruelty-free, flavorful, and fit for royalty. <em>Rule the kitchen like a Khaleesi</em>—let’s cook!</p><h3>Spicy Chickpea Curry</h3><p>Start with the curry, a fiery dish worthy of Drogon. Sauté onions, garlic, and ginger in olive oil. Add curry powder, cumin, and chili flakes for heat. Stir in chickpeas, diced tomatoes, and coconut milk. Simmer for 20 minutes. Serve with basmati rice. This dish is protein-rich and vibrant, like a Dothraki feast. Garnish with cilantro for freshness.</p><h3>Roasted Root Vegetables</h3><p>Next, roast carrots, parsnips, and beets. Toss with olive oil, rosemary, and sea salt. Bake at 400°F for 35 minutes until caramelized. These veggies are hearty, grounding you like the Iron Throne. Daenerys’ tip: add a balsamic glaze for extra depth. Perfect for winter feasts in King’s Landing.</p><h3>Coconut Milk Panna Cotta</h3><p>For dessert, make panna cotta. Heat coconut milk with agar-agar (a vegan gelatin) and maple syrup. Pour into molds and chill for 4 hours. Top with berry compote. This silky treat is as elegant as a royal court. <em>Even dragons love dessert</em>—serve it to impress your guests.</p><h3>Nutritional Benefits</h3><p>These recipes are packed with fiber, vitamins, and antioxidants. Chickpeas provide protein, root veggies offer carbs, and coconut milk adds healthy fats. Eating vegan reduces environmental impact, aligning with a queen’s duty to her realm. Source ingredients locally for sustainability. <em>Conquer hunger with compassion</em>—cook this feast and claim your culinary crown!</p>",
+    created_at: 1736035200000,
+    votes: 6,
+    article_img_url: "https://images.pexels.com/photos/1410235/pexels-photo-1410235.jpeg?w=700&h=700"
   },
   {
-    title: "Using React Native: One Year Later",
-    topic: "coding",
-    author: "tickle122",
-    body: "When I interviewed for the iOS developer opening at Discord last spring, the tech lead Stanislav told me: React Native is the future. We will use it to build our iOS app from scratch as soon as it becomes public. As a native iOS developer, I strongly doubted using web technologies to build mobile apps because of my previous experiences with tools like PhoneGap. But after learning and using React Native for a while, I am glad we made that decision.",
-    created_at: 1602984360000,
-    votes: 0,
-    article_img_url:
-      "https://images.pexels.com/photos/6424586/pexels-photo-6424586.jpeg?w=700&h=700",
+    title: "Vegan Smoothie and Soup Recipes",
+    topic: "vegan-cooking",
+    author: "avadakedavra",
+    body: "<h2>Brewing Vegan Recipes</h2><p>I am Lord Voldemort, master of dark arts and <strong>vegan potions</strong>. No Horcruxes needed—these plant-based recipes for green smoothies, lentil soup, and almond milk lattes are enchantingly healthy. <em>Even Slytherins crave greens</em>—join me in the kitchen!</p><h3>Green Smoothie Elixir</h3><p>Start your day with a smoothie. Blend spinach, kale, banana, apple, and chia seeds with almond milk. Add a splash of lemon juice for zest. This potion boosts energy and immunity, like a charm against weakness. Voldemort’s secret: freeze greens for quick prep. Blend until smooth and sip your power.</p><h3>Hearty Lentil Soup</h3><p>For lunch, brew lentil soup. Sauté onions, carrots, and celery in olive oil. Add green lentils, vegetable broth, and diced tomatoes. Season with thyme, bay leaves, and smoked paprika. Simmer for 40 minutes. This soup is protein-packed, warming you like a dark spell. Serve with crusty bread.</p><h3>Almond Milk Latte</h3><p>End with a latte. Froth almond milk with a steamer or whisk. Brew espresso and pour over the milk. Sweeten with maple syrup and dust with cinnamon. This drink is a cozy ritual, even for dark lords. <em>Craft it with precision</em>—your coffee will rival Diagon Alley’s best.</p><h3>Why Vegan?</h3><p>These recipes are rich in nutrients—fiber from lentils, vitamins from greens, and healthy fats from almonds. Vegan eating cuts carbon footprints, a cunning move for global domination. Source organic ingredients to avoid Muggle pesticides. <em>Wield culinary magic</em>—these potions will make you unstoppable!</p>",
+    created_at: 1736121600000,
+    votes: 4,
+    article_img_url: "https://images.pexels.com/photos/1351238/pexels-photo-1351238.jpeg?w=700&h=700"
   },
   {
-    title: "Express.js: A Server-Side JavaScript Framework",
-    topic: "coding",
-    author: "cooljmessy",
-    body: "You’re probably aware that JavaScript is the programming language most often used to add interactivity to the front end of a website, but its capabilities go far beyond that—entire sites can be built on JavaScript, extending it from the front to the back end, seamlessly. Express.js and Node.js gave JavaScript newfound back-end functionality—allowing developers to build software with JavaScript on the server side for the first time. Together, they make it possible to build an entire site with JavaScript: You can develop server-side applications with Node.js and then publish those Node.js apps as websites with Express. Because Node.js itself wasn’t intended to build websites, the Express framework is able to layer in built-in structure and functions needed to actually build a site. It’s a pretty lightweight framework that’s great for giving developers extra, built-in web application features and the Express API without overriding the already robust, feature-packed Node.js platform. In short, Express and Node are changing the way developers build websites.",
-    created_at: 1601940180000,
-    votes: 0,
-    article_img_url:
-      "https://images.pexels.com/photos/11035482/pexels-photo-11035482.jpeg?w=700&h=700",
+    title: "Vegan Pie Recipes",
+    topic: "vegan-cooking",
+    author: "youshallnotpass",
+    body: "<h2>Second Breakfast Pies</h2><p>I am Gandalf, and my <strong>vegan pies</strong> are beloved in Hobbiton. Perfect for second breakfast, these savory mushroom pies and sweet apple tarts are plant-based, wholesome, and hearty. <em>A wizard’s comfort food</em>—bake these for your next gathering!</p><h3>Savory Mushroom Pie</h3><p>For the savory pie, sauté cremini and shiitake mushrooms with onions and garlic in olive oil. Add thyme, rosemary, and a splash of soy sauce for umami. Blend cashews with water for a creamy filling. Line a pie crust with whole-grain flour, fill with the mixture, and top with a lattice crust. Bake at 375°F for 45 minutes. This pie is rich, satisfying hobbits and wizards alike.</p><h3>Sweet Apple Tart</h3><p>For dessert, craft an apple tart. Slice Granny Smith apples and toss with cinnamon, nutmeg, and maple syrup. Arrange in a puff pastry base—store-bought is fine, as even Gandalf values efficiency. Bake at 400°F for 30 minutes until golden. Serve with coconut whipped cream. <em>Pippin would approve</em>—this tart is a Shire classic.</p><h3>Vegan Baking Tips</h3><p>Use flaxseeds (1 tbsp + 3 tbsp water = 1 egg) for binding. Opt for coconut oil instead of butter. These pies are high in fiber and antioxidants, supporting heart health. Source local, organic produce to honor the Shire’s green fields. Bake in small batches to share with friends—hobbits love community feasts.</p><h3>Why Plant-Based?</h3><p>Vegan pies reduce environmental impact, preserving Middle-earth’s beauty. They’re cholesterol-free, keeping you spry for adventures. Gandalf’s wisdom: simple ingredients yield grand results. <em>Gather your fellowship</em>—bake these pies and celebrate life’s joys!</p>",
+    created_at: 1736208000000,
+    votes: 9,
+    article_img_url: "https://images.pexels.com/photos/669731/pexels-photo-669731.jpeg?w=700&h=700"
   },
   {
-    title: "Learn HTML5, CSS3, and Responsive WebSite Design in One Go",
-    topic: "coding",
-    author: "grumpy19",
-    body: "Both CSS3 and HTML5 are just about fully supported in all modern browsers, and we there are techniques in place to patch old browsers that lack support. So there is no disadvantage to using CSS3 and HTML5 today. The opposite is true, however: there are many painful, frustrating disadvantages with forgoing HTML5 and CSS3. You may already “know” a bit of HTML5 and a touch of CSS3 (or perhaps you probably know enough old-school HTML and CSS, and with this knowledge, you might have thought you needn’t learn HTML5 and CSS3 fully.",
-    created_at: 1590505560000,
-    votes: 0,
-    article_img_url:
-      "https://images.pexels.com/photos/1591061/pexels-photo-1591061.jpeg?w=700&h=700",
+    title: "Vegan Trail Mix Recipe",
+    topic: "vegan-cooking",
+    author: "whitewolf",
+    body: "<h2>Fuel for Adventures</h2><p>I’m Geralt of Rivia, and my <strong>vegan trail mix</strong> powers me through long hunts. This blend of nuts, dried fruits, and dark chocolate is simple, nutritious, and perfect for adventurers. <em>Toss a coin to your kitchen</em>—let’s craft this snack!</p><h3>Choosing Ingredients</h3><p>Start with raw almonds, cashews, and walnuts for protein and healthy fats. Add dried cranberries, raisins, and apricots for sweetness and vitamins. Include dark chocolate chunks (70% cocoa) for antioxidants and morale—even Witchers need a treat. Optional: pumpkin seeds for crunch and zinc. Geralt’s rule: avoid added sugars or oils to keep it pure.</p><h3>Mixing and Storing</h3><p>Combine equal parts nuts, fruits, and chocolate in a large bowl. Mix thoroughly to balance flavors. Store in airtight containers or portion into reusable bags for travel. This mix stays fresh for weeks, ideal for long treks through Velen. <em>A Witcher’s provisions</em>—always be prepared.</p><h3>Customizing Your Mix</h3><p>Tailor the mix to your needs. For extra energy, add coconut flakes or chia seeds. For savory notes, sprinkle in smoked paprika or sea salt. Make large batches to share with allies like Ciri or Yennefer. Test ratios to suit your taste—Geralt prefers extra walnuts for their bite.</p><h3>Nutritional Benefits</h3><p>This trail mix delivers sustained energy: nuts provide protein, fruits offer carbs, and chocolate boosts mood. It’s vegan, gluten-free, and eco-friendly, reducing your footprint on the Continent. Source organic, fair-trade ingredients to support ethical farmers. <em>Hunt with strength</em>—fuel your quests with this mighty mix!</p>",
+    created_at: 1736294400000,
+    votes: 3,
+    article_img_url: "https://images.pexels.com/photos/4198119/pexels-photo-4198119.jpeg?w=700&h=700"
   },
   {
-    title:
-      "An Introduction to JavaScript Object Notation (JSON) in JavaScript and .NET",
-    topic: "coding",
-    author: "cooljmessy",
-    body: "When designing an application that will communicate with a remote computer, a data format and exchange protocol must be selected. There are a variety of open, standardized options, and the ideal choice depends on the applications requirements and pre-existing functionality. For example, SOAP-based web services format the data in an XML payload wrapped within a SOAP envelope. While XML works well for many application scenarios, it has some drawbacks that make it less than ideal for others. One such space where XML is often less than ideal is with Ajax-style web applications. Ajax is a technique used for building interactive web applications that provide a snappier user experience through the use of out-of-band, lightweight calls to the web server in lieu of full-page postbacks. These asynchronous calls are initiated on the client using JavaScript and involve formatting data, sending it to a web server, and parsing and working with the returned data. While most browsers can construct, send, and parse XML, JavaScript Object Notation (or JSON) provides a standardized data exchange format that is better-suited for Ajax-style web applications. JSON is an open, text-based data exchange format (see RFC 4627). Like XML, it is human-readable, platform independent, and enjoys a wide availability of implementations. Data formatted according to the JSON standard is lightweight and can be parsed by JavaScript implementations with incredible ease, making it an ideal data exchange format for Ajax web applications. Since it is primarily a data format, JSON is not limited to just Ajax web applications, and can be used in virtually any scenario where applications need to exchange or store structured information as text. This article examines the JSON standard, its relationship to JavaScript, and how it compares to XML. Jayrock, an open-source JSON implementation for .NET, is discussed and examples of creating and parsing JSON messages are provided in JavaScript and C#.",
-    created_at: 1593692580000,
-    votes: 0,
-    article_img_url:
-      "https://images.pexels.com/photos/11035481/pexels-photo-11035481.jpeg?w=700&h=700",
+    title: "Vegan Sushi Recipes",
+    topic: "vegan-cooking",
+    author: "bladerunner",
+    body: "<h2>Futuristic Vegan Sushi</h2><p>I’m Rick Deckard, and my <strong>vegan sushi</strong> brings elegance to dystopian dinners. Master avocado rolls, tofu nigiri, and spicy carrot maki—plant-based and perfect for neon-lit feasts. <em>Blade Runner’s culinary edge</em>—roll up some sushi!</p><h3>Avocado Rolls</h3><p>Start with avocado rolls. Cook sushi rice (short-grain, rinsed) and season with rice vinegar, sugar, and salt. Spread on nori sheets using a bamboo mat. Add avocado slices and cucumber strips. Roll tightly, slice into 8 pieces, and serve with soy sauce. Deckard’s tip: keep a bowl of water to prevent sticky fingers.</p><h3>Tofu Nigiri</h3><p>For nigiri, press firm tofu to remove water. Marinate in soy sauce, ginger, and sesame oil for 30 minutes. Slice into rectangles and place atop small rice balls. Secure with nori strips. These bites are protein-rich, mimicking fish’s texture. <em>Even replicants savor umami</em>—try them with wasabi.</p><h3>Spicy Carrot Maki</h3><p>For maki, julienne carrots and toss with sriracha and sesame seeds. Layer on rice-covered nori with spinach leaves. Roll and slice. This spicy roll adds flair, like neon signs in LA. Serve with pickled ginger. Batch-prep ingredients for quick assembly.</p><h3>Why Vegan Sushi?</h3><p>Sushi is sustainable, reducing overfishing’s toll. It’s rich in fiber (avocado, carrots) and omega-3s (sesame seeds). Use organic nori and rice to avoid chemicals. Deckard’s ethos: craft with precision, eat with purpose. <em>Forge a tastier future</em>—make this sushi tonight!</p>",
+    created_at: 1736380800000,
+    votes: 5,
+    article_img_url: "https://images.pexels.com/photos/1047289/pexels-photo-1047289.jpeg?w=700&h=700"
   },
   {
-    title: "Designing Better JavaScript APIs",
-    topic: "coding",
-    author: "tickle122",
-    body: "At some point or another, you will find yourself writing JavaScript code that exceeds the couple of lines from a jQuery plugin. Your code will do a whole lot of things; it will (ideally) be used by many people who will approach your code differently. They have different needs, knowledge and expectations.",
-    created_at: 1594080780000,
-    votes: 0,
-    article_img_url:
-      "https://images.pexels.com/photos/5483071/pexels-photo-5483071.jpeg?w=700&h=700",
+    title: "Mindfulness Meditation Techniques",
+    topic: "health-wellness",
+    author: "youshallnotpass",
+    body: "<h2>Finding Peace Through Meditation</h2><p>I am Gandalf, and my <strong>meditation practice</strong> brings calm amidst orc battles. These mindfulness techniques boost focus, reduce stress, and restore balance—essential for any quest. <em>You shall not pass</em> anxiety—join me in serenity!</p><h3>Breath Meditation</h3><p>Start with breath focus. Sit comfortably, close your eyes, and inhale deeply for 4 counts, hold for 4, exhale for 6. Repeat for 10 minutes. Notice your breath’s rhythm, like wind over the Misty Mountains. If thoughts wander, gently return to breathing. Gandalf’s wisdom: consistency builds mental strength.</p><h3>Body Scan Technique</h3><p>Next, try a body scan. Lie down and focus on each body part, from toes to head. Release tension in your shoulders, clenched like a dwarf’s fist. Spend 15 minutes scanning, noting sensations without judgment. This practice grounds you, like roots in the Shire. <em>A wizard’s calm</em>—perfect before facing Sauron.</p><h3>Guided Visualization</h3><p>Visualize a safe place—perhaps Rivendell’s waterfalls. Use apps like Calm or Insight Timer for guided sessions. Imagine sights, sounds, and smells for 20 minutes. This boosts creativity and resilience. Gandalf’s tip: journal insights post-meditation to track progress. Practice daily for best results.</p><h3>Benefits and Tips</h3><p>Meditation lowers cortisol, improves focus, and enhances sleep—vital for long journeys. Start with 5 minutes daily, gradually increasing. Create a quiet space, free of Balrogs or notifications. Combine with yoga for physical benefits. <em>Embrace inner peace</em>—meditate and lead with clarity!</p>",
+    created_at: 1736467200000,
+    votes: 8,
+    article_img_url: "https://images.pexels.com/photos/3822622/pexels-photo-3822622.jpeg?w=700&h=700"
   },
   {
-    title: "The battle for Node.js security has only begun",
-    topic: "coding",
-    author: "tickle122",
-    body: "The founder of the Node Security Project says Node.js still has common vulnerabilities, but progress has been made to make it more secure. Appearing at the recent Node Community Convention in San Francisco, project founder Adam Baldwin, chief security officer at Web consulting company &yet, emphasized risks, protections, and progress. Baldwin sees four risks within the Node ecosystem pertinent to the enterprise: the code dependency tree, bugs, malicious actors, and people. I think of [the dependency tree] more as the dependency iceberg, to be honest, Baldwin said, where your code is the ship and your dependencies that you have with your packaged JSON is that little tiny iceberg at the top. But developers need to be aware of the massive iceberg underneath, he stressed.",
-    created_at: 1605446700000,
-    votes: 0,
-    article_img_url:
-      "https://images.pexels.com/photos/10845119/pexels-photo-10845119.jpeg?w=700&h=700",
+    title: "Yoga Flow for Strength",
+    topic: "health-wellness",
+    author: "dragonrider",
+    body: "<h2>Strength and Grace Through Yoga</h2><p>I am Daenerys Targaryen, and my <strong>yoga flow</strong> builds strength and flexibility, like commanding dragons. This 30-minute sequence enhances resilience for leaders facing fiery trials. <em>Bend like a dragon</em>—follow my practice!</p><h3>Warm-Up: Cat-Cow</h3><p>Begin on all fours. Flow between Cat (arch back, exhale) and Cow (drop belly, inhale) for 5 minutes. This warms your spine, like a dragon stretching its wings. Focus on breath to center your mind. Daenerys’ rule: move slowly to awaken your body.</p><h3>Core Sequence: Warrior Series</h3><p>Move to Warrior I: lunge with one leg forward, arms raised, for 5 breaths. Transition to Warrior II, arms extended, gazing forward. End with Reverse Warrior, side-stretching. Repeat on the other side. These poses build leg strength and confidence, like leading armies. Hold each for 30 seconds.</p><h3>Balance and Flexibility</h3><p>Try Tree Pose: stand on one leg, place the other foot on your thigh, hands in prayer. Hold for 1 minute per side. Follow with Seated Forward Fold to stretch hamstrings. These poses enhance balance, vital for ruling volatile kingdoms. <em>Stay steady like the Iron Throne</em>. Practice near a wall if needed.</p><h3>Cool-Down and Benefits</h3><p>End with Child’s Pose and Savasana for 10 minutes. Yoga boosts circulation, reduces stress, and improves posture. Practice 3 times weekly, using a mat or soft surface. Daenerys’ tip: visualize your goals during Savasana. <em>Conquer your inner storms</em>—embrace yoga for wellness!</p>",
+    created_at: 1736553600000,
+    votes: 6,
+    article_img_url: "https://images.pexels.com/photos/317157/pexels-photo-317157.jpeg?w=700&h=700"
   },
   {
-    title: "What does Jose Mourinho's handwriting say about his personality?",
-    topic: "football",
-    author: "weegembump",
-    body: "Jose Mourinho was at The O2 on Sunday night to watch Dominic Thiem in action against Novak Djokovic. Thiem took the first set before Djokovic fought back to claim the victory, but Manchester United's manager was clearly impressed with the Austrian's performance.",
-    created_at: 1594239900000,
-    votes: 0,
-    article_img_url:
-      "https://images.pexels.com/photos/114296/pexels-photo-114296.jpeg?w=700&h=700",
+    title: "Bodyweight Strength Training",
+    topic: "health-wellness",
+    author: "whitewolf",
+    body: "<h2>Building Power with Bodyweight Exercises</h2><p>I’m Geralt of Rivia, and my <strong>strength training</strong> routine forges a body tough enough to slay griffins. These bodyweight exercises—squats, push-ups, planks, and pull-ups—require no gym, just grit. <em>Train like a Witcher</em>—start now!</p><h3>Squats for Leg Power</h3><p>Stand with feet shoulder-width apart. Lower your hips until thighs are parallel to the ground, keeping knees over toes. Do 3 sets of 15 reps. Squats build quads and glutes, like charging into battle. Geralt’s tip: add a jump for explosive power. Rest 60 seconds between sets.</p><h3>Push-Ups for Upper Body</h3><p>In plank position, lower your chest to an inch above the ground, then push up. Aim for 3 sets of 12 reps. Modify on knees if needed. Push-ups strengthen chest, shoulders, and triceps—key for swordplay. <em>Feel the burn like Igni</em>. Progress to diamond push-ups for intensity.</p><h3>Planks for Core Stability</h3><p>Hold a forearm plank, body straight, for 3 sets of 45 seconds. Engage your core to avoid sagging. Planks are vital for balance during fights. Add side planks to target obliques. Geralt’s rule: breathe steadily, like meditating before a hunt.</p><h3>Pull-Ups and Benefits</h3><p>Find a sturdy bar (or tree branch). Pull your chin above the bar for 3 sets of 8 reps. Use resistance bands if needed. Pull-ups build back and biceps. Strength training boosts metabolism and bone density. Train 4 times weekly, eating protein-rich foods. <em>Forge a Witcher’s physique</em>—conquer any challenge!</p>",
+    created_at: 1736640000000,
+    votes: 7,
+    article_img_url: "https://images.pexels.com/photos/1552242/pexels-photo-1552242.jpeg?w=700&h=700"
   },
   {
-    title: "Who Will Manage Your Club in 2021?",
-    topic: "football",
-    author: "happyamy2016",
-    body: "Managerial changes are too common in the modern day game. Already in the 16/17 season, we have seen 14 managers lose their job from the Premier League to League Two. Swansea’s Francesco Guidolin became the first top division manager to lose his job but already question marks are raised regarding the future of the likes of David Moyes and Mike Phelan.",
-    created_at: 1593011640000,
-    votes: 0,
-    article_img_url:
-      "https://images.pexels.com/photos/209841/pexels-photo-209841.jpeg?w=700&h=700",
+    title: "Stress Relief Techniques",
+    topic: "health-wellness",
+    author: "bladerunner",
+    body: "<h2>Finding Calm in Chaos</h2><p>I’m Rick Deckard, navigating chaos like a <em>Blade Runner</em>. My <strong>stress relief</strong> techniques—deep breathing, journaling, and progressive muscle relaxation—keep you grounded in neon-lit storms. <em>Stay human amidst the chaos</em>—try these methods!</p><h3>Deep Breathing</h3><p>Sit or lie down. Inhale through your nose for 5 counts, hold for 5, exhale for 7. Repeat for 10 minutes. This lowers heart rate and cortisol, like dimming LA’s neon glow. Deckard’s tip: practice in a quiet space, imagining a rainy rooftop. Use apps like Breathwrk for guidance.</p><h3>Journaling for Clarity</h3><p>Write your thoughts daily for 15 minutes. Use prompts: <em>What’s stressing me? What can I control?</em> Free-write or list gratitudes. Journaling unravels emotions, like decoding a replicant’s memories. Keep a notebook or use apps like Day One. Review entries weekly to spot patterns. <em>Clarity is survival</em>.</p><h3>Progressive Muscle Relaxation</h3><p>Tense and release muscle groups, starting with feet, for 20 minutes. Tense for 5 seconds, relax for 10. Move to legs, arms, and face. This eases tension, like shedding a bounty hunter’s weight. Practice before bed for better sleep. Deckard’s rule: combine with soft music.</p><h3>Benefits and Routine</h3><p>These techniques reduce anxiety, improve focus, and boost resilience. Practice daily, starting with 5 minutes per method. Create a calm space, free of tech. Pair with exercise for maximum effect. <em>Forge inner strength</em>—manage stress like a Blade Runner!</p>",
+    created_at: 1736726400000,
+    votes: 4,
+    article_img_url: "https://images.pexels.com/photos/897817/pexels-photo-897817.jpeg?w=700&h=700"
   },
   {
-    title: "Why do England managers keep making the same mistakes?",
-    topic: "football",
-    author: "tickle122",
-    body: "When Roy Hodgson resigned after this summer’s debacle, the England managerial merry go-round set into motion raising hopes that change would improve the nations fortunes.  In came Sam Allardyce but the same old squad was announced – apart from Michail Antonio – resulting in a similar type performance that was customary this summer. I was an advocate of Big Sam’s appointment because of the fact he managed down the league and could see that talent lay beyond just the big clubs in the country. Roy had many faults but the biggest frustration for me was he failed to utilise an already diminished pool of English players by continuing to pick the so called elite players – who are all tainted with failure. To be fair to Allardyce his first England game came so early in the season that it made making whole sale changes difficult. We shall never know if he would have picked different players. Since he left the job it was up to Gareth Southgate to take on the mantle and again hope arose that he may start to pick some of the talented under 21s that he has worked with over the last five years.",
-    created_at: 1584576840000,
-    votes: 0,
-    article_img_url:
-      "https://images.pexels.com/photos/262524/pexels-photo-262524.jpeg?w=700&h=700",
+    title: "Sleep Improvement Rituals",
+    topic: "health-wellness",
+    author: "avadakedavra",
+    body: "<h2>Resting for Ambition</h2><p>I am Lord Voldemort, and even dark lords need <strong>sleep</strong> to fuel conquests. My bedtime rituals, herbal teas, and screen-free routines ensure restorative rest. <em>Power requires rest</em>—master these secrets!</p><h3>Bedtime Rituals</h3><p>Create a 30-minute wind-down. Dim lights to mimic Hogwarts’ torchlit halls. Read a book (not dark magic tomes) or listen to calming music. Avoid caffeine after noon—Voldemort’s rule for uninterrupted slumber. Stretch gently to release tension, like shedding a day’s curses. Consistency signals your body to rest.</p><h3>Herbal Teas</h3><p>Sip chamomile or valerian root tea 1 hour before bed. Steep for 10 minutes, adding honey for taste. These herbs promote relaxation, unlike Polyjuice Potion’s intensity. Avoid sugary drinks. <em>Even Slytherins savor calm</em>—keep a kettle ready for nightly brews. Test blends to find your favorite.</p><h3>Screen-Free Routine</h3><p>Ban screens 2 hours before sleep. Blue light disrupts melatonin, like a Lumos spell in darkness. Replace scrolling with journaling or meditation. Store devices outside your bedroom. Voldemort’s tip: use a physical alarm clock. This routine ensures deep sleep, vital for scheming.</p><h3>Benefits and Environment</h3><p>Quality sleep boosts memory, mood, and immunity—key for dark plans. Aim for 7–8 hours nightly. Keep your bedroom cool, dark, and quiet, like a dungeon’s calm. Use blackout curtains and white noise if needed. <em>Rest like a dark lord</em>—conquer your nights!</p>",
+    created_at: 1736812800000,
+    votes: 3,
+    article_img_url: "https://images.pexels.com/photos/3771837/pexels-photo-3771837.jpeg?w=700&h=700"
   },
   {
-    title: "History of FC Barcelona",
-    topic: "football",
-    author: "weegembump",
-    body: "The history of Futbol Club Barcelona goes from the football club's founding in 1899 and up to current time. FC Barcelona, also known simply as Barcelona and familiarly as Barça, is based in Barcelona, Catalonia, Spain. The team was founded in 1899 by a group of Swiss, English and Spanish footballers led by Joan Gamper. The club played amateur football until 1910 in various regional competitions. In 1910, the club participated in their first of many European competitions, and has since amassed ten UEFA trophies and a sextuple. In 1928, Barcelona co-founded La Liga, the top-tier in Spanish football, along with a string of other clubs. As of 2016, Barcelona has never been relegated from La Liga, a record they share with Athletic Bilbao and arch-rival Real Madrid. The history of Barcelona has often been politically. Though it is a club created and run by foreigners, Barcelona gradually became a club associated with Catalan values. In Spain's transition to autocracy in 1925, Catalonia became increasingly hostile towards the central government in Madrid. The hostility enhanced Barcelona's image as a focal point for Catalonism, and when Francisco Franco banned the use of the Catalan language, the stadium of Barcelona became one of the few places the people could express their dissatisfaction. The Spanish transition to democracy in 1978 has not dampened the club's image of Catalan pride. In the 2000s – a period of sporting success in the club and an increased focus on Catalan players – club officials have openly called for Catalonia to become an independent state.",
-    created_at: 1596413640000,
-    votes: 0,
-    article_img_url:
-      "https://images.pexels.com/photos/102448/pexels-photo-102448.jpeg?w=700&h=700",
+    title: "AI in Urban Development",
+    topic: "tech",
+    author: "bladerunner",
+    body: "<h2>Powering Future Cities</h2><p>I’m Rick Deckard, and <strong>artificial intelligence</strong> shapes the cities of tomorrow, like the rain-soaked LA of <em>Blade Runner</em>. AI powers traffic systems, security, and energy grids—let’s explore its urban impact. <em>The future is now</em>—dive in!</p><h3>AI for Traffic Management</h3><p>Cities like Singapore use AI to optimize traffic. Machine learning analyzes camera feeds and GPS data to adjust signals in real-time, reducing congestion. Systems like IBM’s Watson predict bottlenecks. Deckard’s insight: AI cuts commute times, like a spinner dodging skyscrapers. Future cities may use autonomous vehicles for seamless flow.</p><h3>Security and Surveillance</h3><p>AI enhances safety with facial recognition and anomaly-detection. China’s smart cities use cameras to track crime, though privacy concerns arise. Algorithms analyze behavior, flagging suspicious activity. <em>Replicants would be wary</em>—balance security with ethics. Deckard’s tip: advocate for transparent AI policies to protect citizens.</p><h3>Energy Grids and Sustainability</h3><p>AI optimizes energy use. Google’s DeepMind reduces data center cooling costs by 40% using reinforcement learning. Smart grids predict demand, integrating solar and wind power. Cities like Copenhagen aim for carbon neutrality with AI. This tech is sustainable, like a replicant’s efficiency. Monitor usage with IoT devices for real-time savings.</p><h3>Challenges and Future</h3><p>AI risks include bias and job displacement. Train diverse datasets and upskill workers to mitigate. Future cities may use AI for urban planning, predicting growth. Deckard’s vision: a world where tech serves humanity, not controls it. <em>Forge a brighter skyline</em>—embrace AI responsibly!</p>",
+    created_at: 1736899200000,
+    votes: 9,
+    article_img_url: "https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg?w=700&h=700"
   },
   {
-    title: "Which current Premier League manager was the best player?",
-    topic: "football",
-    author: "cooljmessy",
-    body: "Premier League managers work with some of the top players in world football - but were they any good in their day? From European Cup and league title winners to one manager who only played at university, there's a diverse range of experience among the top-flight bosses. We've taken a look at the playing achievements and ability of the current Premier League managers and ranked them. Read on to see who ranks where...",
-    created_at: 1584616500000,
-    votes: 0,
-    article_img_url:
-      "https://images.pexels.com/photos/47343/the-ball-stadion-horn-corner-47343.jpeg?w=700&h=700",
+    title: "Introduction to IoT Systems",
+    topic: "tech",
+    author: "youshallnotpass",
+    body: "<h2>Connecting Devices with IoT</h2><p>I am Gandalf, and the <strong>Internet of Things</strong> weaves a web of connected devices, like elven magic binding Rivendell. This guide covers IoT sensors, protocols, and security for smart homes and businesses. <em>A wizard’s tech spell</em>—build your network!</p><h1>IoT Sensors Explained</h1><p>Sensors are IoT’s eyes and ears. Temperature, motion, and light sensors collect data, like eagles scouting Mordor. Use Raspberry Pi with DHT11 sensors to monitor humidity. Connect via Wi-Fi or Zigbee for low power. Gandalf’s tip: calibrate sensors for accuracy, ensuring reliable data for your smart hobbit-hole.</p><h3>Protocols for Connectivity</h3><p>IoT devices communicate via MQTT or HTTP. MQTT is lightweight, ideal for low-bandwidth devices like smart thermostats. Set up a Mosquitto broker to manage messages. For larger systems, use CoAP or WebSockets. <em>Magic flows through clear channels</em>—choose protocols based on your network’s needs. Test with Node-RED for visualization.</p><h3>Security First</h3><p>IoT is vulnerable to hacks, like orcs breaching a gate. Secure devices with strong passwords and TLS encryption. Update firmware regularly. Use VLANs to isolate IoT devices from your main network. Gandalf’s rule: monitor traffic with tools like Wireshark. A single breach could disrupt your smart home’s harmony.</p><h3>Building Your IoT System</h3><p>Start small—control lights with a smart plug (e.g., TP-Link). Scale to smart locks or cameras. Use platforms like Home Assistant for integration. IoT saves energy and boosts convenience, like a wizard’s staff. <em>You shall not pass</em> vulnerabilities—create a secure, magical IoT network!</p>",
+    created_at: 1736985600000,
+    votes: 6,
+    article_img_url: "https://images.pexels.com/photos/1632790/pexels-photo-1632790.jpeg?w=700&h=700"
   },
   {
-    title: "The People Tracking Every Touch, Pass And Tackle in the World Cup",
-    topic: "football",
-    author: "grumpy19",
-    body: "With each click and drag of a mouse, young soccer fanatics are creating the building blocks of the advanced stats that are changing how the sport is played, watched and analyzed. Opta and Prozone are among the companies that have taken soccer stats far beyond goals and saves, into the realm of pass completion percentage, defensive touches, percentage of aerial balls won, tackle percentage and goals scored above expectation. Cameras alone can’t process all these stats. So companies employ people — mostly young, mostly male, most logging matches in their spare time as a second job — to watch matches and document every event. Their work has helped develop stats that capture the value of players who don’t score many goals, but who set them up with pinpoint passing and hustle. Teams use advanced stats to decide which players to buy and put on the pitch. And fans, whether they like it or not, read and hear more numbers than ever before about this sport that for so long bucked the sports-analytics trend.",
-    created_at: 1597676580000,
-    votes: 0,
-    article_img_url:
-      "https://images.pexels.com/photos/1884576/pexels-photo-1884576.jpeg?w=700&h=700",
+    title: "Exploring Virtual Reality",
+    topic: "tech",
+    author: "chookity",
+    body: "<h2>Virtual Reality Experiences</h2><p>I’m Mooncake, your cosmic pal from <em>Final Space</em>, diving into <strong>virtual reality</strong>—chookity! VR transforms gaming, storytelling, and education. This guide covers headsets, setup, and immersive experiences. <em>Float through digital realms</em>—let’s explore!</p><h3>Choosing a VR Headset</h3><p>Top headsets include Oculus Quest 3, PlayStation VR2, and Valve Index. Quest 3 is wireless, ideal for beginners, with a $500 price tag. PS VR2 excels for console gamers, requiring a PS5. Index offers premium tracking but needs a powerful PC. Mooncake’s tip: try headsets at stores to test comfort. Budget options like Google Cardboard work for casual use.</p><h3>Setting Up VR</h3><p>Clear a 6x6-foot space for room-scale VR. Install software (e.g., Oculus app, SteamVR). Calibrate sensors for accurate tracking—think of it as aligning a spaceship’s nav system. Charge controllers and update firmware. <em>Chookity—avoid tripping over cables!</em>. Test with free apps like <em>The Lab</em> to learn controls.</p><h3>Immersive Experiences</h3><p>VR shines in gaming (<em>Half-Life: Alyx</em>), storytelling (<em>Dear Angelica</em>), and training (flight simulators). Social platforms like VRChat let you meet friends as avatars. Educational apps teach history or physics in 3D. Mooncake’s favorite: soaring through space in <em>No Man’s Sky VR</em>. Download apps via Steam or Meta Store.</p><h3>Future of VR</h3><p>VR is evolving with haptic gloves and eye-tracking. It boosts creativity and empathy but risks motion sickness—start with short sessions. <em>Float lightly</em>—VR is a portal to new worlds. Invest in a headset and join the revolution, chookity!</p>",
+    created_at: 1737072000000,
+    votes: 5,
+    article_img_url: "https://images.pexels.com/photos/3945659/pexels-photo-3945659.jpeg?w=700&h=700"
   },
   {
-    title: "Who are the most followed clubs and players on Instagram?",
-    topic: "football",
-    author: "jessjelly",
-    body: "Manchester United are the UK's most popular club on Instagram, with over 14m people following their account for their latest photos and videos. United's total number of followers is over six million more than second-placed Arsenal (8.1m, while Chelsea are third on the list with 7.7m followers, according to data exclusively compiled for Sky Sports. Instagram has a 500m-strong community, with one in three people on the social media site (around 165m) following a sports account.",
-    created_at: 1600002120000,
-    votes: 0,
-    article_img_url:
-      "https://images.pexels.com/photos/685382/pexels-photo-685382.jpeg?w=700&h=700",
+    title: "Drone Technology and Applications",
+    topic: "tech",
+    author: "dragonrider",
+    body: "<h2>Mastering Drone Technology</h2><p>I am Daenerys Targaryen, and <strong>drones</strong> are my modern dragons, ruling the skies for photography, delivery, and surveillance. This guide explores drone tech, regulations, and top models. <em>Fly like a dragon</em>—master the skies!</p><h3>Drone Technology Basics</h3><p>Drones use GPS, cameras, and sensors for navigation. Quadcopters like DJI Mavic 3 have 4K cameras and 30-minute flight times. LiDAR drones map terrain, like dragons scouting Westeros. Battery life and range (up to 7 miles) are key. Daenerys’ rule: choose drones with obstacle avoidance for safety.</p><h3>Photography and Videography</h3><p>Capture epic footage with drones. DJI’s Air 2S offers 5.4K video, ideal for landscapes. Use gimbal stabilization for smooth shots. Plan flights with apps like DJI Fly, setting waypoints. <em>Soar over Meereen’s pyramids</em>—practice in open fields to avoid crashes. Edit with Adobe Premiere for professional results.</p><h3>Delivery and Surveillance</h3><p>Companies like Amazon test drone delivery, carrying up to 5 pounds. Surveillance drones monitor crops or borders, using thermal cameras. Regulations require line-of-sight operation in most countries. Register drones over 250 grams (FAA, EU). Daenerys’ tip: check local laws to avoid fines.</p><h3>Choosing and Flying Drones</h3><p>Budget drones (Ryze Tello, $100) suit beginners; pros pick Mavic 3 ($2000). Practice in beginner mode to learn controls. Drones save time and reduce emissions but risk privacy concerns—fly ethically. <em>Command the skies</em>—unleash your inner dragon with drones!</p>",
+    created_at: 1737158400000,
+    votes: 7,
+    article_img_url: "https://images.pexels.com/photos/442576/pexels-photo-442576.jpeg?w=700&h=700"
   },
   {
-    title: "History of Football",
-    topic: "football",
-    author: "tickle122",
-    body: "It may come as a surprise to many, but football has a long and interesting history; sources suggest that the sport was first introduced in England as early as 1170 when an account describes youths going to the fields for a ‘game of ball’. Aspects of the game can even be traced back to as early as the second and third century BC in China. Sources taken from military manuals at the time describe an exercise called Tsu’ Chu, in which opponents used a leather ball filled with feathers and hair. The aim was to get the ball into a small net fixed on to bamboo canes while also defending themselves from attacks. Variations of the game are also documented in Egyptian and Greek society, proving that the sport has a long tradition throughout history.",
-    created_at: 1583874300000,
-    votes: 0,
-    article_img_url:
-      "https://images.pexels.com/photos/3621104/pexels-photo-3621104.jpeg?w=700&h=700",
+    title: "Cybersecurity Best Practices",
+    topic: "tech",
+    author: "whitewolf",
+    body: "<h2>Protecting Against Cyber Threats</h2><p>I’m Geralt of Rivia, and I hunt digital threats with <strong>cybersecurity</strong> skills sharper than my silver sword. Learn to protect your data with passwords, VPNs, and firewalls. <em>Hunt hackers like a Witcher</em>—secure your world!</p><h3>Strong Passwords</h3><p>Create passwords with 12+ characters, mixing letters, numbers, and symbols (e.g., <em>SilverSword2023!</em>). Use a password manager like LastPass to store them. Never reuse passwords across sites—each breach is a chink in your armor. Geralt’s rule: enable two-factor authentication (2FA) via apps like Authy for extra protection.</p><h3>VPNs for Privacy</h3><p>A VPN (e.g., NordVPN, ExpressVPN) encrypts your internet traffic, hiding your location from spies. Use it on public Wi-Fi, like taverns full of rogues. Set up a VPN on your router for all devices. <em>Stay invisible like Quen</em>—test speeds to ensure fast browsing. Expect to pay $5–10 monthly for premium services.</p><h3>Firewalls and Antivirus</h3><p>Enable your OS firewall (Windows Defender, macOS) to block unauthorized access. Install antivirus like Malwarebytes to scan for malware. Update software regularly—unpatched systems are like unguarded villages. Geralt’s tip: schedule weekly scans to catch threats early. Free tools work, but paid versions offer real-time protection.</p><h3>Staying Vigilant</h3><p>Beware phishing emails mimicking banks or friends. Verify links before clicking; hover to check URLs. Backup data to external drives or clouds like Google Drive. Cybersecurity saves assets and peace of mind. <em>Forge a digital fortress</em>—train daily to outwit cyber monsters!</p>",
+    created_at: 1737244800000,
+    votes: 8,
+    article_img_url: "https://images.pexels.com/photos/60504/pexels-photo-60504.jpeg?w=700&h=700"
   },
   {
-    title: "Agility Training Drills For Football Players",
-    topic: "football",
-    author: "tickle122",
-    body: "There are so many areas of focus when it comes to football training, from strength training to ensure you can muscle past the opposition to endurance training to help you perform at your best for the 90 minutes of play. However, agility training should never be lost in the mix when planning sessions, as these drills will help you to change direction without losing balance, speed or strength. As a result, your body’s alignment will improve, your reaction speeds lowered and the chance of injury on the pitch reduced. When planning agility training drills for football players, MaxiNutrition believes coaches should look towards cones and ladders. The following guide explains how to use both pieces of equipment effectively:",
-    created_at: 1603706700000,
-    votes: 0,
-    article_img_url:
-      "https://images.pexels.com/photos/3448250/pexels-photo-3448250.jpeg?w=700&h=700",
+    title: "Introduction to Quantum Mechanics",
+    topic: "science",
+    author: "youshallnotpass",
+    body: "<h2>Unraveling Quantum Mysteries</h2><p>I am Gandalf, and <strong>quantum mechanics</strong> is the closest thing to magic in the mortal realm. This guide explains superposition, entanglement, and qubits in terms a hobbit could grasp. <em>A wizard’s take on the cosmos</em>—dive into quantum wonders!</p><h3>Superposition Basics</h3><p>Superposition means particles exist in multiple states simultaneously, like a coin spinning mid-air. Schrödinger’s cat is both alive and dead until observed. In labs, electrons are waves and particles until measured. Gandalf’s insight: this duality powers quantum computers, solving problems faster than Gandalf riding Shadowfax.</p><h3>Entanglement’s Mystery</h3><p>Entangled particles are linked, like elven soulmates. Measuring one instantly affects the other, even across galaxies. Einstein called it “spooky action.” This enables secure communication—quantum cryptography ensures no orc can eavesdrop. Experiments at CERN confirm entanglement’s reality. <em>Magic binds the universe</em>.</p><h3>Qubits and Computing</h3><p>Unlike bits (0 or 1), qubits can be 0, 1, or both, thanks to superposition. Quantum computers (e.g., IBM’s Qiskit) use qubits for massive calculations, like optimizing logistics or cracking codes. Challenges include maintaining coherence—qubits are fragile, like a palantír’s vision. Gandalf’s tip: explore Qiskit’s tutorials to code quantum circuits.</p><h3>Implications and Ethics</h3><p>Quantum tech could revolutionize medicine, energy, and AI but risks breaking current encryption. Scientists must balance innovation with security. Quantum mechanics reveals the universe’s fluidity, like Middle-earth’s ever-changing fates. <em>Wield knowledge wisely</em>—study quantum science and shape the future!</p>",
+    created_at: 1737331200000,
+    votes: 9,
+    article_img_url: "https://images.pexels.com/photos/60504/pexels-photo-60504.jpeg?w=700&h=700"
   },
   {
-    title: "Defensive Metrics: Measuring the Intensity of a High Press",
-    topic: "football",
-    author: "tickle122",
-    body: "In this article, with the use of detailed Opta data, I am going to create a metric that I believe can quantify the extent and aggression of high presses employed by teams, both over a season and in any specific match. I’m going to see if it is possible define the intensity of a press with the use of numbers, more specifically by using some of the events that Opta record. Why would anyone want to do this? Well, for pretty much the same reason that we undertake any analytics study. If we can develop an objective scale which measures the intensity of a press then coaches can quickly see at a glance the strength, or otherwise, of the high pressing that their opposition has utilised in recent games. Teams or fans can also assess how much pressure their team exerted on the opposition in deep positions, and who knows, perhaps in time we will be able to assess the effectiveness that individual players have on the ability of their team to press. In essence we can take what is otherwise a subjective description and reduce it to one number so that it allows for comparison, analysis and ranking, if so desired.",
-    created_at: 1587129000000,
-    votes: 0,
-    article_img_url:
-      "https://images.pexels.com/photos/906073/pexels-photo-906073.jpeg?w=700&h=700",
+    title: "Science of Dragon Fire",
+    topic: "science",
+    author: "dragonrider",
+    body: "<h2>Could Dragons Exist?</h2><p>I am Daenerys Targaryen, Mother of Dragons, and I ponder the <strong>science of dragon fire</strong>. Could creatures like Drogon exist? This guide explores combustion, thermodynamics, and biology. <em>Fire and blood meet physics</em>—let’s investigate!</p><h3>Combustion Mechanics</h3><p>Fire requires fuel, oxygen, and heat. Dragons might store a flammable liquid, like ethanol, in glands, ignited by a spark (perhaps from teeth clicking, like flint). Napalm-like substances could sustain intense flames. Daenerys’ insight: dragons need oxygen-rich environments, explaining their mountain lairs. Chemistry labs replicate such reactions with methane burners.</p><h3>Thermodynamics of Flight</h3><p>Dragons’ size (30-foot wingspan) challenges flight. Hollow bones, like birds, reduce weight, while massive wings generate lift. Muscle power must overcome drag—thermodynamics suggests a high-calorie diet (e.g., livestock). <em>Drogon’s soar defies gravity</em>. Pterosaurs, with 40-foot wings, offer a real-world analogy, though dragons would need denser muscles.</p><h3>Biological Plausibility</h3><p>Fire-breathing could evolve from venom glands, like spitting cobras, adapting to produce flammable liquids. Heat-resistant scales (keratin-based) protect against self-burning. Lungs might store oxygen for bursts, like deep-sea divers. Fossils show large reptiles, but none breathe fire—evolution didn’t favor it. Daenerys’ tip: study Komodo dragons for clues to reptilian strength.</p><h3>Fantasy vs. Reality</h3><p>Physics limits dragon size and fire range, but fantasy inspires science. Biofuels and flamethrowers mimic dragon fire, advancing technology. Dragons symbolize nature’s power, urging respect for ecosystems. <em>Rule with curiosity</em>—blend science and myth to understand our world!</p>",
+    created_at: 1737417600000,
+    votes: 6,
+    article_img_url: "https://images.pexels.com/photos/40784/pexels-photo-40784.jpeg?w=700&h=700"
   },
   {
-    title: "Sunday league football",
-    topic: "football",
-    author: "weegembump",
-    body: "Sunday league football is a term used in the United Kingdom to describe those association football leagues which play on Sunday, as opposed to the more usual Saturday. These leagues tend to be lower standard amateur competitions, whose players may have less ability or less time to devote to football. The term pub league can also be used, due to the number of public houses that enter teams. Sunday leagues are sanctioned by the local County Football Association. There is no organised promotion or relegation between leagues, unlike in the National League System, which covers the top few levels of amateur football, although many leagues operate several divisions with promotion and relegation between them. However, ambitious Sunday teams may apply to join a Saturday league for a higher standard of football, and from there graduate to the FA-sanctioned leagues.",
-    created_at: 1584887100000,
-    votes: 0,
-    article_img_url:
-      "https://images.pexels.com/photos/774321/pexels-photo-774321.jpeg?w=700&h=700",
+    title: "Searching for Exoplanets",
+    topic: "science",
+    author: "chookity",
+    body: "<h2>Searching for Cosmic Homes</h2><p>I’m Mooncake, floating through <em>Final Space</em>, obsessed with <strong>exoplanets</strong>—chookity! These distant worlds could host life. This guide covers detection methods, habitability, and telescopes like Kepler. <em>Float among the stars</em>—join the hunt!</p><h3>Transit Method</h3><p>The transit method detects exoplanets when they pass their star, dimming its light. Kepler found thousands this way, like spotting a speck in a supernova. Photometry measures dips (0.01% brightness). Planets like Kepler-186f, Earth-sized, orbit in habitable zones. Mooncake’s tip: use NASA’s Exoplanet Archive to explore data.</p><h3>Radial Velocity</h3><p>Stars wobble due to orbiting planets’ gravity. Spectrographs detect Doppler shifts in starlight, revealing planets like 51 Pegasi b. This method confirms mass and orbit. Ground-based telescopes like HARPS excel here. <em>Chookity—it’s like tracking a cosmic dance!</em>. Combine with transit data for full profiles.</p><h3>Habitability Factors</h3><p>Habitable planets need liquid water, stable climates, and right-sized stars (e.g., red dwarfs). TRAPPIST-1’s seven planets are promising, with rocky surfaces. Atmospheres matter—spectroscopy analyzes gases like oxygen. Mooncake’s dream: finding a planet with alien cookies. Future missions like JWST will probe deeper.</p><h3>Future of Exoplanet Science</h3><p>Upcoming telescopes (e.g., PLATO, 2026) will find more Earth-like worlds. Exoplanets inspire astrobiology and space exploration. They remind us to protect Earth, our only home. <em>Float toward discovery</em>—study exoplanets and imagine new galaxies, chookity!</p>",
+    created_at: 1737504000000,
+    votes: 5,
+    article_img_url: "https://images.pexels.com/photos/2150/sky-space-dark-galaxy.jpg?w=700&h=700"
   },
   {
-    title: "Game of talents: management lessons from top football coaches",
-    topic: "football",
-    author: "jessjelly",
-    body: "At lunchtime on the day of the Champions League final in 2012, Chelsea’s manager Roberto Di Matteo had selected 10 of his 11 players. He just didn’t know who to play in left midfield. The player would have to combat Bayern Munich’s brilliant Arjen Robben and Philipp Lahm. Going into the last team meeting, Di Matteo had a private chat with his left-back, Ashley Cole. He outlined the situation, then asked Cole who he would play at left-midfield. Instead of naming a seasoned star, Cole said: “Ryan Bertrand.” The 22-year-old reserve Bertrand had never played in the Champions League, let alone in club football’s biggest game. “Why?” asked Di Matteo, surprised. “I trust him,” replied Cole. Bertrand played well, and Chelsea beat Bayern on penalties. In part, this was a victory for talent management. Di Matteo had put aside his ego, and let trust between two players drive the decision. Talent management has been a business obsession at least since 1997, when the consultancy McKinsey identified a “war for talent”. The most visible battleground of this “war” is team sport. Football, in particular, is “the quintessential model for modern-day talent-dependent business”, writes Chris Brady, professor at Salford Business School. Big football clubs pay more than half their revenues to between 3 and 7 per cent of their workforce: the players. These young men are rich, multinational, mobile, often equipped with large egos and therefore hard to manage. Football managers are, above all, talent managers.",
-    created_at: 1594336440000,
-    votes: 0,
-    article_img_url:
-      "https://images.pexels.com/photos/168872/pexels-photo-168872.jpeg?w=700&h=700",
+    title: "CRISPR Gene Editing Basics",
+    topic: "science",
+    author: "bladerunner",
+    body: "<h2>Shaping Life’s Code</h2><p>I’m Rick Deckard, and <strong>CRISPR gene editing</strong> is as transformative as crafting replicants in <em>Blade Runner</em>. This guide explores how CRISPR modifies DNA, its applications, and ethical dilemmas. <em>Forge life’s future</em>—dive into biotech!</p><h3>How CRISPR Works</h3><p>CRISPR-Cas9 acts like molecular scissors. Guide RNA targets specific DNA sequences, and Cas9 cuts them. Cells repair the cut, either disabling genes or inserting new ones. It’s precise, like a Voight-Kampff test. Labs use CRISPR to edit embryos, bacteria, or plants. Deckard’s insight: it “[s cheaper ($100 per experiment) than older methods.</p><h3>Medical Applications</h3><p>CRISPR treats genetic diseases. Trials target sickle cell anemia, editing blood cells to produce healthy hemoglobin. Early results show cures. It also fights cancer by enhancing immune cells. <em>Replicants would marvel</em>—CRISPR could extend life. Challenges include off-target edits, risking unintended mutations.</p><h3>Agricultural and Environmental Uses</h3><p>CRISPR creates drought-resistant crops, like modified rice yielding 20% more. It fights pests by editing mosquito genes to curb malaria. Environmentalists use it to save coral reefs. Deckard’s tip: support GMO labeling for transparency. These advances reduce hunger and disease but need regulation.</p><h3>Ethical Concerns</h3><p>Editing human embryos sparks debate—designer babies could widen inequality. CRISPR’s power risks misuse, like bio-weapons. Global guidelines (e.g., WHO) urge caution. Deckard’s ethos: balance innovation with humanity. <em>Shape life responsibly</em>—study CRISPR and guide its path!</p>",
+    created_at: 1737590400000,
+    votes: 7,
+    article_img_url: "https://images.pexels.com/photos/257540/pexels-photo-257540.jpeg?w=700&h=700"
   },
   {
-    title: "Sweet potato & butternut squash soup with lemon & garlic toast",
-    topic: "cooking",
-    author: "weegembump",
-    body: "Roast your vegetables in honey before blitzing into this velvety smooth, spiced soup - served with garlicky, zesty ciabatta slices for dipping",
-    created_at: 1583961360000,
-    votes: 0,
-    article_img_url:
-      "https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?w=700&h=700",
+    title: "Neuroscience of Fear and Memory",
+    topic: "science",
+    author: "whitewolf",
+    body: "<h2>Mastering the Mind</h2><p>I’m Geralt of Rivia, and <strong>neuroscience</strong> sharpens my instincts for monster hunts. This guide explores how the brain processes fear, memory, and reflexes—key for survival. <em>Think like a Witcher</em>—understand your mind!</p><h3>Fear and the Amygdala</h3><p>The amygdala triggers fight-or-flight when facing a leshen. It processes threats in milliseconds, raising heart rate. Chronic stress overactivates it, causing anxiety. Meditation calms the amygdala, as Geralt does before battles. Studies show mindfulness reduces its size, enhancing control. <em>Fear is a foe to master</em>.</p><h3>Memory and the Hippocampus</h3><p>The hippocampus stores memories, like tracking a striga’s lair. It forms spatial maps and recalls details. Sleep strengthens connections—Geralt naps post-hunt to solidify lessons. Brain games (e.g., Lumosity) boost memory. Damage, like from potions, impairs recall, so limit toxins.</p><h3>Reflexes and Motor Cortex</h3><p>The motor cortex controls sword swings. Training builds neural pathways, making actions automatic, like casting Aard. Reaction times (200ms) improve with practice. Video games or sports enhance coordination. Geralt’s tip: stretch to maintain flexibility, aiding reflexes. <em>Strike like silver</em>—train daily.</p><h3>Neuroplasticity and Growth</h3><p>The brain adapts, forming new connections through learning. Reading, puzzles, or music boost plasticity. Neuroscience aids mental health, with therapies like CBT rewiring thought patterns. Protect your brain with diet and sleep. <em>Forge a sharper mind</em>—hunt knowledge like a Witcher!</p>",
+    created_at: 1737676800000,
+    votes: 4,
+    article_img_url: "https://images.pexels.com/photos/1851164/pexels-photo-1851164.jpeg?w=700&h=700"
   },
   {
-    title: "HOW COOKING HAS CHANGED US",
-    topic: "cooking",
-    author: "weegembump",
-    body: "In a cave in South Africa, archaeologists have unearthed the remains of a million-year-old campfire, and discovered tiny bits of animal bones and ash from plants. It’s the oldest evidence of our ancient human ancestors—probably Homo erectus, a species that preceded ours—cooking a meal.",
-    created_at: 1586134800000,
-    votes: 0,
-    article_img_url:
-      "https://images.pexels.com/photos/2284166/pexels-photo-2284166.jpeg?w=700&h=700",
+    title: "Top Fantasy Films",
+    topic: "entertainment",
+    author: "youshallnotpass",
+    body: "<h2>Epic Fantasy Films</h2><p>I am Gandalf, and my <strong>fantasy films</strong> list rivals the tales of old. From <em>Lord of the Rings</em> to <em>The Princess Bride</em>, these movies weave magic and heroism. <em>A wizard’s cinematic journey</em>—grab popcorn!</p><h3>The Lord of the Rings Trilogy</h3><p>Peter Jackson’s trilogy (2001–2003) brings Tolkien’s world to life. Frodo’s quest to destroy the One Ring is a masterclass in storytelling. Stunning visuals, like Helm’s Deep, and Howard Shore’s score elevate it. Themes of friendship and sacrifice resonate. Gandalf’s favorite: <em>The Return of the King</em>’s emotional depth. Stream on HBO Max.</p><h3>The Princess Bride (1987)</h3><p>This witty tale blends romance, adventure, and humor. Westley’s quest to save Buttercup, with Inigo Montoya’s iconic lines, charms all ages. Its quotability (<em>“Inconceivable!”</em>) endures. Perfect for cozy Shire nights. Available on Disney+. <em>Even orcs would laugh</em>.</p><h3>Pan’s Labyrinth (2006)</h3><p>Guillermo del Toro’s dark fantasy explores a girl’s mythical journey amid war. Its haunting visuals and emotional weight mirror Middle-earth’s struggles. The faun’s riddles captivate. Stream on Netflix. Gandalf’s tip: watch in Spanish for authenticity. A masterpiece of moral complexity.</p><h3>Why Fantasy Matters</h3><p>Fantasy films inspire courage and imagination, reflecting human struggles. They’re escapism with purpose, like a palantír showing hope. Curate a watchlist with friends, discussing themes post-viewing. <em>Gather your fellowship</em>—dive into these cinematic quests!</p>",
+    created_at: 1737763200000,
+    votes: 8,
+    article_img_url: "https://images.pexels.com/photos/1117132/pexels-photo-1117132.jpeg?w=700&h=700"
   },
   {
-    title: "Thanksgiving Drinks for Everyone",
-    topic: "cooking",
-    author: "grumpy19",
-    body: "Thanksgiving is a foodie’s favorite holiday. Mashed potatoes, cranberry sauce, stuffing, and last but not least, a juicy turkey. Don’t let your meticulous menu fall short of perfection; flavorful cocktails are just as important as the meal. Here are a few ideas that will fit right into your festivities.",
-    created_at: 1579908120000,
-    votes: 0,
-    article_img_url:
-      "https://images.pexels.com/photos/1565982/pexels-photo-1565982.jpeg?w=700&h=700",
+    title: "Iconic TV Villains",
+    topic: "entertainment",
+    author: "avadakedavra",
+    body: "<h2>Memorable TV Antagonists</h2><p>I am Lord Voldemort, and these <strong>TV villains</strong> rival my cunning. From <em>Breaking Bad</em> to <em>Game of Thrones</em>, their motives and charisma captivate. <em>Dark lords approve</em>—meet these icons!</p><h3>Walter White (Breaking Bad)</h3><p>Walter White, a chemistry teacher turned drug lord, embodies ambition. His descent, driven by pride, mirrors a Horcrux’s corruption. Bryan Cranston’s performance is chilling. Stream on Netflix. Voldemort’s insight: <em>“I am the danger”</em> reveals his transformation. White’s complexity makes him unforgettable.</p><h3>Cersei Lannister (Game of Thrones)</h3><p>Cersei’s ruthless quest for power, played by Lena Headey, is pure Slytherin. Her love for her children humanizes her, yet her schemes (e.g., wildfire) are diabolical. Available on HBO Max. <em>Even I admire her venom</em>. Cersei’s arc shows how fear breeds tyranny.</p><h3>Gus Fring (Better Call Saul)</h3><p>Gus Fring’s calm menace, portrayed by Giancarlo Esposito, hides a drug empire. His calculated moves rival Voldemort’s plans. Stream on AMC+. His restaurant facade is a masterclass in deception. Voldemort’s tip: study his restraint—it’s power incarnate.</p><h3>Why Villains Fascinate</h3><p>Villains reflect our flaws, making us question morality. Their charisma draws us, like a dark spell. Discuss these characters with friends, analyzing their choices. <em>Embrace the shadows</em>—stream these shows and unravel their motives!</p>",
+    created_at: 1737849600000,
+    votes: 6,
+    article_img_url: "https://images.pexels.com/photos/41162/pexels-photo-41162.jpeg?w=700&h=700"
   },
   {
-    title: "High Altitude Cooking",
-    topic: "cooking",
-    author: "happyamy2016",
-    body: "Most backpacking trails vary only a few thousand feet elevation. However, many trails can be found above 10,000 feet. But what many people don’t take into consideration at these high altitudes is how these elevations affect their cooking.",
-    created_at: 1578097440000,
-    votes: 0,
-    article_img_url:
-      "https://images.pexels.com/photos/691114/pexels-photo-691114.jpeg?w=700&h=700",
+    title: "Epic TV Series Recommendations",
+    topic: "entertainment",
+    author: "dragonrider",
+    body: "<h2>Epic TV Series to Binge</h2><p>I am Daenerys Targaryen, and my <strong>epic TV series</strong> list—<em>Game of Thrones</em>, <em>The Witcher</em>, <em>Legend of Vox Machina</em>—offers dragons, battles, and intrigue. <em>Rule the binge-watch</em>—explore these sagas!</p><h3>Game of Thrones (2011–2019)</h3><p>This HBO epic chronicles Westeros’ power struggles. My dragons inspired its fire, with battles like Blackwater stunning viewers. Complex characters (Tyrion, Arya) shine, though the finale divided fans. Stream on HBO Max. Daenerys’ favorite: <em>“Dracarys”</em> moments of triumph. Its scope is unmatched.</p><h3>The Witcher (2019–)</h3><p>Netflix’s adaptation follows Geralt, a monster hunter, in a gritty world. Henry Cavill’s performance and Ciri’s arc captivate. Dragons and magic abound, like Meereen’s skies. Season 3 expands the lore. <em>Destiny calls</em>—stream it now. Daenerys’ tip: read the books for deeper context.</p><h3>Legend of Vox Machina (2022–)</h3><p>This animated series, on Amazon Prime, brings D&D to life. Vox Machina’s ragtag heroes fight dragons and necromancers. Its humor and heart rival Westeros’ tales. Season 2 escalates the stakes. <em>Even Khaleesis laugh</em>—perfect for fantasy fans.</p><h3>Why Epics Endure</h3><p>These series blend myth and humanity, inspiring courage. Their visuals and scores immerse you, like riding Drogon. Host watch parties to debate plots. <em>Conquer your screen</em>—binge these epics and claim your throne!</p>",
+    created_at: 1737936000000,
+    votes: 7,
+    article_img_url: "https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?w=700&h=700"
   },
   {
-    title: "A BRIEF HISTORY OF FOOD—NO BIG DEAL",
-    topic: "cooking",
-    author: "tickle122",
-    body: "n 1686, the croissant was invented in Austria. That's a fun fact I'd probably never had known or maybe don't even really need to know, but now I do, thanks to Julia Rothman's Food Anatomy: The Curious Parts & Pieces of Our Edible World. Rothman has an entire series of illustrated Anatomy books, including Nature and Farm, packed with infographics, quirky facts, and maps that you can get lost in for hours—in a fun way, not in a boring textbook way. It makes you wonder why textbooks aren't this fun to read. Can someone look into this? Thanks.",
-    created_at: 1578341520000,
-    votes: 0,
-    article_img_url:
-      "https://images.pexels.com/photos/357743/pexels-photo-357743.jpeg?w=700&h=700",
+    title: "Sci-Fi TV Series Reviews",
+    topic: "entertainment",
+    author: "chookity",
+    body: "<h2>Cosmic Sci-Fi Shows</h2><p>I’m Mooncake, floating through <em>Final Space</em>, and my <strong>sci-fi TV reviews</strong> cover <em>Final Space</em>, <em>Stranger Things</em>, and <em>The Expanse</em>. These shows offer adventure and wonder. <em>Float through TV galaxies</em>—find your next binge!</p><h3>Final Space (2018–2021)</h3><p>My home show, on HBO Max, follows Gary and me (chookity!) on cosmic quests. Its humor, heart, and animation shine, with stakes rivaling a supernova. Season 3’s emotional finale is a tearjerker. Mooncake’s favorite: <em>“Chookity!”</em> moments of chaos. Perfect for sci-fi comedy fans.</p><h3>Stranger Things (2016–)</h3><p>Netflix’s hit blends 80s nostalgia with sci-fi horror. Kids battle the Upside Down, with Eleven’s powers stealing the show. Season 4’s epic scope (and Vecna) thrill. <em>Like dodging Invictus</em>—its suspense grips you. Mooncake’s tip: watch with friends for jump-scare fun. Season 5 awaits!</p><h3>The Expanse (2015–2022)</h3><p>This Amazon Prime gem is hard sci-fi. Humanity’s solar system conflicts, with the Rocinante crew navigating war and alien tech. Its realism (e.g., zero-G physics) grounds the drama. Stream all 6 seasons. <em>Chookity—it’s a space opera!</em>. Start with the books for extra depth.</p><h3>Why Sci-Fi Rocks</h3><p>Sci-fi explores humanity’s future, sparking imagination. These shows mix action, mystery, and heart. Create a watchlist and discuss theories online. <em>Float to new worlds</em>—binge these series, chookity!</p>",
+    created_at: 1738022400000,
+    votes: 5,
+    article_img_url: "https://images.pexels.com/photos/694587/pexels-photo-694587.jpeg?w=700&h=700"
   },
   {
-    title:
-      "Twice-Baked Butternut Squash Is the Thanksgiving Side Dish of Your Dreams",
-    topic: "cooking",
-    author: "jessjelly",
-    body: "What if, for once, your Thanksgiving sides were just as dazzling as the centerpiece turkey? Imagine a world where presenting a platter of seasonal vegetables inspires the same amount of cooing that the turkey does. Welcome to the world of twice-baked butternut squash. Sure, you could just roast some squash wedges and call it a day. But where's the fun in that? To make this year's most impressive vegetable side, Epi's food director Rhoda Boone gave super-seasonal butternut squash the twice-baked potatoes treatment: Mash the inside of the vegetable with butter, cream, and anything else that might make it more delicious, then pile it back into the vegetable, bake it until golden and velvety. The result is a jaw-dropping, brightly colored sweet-meet-savory butternut squash side dish. Here are just a few more reasons this creation belongs on this year's Thanksgiving table:",
-    created_at: 1578774000000,
-    votes: 0,
-    article_img_url:
-      "https://images.pexels.com/photos/175753/pexels-photo-175753.jpeg?w=700&h=700",
+    title: "Iconic Movie Soundtracks",
+    topic: "entertainment",
+    author: "whitewolf",
+    body: "<h2>Scores That Inspire</h2><p>I’m Geralt of Rivia, and <strong>movie soundtracks</strong> fuel my hunts, like those from <em>The Witcher</em>, <em>Inception</em>, and <em>Gladiator</em>. These compositions evoke courage, sorrow, and triumph, amplifying stories as I roam the Continent. <em>Toss a coin to composers</em>—let’s explore these masterpieces!</p><h3>The Witcher (2019)</h3><p>Sonya Belousova and Giona Ostinelli’s score for Netflix’s <em>The Witcher</em> is raw and primal. <em>“Toss a Coin to Your Witcher”</em>, sung by Jaskier, became a global anthem, its folk melody echoing tavern brawls. Battle themes, blending lutes and percussion, pulse like a griffin’s chase. Stream on Spotify. Geralt’s favorite: the Blaviken fight score, gritty and intense, perfect for sharpening my silver sword.</p><h3>Inception (2010)</h3><p>Hans Zimmer’s <em>Inception</em> score is a dream within a dream. <em>“Time”</em> builds with swelling strings, evoking hope amidst chaos—ideal for pondering destiny post-hunt. The iconic BRAAAM sound reshaped trailer music. Available on Apple Music. <em>Even Witchers dream</em>—play it during quiet nights by the campfire. Zimmer’s genius mirrors the film’s layered narrative.</p><h3>Gladiator (2000)</h3><p>Zimmer’s collaboration with Lisa Gerrard for <em>Gladiator</em> is epic. <em>“Now We Are Free”</em> blends ethereal vocals with soaring triumph, like victory over a leshen. Battle cues roar like a coliseum, driving my training sessions. Stream on Amazon Music. Geralt’s tip: listen while riding Roach for maximum effect. Its emotional depth endures across decades.</p><h3>Why Soundtracks Matter</h3><p>Soundtracks amplify narratives, stirring emotions that linger like a potion’s effect. They inspire focus during hunts or reflection after battles. Curate playlists for training, travel, or meditation—combine these tracks with <em>The Lord of the Rings</em> for a heroic mix. Share with allies like Ciri or Yennefer. <em>Hunt with rhythm</em>—let these scores guide your soul through the Continent’s trials!</p>",
+    created_at: 1738108800000,
+    votes: 4,
+    article_img_url: "https://images.pexels.com/photos/164853/pexels-photo-164853.jpeg?w=700&h=700"
   },
   {
-    title: "What to Cook This Week",
-    topic: "cooking",
-    author: "tickle122",
-    body: "Good morning. Here’s the plan for the week, not including breakfast because I’m on a farina kick and that’s not to everyone’s taste, and not including lunch because really when it comes to the midday hours you should get out of the office or the house and walk around. If you get something to eat, great, but the most important thing is to be outside where the stories are. There’s nothing happening at your desk but a screen. Anyway! I’m thinking chicken paprikash for dinner tonight, a nod toward the coming fall, served over buttery egg noodles, with green beans on the side. If you have the time, make an apple cake for dessert.",
-    created_at: 1591672740000,
-    votes: 0,
-    article_img_url:
-      "https://images.pexels.com/photos/349609/pexels-photo-349609.jpeg?w=700&h=700",
+    title: "Folk Music Favorites",
+    topic: "music",
+    author: "youshallnotpass",
+    body: "<h2>Songs of the Shire</h2><p>I am Gandalf, and <strong>folk music</strong> carries the soul of the Shire, with lilting melodies and tales of old. This guide curates artists and albums that evoke hobbit feasts and elven grace. <em>A wizard’s playlist</em>—sing along on your quest!</p><h3>The Hobbiton Band</h3><p>The Hobbiton Band, inspired by Tolkien, blends fiddles and flutes in albums like <em>Songs of the Shire</em>. Their track <em>“Bilbo’s Lament”</em> weaves acoustic guitar with lyrics of adventure. Perfect for pipe-smoking evenings. Stream on Bandcamp. Gandalf’s insight: play it during gatherings to spark storytelling, like a Yule feast in Bag End.</p><h3>Loreena McKennitt</h3><p>McKennitt’s <em>The Book of Secrets</em> (1997) is elven magic. <em>“The Mummer’s Dance”</em> fuses Celtic harps and Middle Eastern percussion, transporting you to Rivendell. Her voice soothes like Galadriel’s wisdom. Available on Spotify. <em>Even orcs pause for beauty</em>—listen while wandering misty trails. Her live performances are spellbinding.</p><h3>The Dubliners</h3><p>This Irish group’s <em>A Drop of the Hard Stuff</em> (1967) is rowdy folk. <em>“Whiskey in the Jar”</em> rollicks with banjo and grit, fit for a dwarven tavern. Stream on Apple Music. Gandalf’s tip: pair with a pint for authenticity. Their energy rivals a hobbit’s second breakfast. <em>Dance like a Took!</em></p><h3>Why Folk Endures</h3><p>Folk music connects us to roots, like Ents to their forests. Its simplicity and storytelling inspire community—host a singalong with friends or learn the tin whistle. These tracks suit travel, reflection, or feasts. Explore modern folk like The Lumineers for variety. <em>Weave tales through song</em>—let folk music guide your Middle-earth journey!</p>",
+    created_at: 1738195200000,
+    votes: 7,
+    article_img_url: "https://images.pexels.com/photos/167636/pexels-photo-167636.jpeg?w=700&h=700"
   },
   {
-    title: "Halal food: Keeping pure and true",
-    topic: "cooking",
-    author: "grumpy19",
-    body: "CHINA’S cities abound with restaurants and food stalls catering to Muslims as well as to the many other Chinese who relish the distinctive cuisines for which the country’s Muslims are renowned. So popular are kebabs cooked by Muslim Uighurs on the streets of Beijing that the city banned outdoor grills in 2014 in order to reduce smoke, which officials said was exacerbating the capital’s notorious smog (the air today is hardly less noxious). Often such food is claimed to be qing zhen, meaning 'pure and true', or halal, prepared according to traditional Islamic regulations. But who can tell? Last year angry Muslims besieged a halal bakery in Xining, the capital of Qinghai province, after pork sausages were found in the shop’s delivery van. There have been several scandals in recent years involving rat meat or pork being sold as lamb. These have spread Muslim mistrust of domestically produced halal products.",
-    created_at: 1592514480000,
-    votes: 0,
-    article_img_url:
-      "https://images.pexels.com/photos/954677/pexels-photo-954677.jpeg?w=700&h=700",
+    title: "Epic Orchestral Scores",
+    topic: "music",
+    author: "dragonrider",
+    body: "<p><strong>Music to Conquer Kingdoms</strong></p><p>I am Daenerys Targaryen, and <strong>epic orchestral scores</strong> fuel my conquests, like those from <em>Game of Thrones</em>, <em>Dune</em>, and <em>The Last Samurai</em>. These compositions wield power and majesty. <em>Rule with sound</em>—explore these tracks!</p><p><strong>Game of Thrones (2011–2019)</strong></p><p>Ramin Djawadi’s <em>Game of Thrones</em> score is my anthem. <em>“Light of the Seven”</em>, with its haunting piano and choir, captures my wildfire ambition. Dragon battle cues roar like Drogon. Stream on Spotify. Daenerys’ favorite: the <em>“Main Title”</em>, evoking Westeros’ vastness. Play it while planning your next move.</p><p><strong>Dune (2021)</strong></p><p>Hans Zimmer’s <em>Dune</em> score is otherworldly. <em>“Paul’s Dream”</em> blends synths and tribal drums, like riding a sandworm. Its scale suits Meereen’s deserts. Available on Apple Music. <em>Even Khaleesis dream of Arrakis</em>—listen during strategic councils. Zimmer’s work elevates sci-fi to myth.</p><p><strong>The Last Samurai (2003)</strong></p><p>Zimmer’s score, with taiko drums and shakuhachi flutes, is warrior poetry. <em>“Red Warrior”</em> drives battle scenes, like leading my Unsullied. Stream on Amazon Music. Daenerys’ tip: play it for focus during training. Its emotional depth mirrors a queen’s resolve. <em>March to glory</em>.</p><p><strong>Why Scores Inspire</strong></p><p>Orchestral scores ignite passion, like dragonfire. They enhance workouts, writing, or leadership moments—create playlists for different moods. Share with allies to discuss their impact. Explore John Williams’ <em>Star Wars</em> for more. <em>Command with music</em>—let these scores fuel your reign!</p>",
+    created_at: 1738281600000,
+    votes: 6,
+    article_img_url: "https://images.pexels.com/photos/1699161/pexels-photo-1699161.jpeg?w=700&h=700"
   },
   {
-    title: "Seafood substitutions are increasing",
-    topic: "cooking",
-    author: "weegembump",
-    body: "'SEAFOOD fraud is a serious global problem', begins a recent report from Oceana, an NGO. Reviewing over 200 studies in 55 countries, the report finds that one in five fish sold has been mislabelled. Although fish fraud is common early in the supply chain, most of it comes at the retail level. In 65% of cases, the motivation is economic—slippery restaurateurs frequently serve up cheaper fish than they advertise to cut costs. In America, Oceana has reported instances of tilapia being sold as the more expensive red snapper. Especially brazen fish criminals have invented new types of fish entirely. In Brazil, researchers were puzzled to find markets selling 'douradinha', ' non-existent species. Close inspection found that 60% of such fish were actually 'vulture' catfish, a relatively undesirable dish. Reports in America of catfish being substituted for more expensive fish date back to at least 2002; Oceana’s study suggests that the phenomenon is spreading.",
-    created_at: 1600277160000,
-    votes: 0,
-    article_img_url:
-      "https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?w=700&h=700",
+    title: "Darkwave Music Vibes",
+    topic: "music",
+    author: "avadakedavra",
+    body: "<p><strong>Sinister Sounds for Slytherin</strong></p><p>I am Lord Voldemort, and <strong>darkwave music</strong> fuels my dark ambitions, with moody beats and gothic allure. Bands like Dead Can Dance and Clan of Xymox craft sonic Horcruxes. <em>Dark lords revel in shadows</em>—crank up these tracks!</p><p><strong>Dead Can Dance</strong></p><p>Their album <em>Within the Realm of a Dying Sun</em> (1987) is a masterpiece. <em>“Summoning of the Muse”</em> weaves ethereal vocals and ominous strings, like a ritual in Knockturn Alley. Stream on Spotify. Voldemort’s favorite: its hypnotic pull, perfect for plotting. <em>Even Nagini sways</em>—play it in a candlelit chamber.</p><p><strong>Clan of Xymox</strong></p><p><em>Medusa</em> (1986) defines darkwave. <em>“Medusa”</em> pulses with synths and reverb, evoking a Slytherin dungeon. Available on Bandcamp. Its melancholy suits scheming by moonlight. Voldemort’s tip: explore their live shows for raw energy. <em>Dance like a Death Eater</em>—let the rhythm possess you.</p><p><strong>Chelsea Wolfe</strong></p><p>Wolfe’s <em>Pain Is Beauty</em> (2013) blends darkwave with doom. <em>“Feral Love”</em> growls with distorted guitars, like a dark spell’s echo. Stream on Apple Music. Her voice is a potion—intoxicating and raw. <em>Even dark lords feel pain</em>—listen while crafting plans. Pair with incense for ambiance.</p><p><strong>Why Darkwave Resonates</strong></p><p>Darkwave mirrors the soul’s shadows, offering catharsis. Its aesthetics inspire fashion or art—host a listening party with gothic decor. Explore related genres like coldwave or synthpop. Create playlists for late-night plotting. <em>Wield sonic power</em>—embrace darkwave’s dark magic!</p>",
+    created_at: 1738368000000,
+    votes: 5,
+    article_img_url: "https://images.pexels.com/photos/167092/pexels-photo-167092.jpeg?w=700&h=700"
   },
   {
-    title: "The Notorious MSG’s Unlikely Formula For Success",
-    topic: "cooking",
-    author: "grumpy19",
-    body: "The 'umami' craze has turned a much-maligned and misunderstood food additive into an object of obsession for the world’s most innovative chefs. But secret ingredient monosodium glutamate’s biggest secret may be that there was never anything wrong with it at all.",
-    created_at: 1606043580000,
-    votes: 0,
-    article_img_url:
-      "https://images.pexels.com/photos/2403392/pexels-photo-2403392.jpeg?w=700&h=700",
+    title: "Space Pop Grooves",
+    topic: "music",
+    author: "chookity",
+    body: "<p><strong>Cosmic Beats to Groove—Chookity!</strong></p><p>I’m Mooncake, your pal from <em>Final Space</em>, and <strong>space pop</strong> is my jam—chookity! These shiny, synth-driven tracks from artists like Starlight Synth and CHVRCHES light up the galaxy. <em>Float through musical stars</em>—dance to these tunes!</p><p><strong>Starlight Synth</strong></p><p>Their album <em>Neon Orbit</em> (2023) is pure cosmic candy. <em>“Stardust Drive”</em> sparkles with retro synths and dreamy vocals, like cruising past a nebula. Stream on Spotify. Mooncake’s favorite: its upbeat vibe, perfect for dodging asteroids. <em>Chookity—blast it loud!</em>. Play it during space adventures or parties.</p><p><strong>CHVRCHES</strong></p><p><em>The Bones of What You Believe</em> (2013) is space pop gold. <em>“The Mother We Share”</em> blends pulsing beats and Lauren Mayberry’s soaring voice, like a wormhole’s hum. Available on Apple Music. <em>Even Gary loves it</em>—listen while exploring new planets. Their live shows are electric—check tour dates!</p><p><strong>Tycho</strong></p><p>Tycho’s <em>Dive</em> (2011) offers chill space pop. <em>“A Walk”</em> flows with ambient synths and soft drums, like floating in zero-G. Stream on Bandcamp. Mooncake’s tip: play it for stargazing or coding sessions. Its calm energy soothes like a cosmic cookie. <em>Drift and dream</em>.</p><p><strong>Why Space Pop Shines</strong></p><p>Space pop fuses futurism and fun, sparking joy like a supernova. Its beats suit dancing, driving, or chilling—create playlists for every mood. Share with friends or make a sci-fi music video. Explore related acts like M83. <em>Groove through the galaxy</em>—chookity, let space pop lift you!</p>",
+    created_at: 1738454400000,
+    votes: 4,
+    article_img_url: "https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?w=700&h=700"
   },
   {
-    title: "Stone Soup",
-    topic: "cooking",
-    author: "cooljmessy",
-    body: "The first day I put my family on a Paleolithic diet, I made my kids fried eggs and sausage for breakfast. If they were still hungry, I told them, they could help themselves to more sausage, but they were not allowed to grab a slice of bread, or toast an English muffin, or pour themselves a bowl of cereal. This represented a reversal of the usual strictures, and they were happy to oblige. It was like some weird, unexpected holiday—Passover in July.",
-    created_at: 1590477900000,
-    votes: 0,
-    article_img_url:
-      "https://images.pexels.com/photos/33242/cooking-ingredient-cuisine-kitchen.jpg?w=700&h=700",
+    title: "Bard Ballads of the Continent",
+    topic: "music",
+    author: "whitewolf",
+    body: "<p><strong>Songs for the Continent</strong></p><p>I’m Geralt of Rivia, and <strong>bard ballads</strong> like <em>Toss a Coin to Your Witcher</em> stir my soul after hunts. These medieval-inspired tunes, from Joey Batey to Blackmore’s Night, echo taverns and battles. <em>Sing like Jaskier</em>—embrace these tracks!</p><p><strong>Joey Batey (The Witcher)</strong></p><p>Batey’s <em>The Witcher</em> songs are legendary. <em>“Toss a Coin to Your Witcher”</em>, from the Netflix series, is a lute-driven anthem of grit and glory. Its catchy chorus haunts every tavern. Stream on Spotify. Geralt’s favorite: <em>“Burn Butcher Burn”</em>, raw with heartbreak. <em>Even Roach hums along</em>—play it post-battle.</p><p><strong>Blackmore’s Night</strong></p><p><em>Shadow of the Moon</em> (1997) is Renaissance folk. <em>“Shadow of the Moon”</em> weaves mandolin and Candice Night’s ethereal voice, like a sorceress’ spell. Available on Apple Music. It suits quiet nights by the fire. Geralt’s tip: explore their live albums for festival vibes. <em>Dance like a Nilfgaardian feast</em>.</p><p><strong>The Mediaeval Baebes</strong></p><p>Their <em>Worldes Blysse</em> (1998) revives ancient ballads. <em>“Salva Nos”</em> chants with haunting harmonies, fit for a cathedral or Blaviken’s ruins. Stream on Bandcamp. Its mystic tone aids meditation before hunts. <em>Even Yennefer approves</em>—pair with candlelight. Their choral style is timeless.</p><p><strong>Why Ballads Endure</strong></p><p>Ballads tell stories, like a Witcher’s scars. They inspire courage and nostalgia—perfect for travel or reflection. Host a medieval music night with friends, or learn the lute. Explore modern bards like The Longest Johns. <em>Sing your saga</em>—let ballads carry you through the Continent!</p>",
+    created_at: 1738540800000,
+    votes: 7,
+    article_img_url: "https://images.pexels.com/photos/1658967/pexels-photo-1658967.jpeg?w=700&h=700"
   },
   {
-    title: "The vegan carnivore?",
-    topic: "cooking",
-    author: "tickle122",
-    body: "The chef Richard McGeown has faced bigger culinary challenges in his distinguished career than frying a meat patty in a little sunflower oil and butter. But this time the eyes and cameras of hundreds of journalists in the room were fixed on the 5oz (140g) pink disc sizzling in his pan, one that had been five years and €250,000 in the making. This was the world’s first proper portion of cultured meat, a beef burger created by Mark Post, professor of physiology, and his team at Maastricht University in the Netherlands. Post (which rhymes with ‘lost’, not ‘ghost’) has been working on in vitro meat (IVM) since 2009. On 5 August this year he presented his cultured beef burger to the world as a ‘proof of concept’. Having shown that the technology works, Post believes that in a decade or so we could see commercial production of meat that has been grown in a lab rather than reared and slaughtered. The comforting illusion that supermarket trays of plastic-wrapped steaks are not pieces of dead animal might become a discomforting reality.",
-    created_at: 1583788860000,
-    votes: 0,
-    article_img_url:
-      "https://images.pexels.com/photos/1414651/pexels-photo-1414651.jpeg?w=700&h=700",
+    title: "Guide to Sustainability",
+    topic: "environment",
+    author: "youshallnotpass",
+    body: "<p><strong>Preserving Middle-earth’s Beauty</strong></p><p>I am Gandalf, and <strong>sustainability</strong> is my quest to protect the Shire’s green hills. This guide shares tips to reduce waste, conserve water, and embrace renewable energy. <em>You shall not pass</em> pollution—live green with wizardly wisdom!</p><p><strong>Reducing Waste</strong></p><p>Cut waste like orcs from a battlefield. Use reusable bags, bottles, and straws—avoid single-use plastics. Compost food scraps to enrich soil, like Ents tending forests. Shop bulk to skip packaging. Gandalf’s insight: donate unused items to avoid landfills. Aim for zero waste by planning meals and repurposing leftovers.</p><p><strong>Conserving Water</strong></p><p>Water is life, like Lothlórien’s streams. Install low-flow showerheads and fix leaks—drips waste gallons daily. Collect rainwater for gardens, as hobbits do. Shorten showers to 5 minutes. <em>Every drop counts</em>—check your usage with a smart meter. Gandalf’s tip: water plants at dawn to reduce evaporation.</p><p><strong>Embracing Renewable Energy</strong></p><p>Solar and wind power are Middle-earth’s future. Install solar panels (costs start at $10,000, with tax credits). Support community solar if renting. Use LED bulbs and unplug devices to save energy. <em>Harness the sun like a palantír’s light</em>. Research local providers for green plans—some offer 100% renewable grids.</p><p><strong>Building Habits</strong></p><p>Sustainability fights climate change, preserving ecosystems. Start small—swap one disposable item weekly. Join local cleanups or advocate for green policies. Educate friends, like a fellowship sharing lore. <em>Protect the green world</em>—adopt these practices and steward the planet like a wizard!</p>",
+    created_at: 1738627200000,
+    votes: 8,
+    article_img_url: "https://images.pexels.com/photos/807598/pexels-photo-807598.jpeg?w=700&h=700"
   },
   {
-    title: "TenHag the man!",
-    topic: "football",
-    author: "weegembump",
-    body: `In the realm of football's grand design,
-    There stands a man both wise and kind,
-    With vision bold and strategies bright,
-    Eric ten Hag, a beacon of light.
-    
-    From Haaksbergen he did arise,
-    A coach with fire in his eyes,
-    His playing days were but a prelude,
-    To a managerial path pursued.
-    
-    With Twente's youth, he honed his craft,
-    Unveiling talents, making them laugh,
-    He saw the spark in every soul,
-    And nurtured them to reach their goal.
-    
-    Then came the call from Ajax's door,
-    A chance to reshape and to restore,
-    A sleeping giant poised to rise,
-    Under ten Hag's enlightened guise.
-    
-    His philosophy, a work of art,
-    Possession, movement, playing smart,
-    A symphony of passes danced,
-    As Ajax's prowess was enhanced.
-    
-    The pitch became his chessboard vast,
-    Each player moving, shadows cast,
-    With precision and calculated might,
-    Ten Hag orchestrated their footballing flight.
-    
-    From the back they built their dream,
-    With pressing high, they'd make teams scream,
-    Fluid movement, a joyful ballet,
-    As Ajax's brilliance came to play.
-    
-    Champions they rose in Dutch terrain,
-    Their dominance, a joyous reign,
-    The Eredivisie their rightful throne,
-    Eric ten Hag, a leader known.
-    
-    But it was Europe where he'd truly shine,
-    Challenging giants, weaving a line,
-    With courage and belief, they'd soar,
-    In the Champions League, they'd explore.
-    
-    A fearless march against the odds,
-    The footballing world in awe applauds,
-    With ten Hag's guidance, they'd dare to roam,
-    The young and talented, finding home.
-    
-    In battles fierce, they etched their name,
-    Defying history, fortune's game,
-    A testament to ten Hag's command,
-    That Ajax's spirit forever will stand.
-    
-    So let us sing a song of praise,
-    For Eric ten Hag's guiding ways,
-    A mastermind, a football sage,
-    Whose brilliance sets the pitch ablaze.`,
-    created_at: 1584887100000,
-    votes: 0,
-    article_img_url:
-      "https://images.pexels.com/photos/774321/pexels-photo-774321.jpeg?w=700&h=700",
+    title: "Climate Change Strategies",
+    topic: "environment",
+    author: "dragonrider",
+    body: "<p><strong>Battling for a Greener Realm</strong></p><p>I am Daenerys Targaryen, and my <strong>climate fight</strong> is as fierce as my dragons. This guide explores carbon footprints, reforestation, and advocacy to save our planet. <em>Mother of Dragons, defender of Earth</em>—join my crusade!</p><p><strong>Understanding Carbon Footprints</strong></p><p>Your carbon footprint measures emissions from travel, food, and energy. Driving a car (4 tons CO2/year) or eating meat daily spikes it. Use calculators like Carbon Footprint’s to track yours. Daenerys’ rule: cut flights and carpool, like riding Drogon sparingly. Switch to plant-based meals twice weekly to slash emissions by 20%.</p><p><strong>Reforestation Efforts</strong></p><p>Trees absorb CO2, like Unsullied guarding a city. Join initiatives like TeamTrees, planting millions globally ($1 per tree). Plant native species in your yard—oaks or maples thrive in many climates. <em>Forests breathe for us</em>—volunteer with local groups. Daenerys’ tip: support indigenous-led projects, as they protect 80% of biodiversity.</p><p><strong>Advocacy and Action</strong></p><p>Advocate like a queen. Vote for green policies and support leaders pushing net-zero goals. Attend climate rallies or write to lawmakers—your voice is dragonfire. Boycott high-emission brands; choose sustainable ones. <em>Even small acts spark change</em>. Share facts online to inspire your khalasar.</p><p><strong>Why It Matters</strong></p><p>Climate change fuels storms and droughts, threatening all kingdoms. Reducing emissions preserves habitats and food security. Start with one action—bike to work or ditch plastic. Lead by example, like freeing slaves. <em>Forge a thriving planet</em>—fight for Earth with a queen’s resolve!</p>",
+    created_at: 1738713600000,
+    votes: 6,
+    article_img_url: "https://images.pexels.com/photos/221012/pexels-photo-221012.jpeg?w=700&h=700"
   },
-];
+  {
+    title: "Wildlife Protection Tactics",
+    topic: "environment",
+    author: "whitewolf",
+    body: "<p><strong>Saving Creatures of the Continent</strong></p><p>I’m Geralt of Rivia, and <strong>wildlife protection</strong> is my hunt for balance, guarding creatures as fiercely as I slay monsters. This guide covers endangered species, habitats, and conservation steps. <em>Hunt for a greener world</em>—protect nature!</p><p><strong>Endangered Species</strong></p><p>Species like the Amur leopard (fewer than 100 left) face extinction. In the Continent, think of rare griffins—poaching and habitat loss kill them. Support groups like WWF, which track and protect species. Adopt symbolically ($50/year) to fund efforts. Geralt’s insight: learn about local endangered species, like wolves in your region.</p><p><strong>Preserving Habitats</strong></p><p>Forests, wetlands, and reefs are life’s strongholds. Deforestation destroys 10 million hectares yearly. Volunteer for habitat restoration—plant trees or clean rivers. <em>A Witcher guards all life</em>—join local groups like Sierra Club. Donate to land trusts preserving wild spaces, like Velen’s marshes. Avoid products with palm oil, linked to habitat loss.</p><p><strong>Practical Conservation</strong></p><p>Reduce your impact: use reusable items, cut meat consumption (livestock harms habitats), and recycle. Support wildlife corridors—bridges for animals crossing roads. Advocate for protected areas; write to officials. Geralt’s tip: visit sanctuaries, not zoos, to learn ethically. <em>Every choice aids the wild</em>—act daily to save creatures.</p><p><strong>Why Wildlife Matters</strong></p><p>Ecosystems balance climate and food chains—losing species risks collapse, like a cursed village. Conservation preserves beauty for future Witchers. Educate allies, like Ciri, on biodiversity. <em>Forge a thriving Continent</em>—protect wildlife with a hunter’s resolve!</p>",
+    created_at: 1738800000000,
+    votes: 5,
+    article_img_url: "https://images.pexels.com/photos/45911/pexels-photo-45911.jpeg?w=700&h=700"
+  },
+  {
+    title: "Eco-Friendly Technology",
+    topic: "environment",
+    author: "chookity",
+    body: "<p><strong>Green Gadgets for a Cleaner Galaxy—Chookity!</strong></p><p>I’m Mooncake, floating through <em>Final Space</em>, and <strong>eco-friendly tech</strong> is my cosmic cookie—chookity! Solar panels, electric vehicles, and green apps save the planet. <em>Float toward a cleaner Earth</em>—adopt these innovations!</p><p><strong>Solar Panels</strong></p><p>Solar panels harness sunlight, like capturing a star’s glow. Home systems (5kW, $10,000 post-subsidies) power houses, cutting bills by 50%. Tesla’s Solar Roof integrates sleekly. Renters can join community solar for $50/month. Mooncake’s tip: check incentives at DSIRE’s database. <em>Chookity—shine green!</em>. Install via certified providers for reliability.</p><p><strong>Electric Vehicles (EVs)</strong></p><p>EVs like Tesla Model 3 ($40,000) emit zero tailpipe CO2. Charge at home ($0.15/kWh) or public stations. Range (300 miles) suits daily commutes. Hybrids like Toyota Prius bridge the gap. <em>Zoom like a spaceship</em>—test drive at dealers. Mooncake’s insight: EVs save $1000/year on fuel versus gas cars.</p><p><strong>Green Apps</strong></p><p>Apps like GoodOnYou rate clothing brands’ sustainability—buy from eco-conscious ones. JouleBug gamifies green habits, like recycling. Ecosia’s search engine plants trees per query. Download on iOS/Android. <em>Chookity—tech makes green fun!</em>. Use them to track your carbon footprint and share tips online.</p><p><strong>Why Eco-Tech Matters</strong></p><p>Tech cuts emissions, preserving ecosystems. Solar and EVs reduce CO2 by tons yearly; apps spread awareness. Start small—charge devices with solar power banks ($20). Advocate for green tech in your community. <em>Save the galaxy</em>—embrace eco-tech, chookity!</p>",
+    created_at: 1738886400000,
+    votes: 4,
+    article_img_url: "https://images.pexels.com/photos/414860/pexels-photo-414860.jpeg?w=700&h=700"
+  },
+  {
+    title: "Urban Gardening Techniques",
+    topic: "environment",
+    author: "bladerunner",
+    body: "<p><strong>Growing Food in Neon Jungles</strong></p><p>I’m Rick Deckard, and <strong>urban gardening</strong> brings life to dystopian cities, like a replicant’s hope. Learn to grow herbs, veggies, and vertical gardens in small spaces. <em>Blade Runner’s green oasis</em>—start your plot!</p><p><strong>Herb Gardens</strong></p><p>Herbs like basil, mint, and cilantro thrive indoors. Use pots with drainage on sunny windowsills (6 hours light). Start with seedlings ($3 each) for ease. Water weekly, keeping soil moist but not soggy. Deckard’s insight: snip leaves regularly to encourage growth. <em>Fresh basil beats neon diners</em>—use in pasta or tea.</p><p><strong>Veggie Beds</strong></p><p>Grow lettuce, tomatoes, and zucchini in raised beds or containers (10-gallon, $15). Use organic soil and compost ($10/bag). Plant in spring for summer harvests. Space plants per seed packets (e.g., tomatoes 2 feet apart). <em>Replicants savor homegrown</em>—water at dusk to avoid burn. Join community gardens for shared plots.</p><p><strong>Vertical Gardens</strong></p><p>For apartments, build vertical gardens with wall planters or hydroponics ($50 kits). Grow strawberries or spinach in stacked trays. LED grow lights ($30) aid low-light spaces. Deckard’s tip: automate watering with drip systems. <em>Defy concrete with green</em>—perfect for balconies or rooftops.</p><p><strong>Why Garden?</strong></p><p>Urban gardening cuts food miles, saving CO2 (1 lb produce = 0.5 lb emissions avoided). It boosts mental health and yields $600/year in veggies. Use organic seeds to avoid chemicals. Share harvests with neighbors, like a replicant building trust. <em>Forge a greener city</em>—grow your food today!</p>",
+    created_at: 1738972800000,
+    votes: 7,
+    article_img_url: "https://images.pexels.com/photos/139764/pexels-photo-139764.jpeg?w=700&h=700"
+  },
+  {
+    title: "Middle-earth Travel Destinations",
+    topic: "travel",
+    author: "youshallnotpass",
+    body: "<p><strong>Wandering Tolkien’s Realms</strong></p><p>I am Gandalf, and my <strong>Middle-earth tour</strong> visits real-world sites echoing the Shire, Mordor, and Rivendell. Explore New Zealand’s Hobbiton, Iceland’s volcanoes, and Scotland’s glens. <em>Wander like a wizard</em>—plan your epic journey!</p><p><strong>Hobbiton, New Zealand</strong></p><p>Matamata’s Hobbiton, used in <em>The Lord of the Rings</em> films, is a living Shire. Tour hobbit holes and sip ale at the Green Dragon Inn ($90/ticket). Rolling hills bloom with charm. Stay in nearby farmstays ($150/night). Gandalf’s insight: book sunrise tours for fewer crowds. <em>Second breakfast awaits</em>!</p><p><strong>Iceland’s Volcanoes</strong></p><p>Iceland’s Eyjafjallajökull and black sand beaches mirror Mordor’s fire. Guided volcano hikes ($200) offer stunning views. Visit Blue Lagoon post-trek ($70). Rent a car ($50/day) for flexibility. <em>Even Sauron would marvel</em>—travel in September for mild weather. Gandalf’s tip: pack waterproof gear for rain.</p><p><strong>Scotland’s Glens</strong></p><p>Glencoe’s rugged valleys evoke Rivendell’s grace. Hike the West Highland Way (free, 96 miles) or join guided tours ($100). Stay in Fort William hostels ($30/night). Misty lochs inspire elven songs. <em>A wizard’s peace</em>—visit in spring for wildflowers. Try local whisky for warmth.</p><p><strong>Travel Tips</strong></p><p>These destinations blend myth and nature, recharging your spirit. Budget $2000 for a 10-day trip, booking flights early (e.g., $800 to New Zealand). Respect local cultures, like hobbits sharing pipe-weed. Journal your travels, as Bilbo did. <em>Forge your tale</em>—explore Middle-earth’s echoes!</p>",
+    created_at: 1739059200000,
+    votes: 9,
+    article_img_url: "https://images.pexels.com/photos/672358/pexels-photo-672358.jpeg?w=700&h=700"
+  },
+  {
+    title: "Desert Trek Adventures",
+    topic: "travel",
+    author: "dragonrider",
+    body: "<p><strong>Conquering Sands Like Dragons</strong></p><p>I am Daenerys Targaryen, and my <strong>desert trek</strong> explores Morocco’s Sahara, Jordan’s Petra, and Egypt’s pyramids—lands as vast as Meereen’s dunes. <em>Ride dragons through sands</em>—plan your journey!</p><p><strong>Morocco’s Sahara</strong></p><p>The Sahara’s Erg Chebbi dunes dazzle with golden waves. Join a 3-day camel trek from Marrakech ($150), camping under stars. Sip mint tea with Berber guides. Stay in desert camps ($80/night). Daenerys’ insight: visit in November for cool nights. <em>Drogon would soar here</em>—pack scarves for sandstorms.</p><p><strong>Jordan’s Petra</strong></p><p>Petra’s rose-red city, carved by Nabataeans, is a lost kingdom. Explore the Siq and Treasury ($70 entry). Guided night tours ($25) glow with candles. Stay in Wadi Musa hotels ($50/night). <em>A queen’s ancient throne</em>—hike early to avoid heat. Daenerys’ tip: hire local Bedouin guides for stories.</p><p><strong>Egypt’s Pyramids</strong></p><p>Giza’s pyramids and Sphinx evoke ancient power. Private tours ($100) include Saqqara’s step pyramid. Ride camels for views ($20). Stay in Cairo hostels ($30/night). <em>Even Unsullied marvel</em>—visit in winter for mild days. Bargain at markets for souvenirs like scarabs.</p><p><strong>Travel Essentials</strong></p><p>Deserts demand hydration and sun protection—pack 2L water daily and SPF 50. Budget $1500 for a week, booking group tours for savings. Respect Bedouin and Egyptian customs, like modest dress. <em>Rule the sands</em>—trek these deserts with a Khaleesi’s courage!</p>",
+    created_at: 1739145600000,
+    votes: 6,
+    article_img_url: "https://images.pexels.com/photos/1632790/pexels-photo-1632790.jpeg?w=700&h=700"
+  },
+  {
+    title: "Medieval Village Exploration",
+    topic: "travel",
+    author: "whitewolf",
+    body: "<p><strong>Roaming the Continent’s Past</strong></p><p>I’m Geralt of Rivia, and <strong>medieval villages</strong> like Romania’s Transylvania, France’s Carcassonne, and Italy’s Civita are my refuges after hunts. Their stone streets echo the Continent’s lore. <em>Hunt adventure</em>—discover these gems!</p><p><strong>Transylvania, Romania</strong></p><p>Villages like Viscri and Biertan boast fortified churches and Dracula myths. Tour Bran Castle ($10) and stay in guesthouses ($40/night). Cobblestone paths suit Roach’s hooves. <em>Even strigas hide here</em>—visit in fall for golden forests. Geralt’s insight: try local plum brandy with locals for warmth.</p><p><strong>Carcassonne, France</strong></p><p>Carcassonne’s walled fortress is a Witcher’s dream. Walk the ramparts (free) and visit the Basilica ($5). Stay in old-town inns ($60/night). Its turrets rival Novigrad’s spires. <em>Swords clash in memory</em>—tour in spring for mild weather. Geralt’s tip: dine on cassoulet for hearty fuel.</p><p><strong>Civita, Italy</strong></p><p>Civita, the “Dying City,” clings to a hilltop. Wander narrow alleys (free) and savor truffle pasta ($15). Rent apartments ($80/night). Its quiet suits post-hunt reflection. <em>Like Blaviken’s calm</em>—visit in October for harvest festivals. Pack sturdy boots for steep paths.</p><p><strong>Travel Tips</strong></p><p>These villages preserve history, grounding travelers like a Witcher’s medallion. Budget $1000 for a week, using trains ($50/trip) for access. Respect heritage sites—avoid graffiti. Journal your journey, like chronicling a contract. <em>Forge your path</em>—roam these medieval havens!</p>",
+    created_at: 1739232000000,
+    votes: 5,
+    article_img_url: "https://images.pexels.com/photos/1450360/pexels-photo-1450360.jpeg?w=700&h=700"
+  },
+  {
+    title: "Space Tourism Ventures",
+    topic: "travel",
+    author: "chookity",
+    body: "<p><strong>Cosmic Trips—Chookity!</strong></p><p>I’m Mooncake, from <em>Final Space</em>, dreaming of <strong>space tourism</strong>—chookity! Suborbital flights, space hotels, and lunar trips are the future. This guide covers costs, tech, and prep. <em>Float to the stars</em>—plan your cosmic adventure!</p><p><strong>Suborbital Flights</strong></p><p>Companies like Blue Origin and Virgin Galactic offer 10-minute flights to 100km ($200,000–$250,000). Experience zero-G and Earth’s curvature. Flights launch from Texas or New Mexico. <em>Chookity—like dodging meteors!</em>. Book via their sites; waitlists span 2026. Mooncake’s tip: train for G-forces with simulators.</p><p><strong>Space Hotels</strong></p><p>Orbital hotels, like Voyager Station (planned 2027), promise week-long stays ($5M). Spin for artificial gravity, with views of Earth. Amenities include gyms and VR. <em>Even Gary would flip</em>—follow Axiom Space for updates. Save now, as costs may drop by 2030. Prep with high-altitude training.</p><p><strong>Lunar Tourism</strong></p><p>SpaceX’s dearMoon project (2025+) aims for lunar orbits ($10M+). Civilians will circle the Moon, like a cosmic cookie hunt. Apply via their site, proving fitness. <em>Chookity—stare at lunar craters!</em>. NASA’s Artemis may open lunar bases by 2035. Study space history to qualify.</p><p><strong>Why Space Travel?</strong></p><p>Space tourism inspires awe, like seeing a galaxy’s edge. It drives tech and unity but risks elitism—advocate for accessible pricing. Train physically and mentally; budget decades ahead. <em>Float beyond Earth</em>—chase the stars, chookity!</p>",
+    created_at: 1739318400000,
+    votes: 7,
+    article_img_url: "https://images.pexels.com/photos/586687/pexels-photo-586687.jpeg?w=700&h=700"
+  },
+  {
+    title: "Neon City Exploration",
+    topic: "travel",
+    author: "bladerunner",
+    body: "<p><strong>Exploring Urban Futures</strong></p><p>I’m Rick Deckard, and <strong>neon-lit cities</strong> like Tokyo, Seoul, and Miami pulse with life, like <em>Blade Runner</em>’s LA. Their tech and nightlife draw wanderers. <em>Hunt urban thrills</em>—dive into these cities!</p><p><strong>Tokyo, Japan</strong></p><p>Tokyo’s Shibuya Crossing glows with LED billboards. Explore Akihabara for anime and tech ($10–$50 for collectibles). Dine on ramen in Shinjuku ($8). Stay in capsule hotels ($40/night). <em>Replicants blend here</em>—visit in spring for cherry blossoms. Deckard’s insight: use Suica cards for easy transit ($20).</p><p><strong>Seoul, South Korea</strong></p><p>Seoul’s Gangnam sparkles with K-pop and skyscrapers. Shop in Myeongdong for skincare ($15). Try bibimbap ($10) at Gwangjang Market. Book Airbnbs ($60/night). <em>Neon rivals LA’s glow</em>—tour in fall for cool nights. Deckard’s tip: visit N Seoul Tower ($12) for panoramic views.</p><p><strong>Miami, USA</strong></p><p>Miami’s South Beach hums with Art Deco and clubs. Cruise Ocean Drive (free) and savor Cuban sandwiches ($8). Stay in Wynwood hostels ($30/night). <em>Even replicants dance</em>—visit in winter for warmth. Rent bikes ($15/day) for mobility. Deckard’s rule: avoid hurricane season (June–November).</p><p><strong>Travel Essentials</strong></p><p>Neon cities blend tech and culture, recharging your soul. Budget $1500 for a week, booking hostels early. Learn basic phrases (e.g., Japanese “arigatou”). Respect local norms, like quiet trains in Tokyo. <em>Forge your urban saga</em>—explore these cities with a Blade Runner’s edge!</p>",
+    created_at: 1739404800000,
+    votes: 8,
+    article_img_url: "https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?w=700&h=700"
+  },
+  {
+    title: "Bitcoin Fundamentals",
+    topic: "crypto",
+    author: "youshallnotpass",
+    body: "<p><strong>Unlocking Digital Gold</strong></p><p>I am Gandalf, and <strong>Bitcoin</strong> is a treasure of the digital age, like mithril in Moria. This guide explains blockchain, wallets, and mining for beginners. <em>You shall not pass</em> ignorance—start your crypto quest!</p><p><strong>What Is Bitcoin?</strong></p><p>Bitcoin, created by Satoshi Nakamoto in 2009, is decentralized money. No king controls it—transactions occur peer-to-peer. Each Bitcoin (valued at $60,000 in 2025) is divisible, like cutting lembas bread. Use exchanges like Coinbase ($10 minimum) to buy. Gandalf’s insight: research volatility; prices swing like a Balrog’s whip.</p><p><strong>Blockchain Explained</strong></p><p>Blockchain is Bitcoin’s ledger, a chain of blocks recording transactions. Miners verify them, ensuring trust, like a palantír’s truth. Explore blockchain via Etherscan (free). It’s secure but public—don’t share private keys. <em>Magic lies in transparency</em>—study its structure to grasp crypto’s power.</p><p><strong>Wallets for Safety</strong></p><p>Store Bitcoin in wallets: software (MetaMask, free) or hardware (Ledger, $80). Hot wallets suit daily trades; cold wallets secure savings, like dwarven vaults. Backup seed phrases offline. Gandalf’s tip: enable 2FA on exchanges. <em>Guard your gold</em>—lose keys, lose Bitcoin. Start with $50 to test.</p><p><strong>Mining and Risks</strong></p><p>Mining uses computers to solve puzzles, earning Bitcoin. It’s costly ($5000 rigs, high electricity). Join pools like Slush Pool for shared rewards. Risks include scams and hacks—use reputable platforms. Bitcoin’s freedom empowers, but greed tempts. <em>Wield wealth wisely</em>—invest with a wizard’s caution!</p>",
+    created_at: 1739491200000,
+    votes: 6,
+    article_img_url: "https://images.pexels.com/photos/730547/pexels-photo-730547.jpeg?w=700&h=700"
+  },
+  {
+    title: "Decentralized Finance Strategies",
+    topic: "crypto",
+    author: "avadakedavra",
+    body: "<p><strong>Ruling Decentralized Finance</strong></p><p>I am Lord Voldemort, and <strong>decentralized finance (DeFi)</strong> is my dark art, bypassing Muggle banks with blockchain. Learn yield farming, staking, and smart contracts. <em>Dark lords of crypto</em>—master DeFi now!</p><p><strong>What Is DeFi?</strong></p><p>DeFi uses Ethereum to offer loans, savings, and trades without intermediaries. Platforms like Uniswap and Aave manage $100B in assets (2025). Connect via MetaMask (free). Voldemort’s insight: DeFi’s freedom rivals a Horcrux’s power, but volatility bites—research before investing $100. <em>Control your wealth</em>.</p><p><strong>Yield Farming</strong></p><p>Yield farming earns interest by lending crypto (e.g., ETH, DAI). Deposit in pools like Compound (5–20% APY). Use DeFi Pulse to track returns. Risks include impermanent loss—study pool mechanics. <em>Even Slytherins calculate</em>—start with $50 to test. Voldemort’s tip: diversify to avoid rug pulls.</p><p><strong>Staking for Rewards</strong></p><p>Staking locks crypto to support networks, earning 3–10% APY. Stake ETH on Lido ($10 minimum). Use hardware wallets for safety. Staking is passive, like a dark spell’s lingering effect. <em>Power grows in silence</em>—monitor via StakingRewards.com. Beware slashing penalties for downtime.</p><p><strong>Smart Contracts and Risks</strong></p><p>Smart contracts automate DeFi—code executes loans or swaps. Audit platforms via CertiK. Hacks cost $3B in 2024—use trusted apps. DeFi empowers financial rebellion but demands caution, like brewing Polyjuice. <em>Seize control</em>—study DeFi and rule your finances!</p>",
+    created_at: 1739577600000,
+    votes: 5,
+    article_img_url: "https://images.pexels.com/photos/837075/pexels-photo-837075.jpeg?w=700&h=700"
+  },
+  {
+    title: "NFT Creation and Trading",
+    topic: "crypto",
+    author: "dragonrider",
+    body: "<p><strong>Building a Digital Dynasty</strong></p><p>I am Daenerys Targaryen, and <strong>NFTs</strong> are my digital dragons, unique tokens on blockchain. Learn to create, buy, and sell non-fungible tokens. <em>Mother of Dragons, queen of NFTs</em>—join the revolution!</p><p><strong>What Are NFTs?</strong></p><p>NFTs are digital assets—art, music, or virtual land—stored on Ethereum. Bored Ape Yacht Club NFTs sell for $200,000+. They’re proof of ownership, like a royal decree. Browse OpenSea (free to join). Daenerys’ insight: rarity drives value, but scams abound—verify creators. <em>Rule the market</em>.</p><p><strong>Creating NFTs</strong></p><p>Mint NFTs on Rarible or Foundation ($50–$200 in ETH gas fees). Upload art (e.g., dragon sketches) and set royalties (10% per resale). Use Photoshop or Canva for designs. Promote on X for buyers. <em>Even Drogon’s fire sells</em>—start with low-cost minting during low gas periods (check GasNow).</p><p><strong>Buying and Selling</strong></p><p>Buy NFTs on marketplaces like OpenSea ($100–$1000 for starters). Connect MetaMask and bid. Sell by listing fixed prices or auctions. Daenerys’ tip: research floor prices on NFTPriceFloor. <em>Trade like a Khaleesi</em>—hold for value growth, but beware hype bubbles. Diversify with music or game NFTs.</p><p><strong>Risks and Future</strong></p><p>NFTs face fraud and environmental criticism (Ethereum’s energy use). Use Polygon for eco-friendly minting. They empower artists but risk speculation—invest $100 to learn. NFTs may reshape gaming and VR. <em>Forge your empire</em>—command the NFT realm with a queen’s vision!</p>",
+    created_at: 1739664000000,
+    votes: 7,
+    article_img_url: "https://images.pexels.com/photos/5650933/pexels-photo-5650933.jpeg?w=700&h=700"
+  },
+  {
+    title: "Crypto Wallet Security",
+    topic: "crypto",
+    author: "chookity",
+    body: "<p><strong>Securing Cosmic Coins—Chookity!</strong></p><p>I’m Mooncake, from <em>Final Space</em>, and <strong>crypto wallets</strong> keep my Bitcoin and Ethereum safe—chookity! Learn about hardware, software, and paper wallets. <em>Float safely in crypto space</em>—protect your assets!</p><p><strong>Software Wallets</strong></p><p>Software wallets, like MetaMask (free), are apps for daily trades. Install on Chrome and store Bitcoin or ETH ($10 minimum). Enable 2FA and backup seed phrases (12 words). Mooncake’s insight: use for small amounts, like buying space cookies. <em>Chookity—check phishing links!</em>. Connect to exchanges like Binance for trading.</p><p><strong>Hardware Wallets</strong></p><p>Hardware wallets, like Ledger Nano S ($80), are USB devices for long-term storage. They’re offline, safe from hacks, like a spaceship’s vault. Store $1000+ in BTC or ETH. Set a PIN and keep seeds in a safe. <em>Even Gary trusts Ledger</em>—buy from official sites. Mooncake’s tip: test with $50 first.</p><p><strong>Paper Wallets</strong></p><p>Paper wallets are printed keys (QR codes), free via BitAddress.org. Store in a safe or bank vault. They’re unhackable but fragile—laminate them. <em>Chookity—don’t lose the paper!</em>. Use for savings, like hiding treasure. Transfer small amounts to software wallets for spending.</p><p><strong>Safety and Future</strong></p><p>Wallets secure wealth, but scams stole $4B in 2024—never share seeds. Update software regularly. Crypto wallets may integrate with DeFi or NFTs, like a galactic bank. Start with MetaMask and $20. <em>Guard your loot</em>—float securely, chookity!</p>",
+    created_at: 1739750400000,
+    votes: 4,
+    article_img_url: "https://images.pexels.com/photos/843700/pexels-photo-843700.jpeg?w=700&h=700"
+  },
+  {
+    title: "Blockchain Technology Guide",
+    topic: "crypto",
+    author: "whitewolf",
+    body: "<p><strong>Hunting Digital Ledgers</strong></p><p>I’m Geralt of Rivia, and <strong>blockchain</strong> is my silver sword for crypto, a decentralized ledger powering Bitcoin and beyond. Learn its mechanics, consensus, and uses. <em>Hunt crypto knowledge</em>—master blockchain!</p><p><strong>Blockchain Basics</strong></p><p>Blockchain is a chain of blocks, each holding transactions, like a Witcher’s contract log. Nodes (computers) share it, ensuring no single point fails. Bitcoin’s blockchain, public via Blockchain.com, tracks $1T in value (2025). Geralt’s insight: it’s trustless, like a deal with no middleman. <em>Truth is my medallion</em>.</p><p><strong>Consensus Mechanisms</strong></p><p>Proof-of-Work (PoW) secures Bitcoin—miners solve puzzles, using 150 TWh yearly. Ethereum’s Proof-of-Stake (PoS) is greener, staking ETH for validation. Study via CoinDesk. PoS cuts energy 99%, like dodging a wyvern’s fire. <em>Choose efficiency</em>—PoS suits future chains. Geralt’s tip: join staking pools for rewards.</p><p><strong>Blockchain Uses</strong></p><p>Beyond crypto, blockchain tracks supply chains (e.g., IBM’s Food Trust) and secures votes. Smart contracts on Ethereum automate deals, like a potion’s recipe. Explore via Etherscan. Costs ($50/contract) limit scale, but Solana’s low fees ($0.01) grow adoption. <em>Hunt new applications</em>—blockchain reshapes trust.</p><p><strong>Risks and Learning</strong></p><p>Hacks and scams plague blockchain—use audited platforms. Learn via Coursera’s crypto courses ($50). Blockchain’s transparency empowers, like a Witcher’s senses, but demands vigilance. Start with $100 in ETH to experiment. <em>Forge a digital path</em>—study blockchain and slay uncertainty!</p>",
+    created_at: 1739836800000,
+    votes: 6,
+    article_img_url: "https://images.pexels.com/photos/315788/pexels-photo-315788.jpeg?w=700&h=700"
+  },
+  {
+    title: "Leadership Principles",
+    topic: "business-finance",
+    author: "youshallnotpass",
+    body: "<p><strong>Guiding Like a Grey Pilgrim</strong></p><p>I am Gandalf, and <strong>leadership</strong> is my staff, guiding Middle-earth through darkness. Learn to inspire teams, make decisions, and navigate crises, as I did with the Fellowship. <em>You shall not pass</em> weakness—lead with wisdom!</p><p><strong>Inspiring Teams</strong></p><p>Motivate like a wizard’s light. Share a clear vision, like destroying the One Ring. Recognize efforts—praise a coder’s bug fix like Bilbo’s courage. Hold weekly check-ins (15 minutes) to align goals. Gandalf’s insight: listen actively, as I did to Frodo, to build trust. <em>A fellowship thrives on unity</em>—foster collaboration.</p><p><strong>Decision-Making</strong></p><p>Choose wisely, like sparing Gollum. Gather data—use tools like Tableau for insights. Weigh risks and benefits; consult mentors. In crises, act swiftly but consult your team, as I did at Helm’s Deep. <em>Even wizards doubt</em>—journal decisions to learn. Gandalf’s tip: set deadlines to avoid paralysis.</p><p><strong>Navigating Crises</strong></p><p>Crises test leaders, like facing a Balrog. Communicate transparently—update staff daily via Slack. Delegate tasks to skilled allies, like Aragorn leading men. Post-crisis, reflect via SWOT analysis to grow. <em>Strength shines in chaos</em>—train via role-plays. Stay calm, as I was on the bridge.</p><p><strong>Why Leadership Matters</strong></p><p>Great leaders drive success, boosting morale and profits. Practice daily—mentor a junior or read <em>Dare to Lead</em> ($20). Inspire like a beacon, uniting diverse teams. Build resilience for long quests. <em>Forge a legacy</em>—lead with a wizard’s heart!</p>",
+    created_at: 1739923200000,
+    votes: 8,
+    article_img_url: "https://images.pexels.com/photos/3184297/pexels-photo-3184297.jpeg?w=700&h=700"
+  },
+  {
+    title: "Startup Success Strategies",
+    topic: "business-finance",
+    author: "dragonrider",
+    body: "<p><strong>Building Kingdoms from Scratch</strong></p><p>I am Daenerys Targaryen, and <strong>startups</strong> are my new dragons, born from vision and fire. Learn to pitch ideas, secure funding, and scale businesses, as I conquered Westeros. <em>Mother of Dragons, entrepreneur</em>—launch your venture!</p><p><strong>Crafting a Pitch</strong></p><p>A pitch is your battle cry. Summarize your idea in 60 seconds: problem, solution, market size, and team. Use Canva for sleek slides ($10/month). Practice with allies, like pitching to Tyrion. Daenerys’ insight: show passion, as I did freeing slaves. <em>Ignite investors’ hearts</em>—target angel groups via Gust.</p><p><strong>Securing Funding</strong></p><p>Raise capital like rallying Dothraki. Bootstrap with $5000–$10,000 personal funds, then seek $50,000–$200,000 from angels. Crowdfund via Kickstarter (5% fees). Venture capital suits $1M+ rounds—pitch to Y Combinator. <em>Dragons need gold</em>—network at startup events. Daenerys’ tip: perfect your financial model in Excel.</p><p><strong>Scaling Your Business</strong></p><p>Grow like conquering cities. Hire specialists (e.g., coders, marketers) via Upwork ($20/hour). Use CRM tools like HubSpot ($50/month) for customer growth. Test markets with MVPs—launch a beta in 3 months. <em>Rule with strategy</em>—monitor KPIs weekly. Delegate to scale, as I did with Daario.</p><p><strong>Why Startups Thrive</strong></p><p>Startups drive innovation, like dragonfire reshaping realms. They risk failure (90% fail in 3 years), so pivot fast—read <em>Lean Startup</em> ($15). Build a tribe of mentors and customers. <em>Forge your empire</em>—launch with a Khaleesi’s courage!</p>",
+    created_at: 1740009600000,
+    votes: 7,
+    article_img_url: "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?w=700&h=700"
+  },
+  {
+    title: "Investment Planning Techniques",
+    topic: "business-finance",
+    author: "avadakedavra",
+    body: "<p><strong>Brewing Wealth Like Dark Magic</strong></p><p>I am Lord Voldemort, and <strong>investment strategies</strong> are my potions for wealth, mastering stocks, bonds, and real estate. This guide offers a Slytherin’s cunning for profit. <em>Dark lords of finance</em>—grow your fortune!</p><p><strong>Stock Market Mastery</strong></p><p>Stocks, like Horcruxes, hold value. Invest in S&P 500 ETFs (e.g., VOO, $500 minimum) for 10% annual returns. Use Robinhood (free trades) for buys. Diversify across tech (Apple) and healthcare (Pfizer). Voldemort’s insight: hold 5–10 years, ignoring daily dips. <em>Patience is power</em>—start with $1000.</p><p><strong>Bonds for Stability</strong></p><p>Bonds are safe, like a hidden vault. Buy U.S. Treasury bonds ($100 minimum, 4% yield) via TreasuryDirect. Corporate bonds (e.g., IBM) offer 5–6%. They balance stock risks, maturing in 2–10 years. <em>Even dark lords hedge</em>—use Fidelity for research. Voldemort’s tip: ladder bonds for steady income.</p><p><strong>Real Estate Ventures</strong></p><p>Property builds wealth, like owning Diagon Alley. Buy rental homes ($100,000+) via Zillow, aiming for 8% returns. REITs (e.g., Vanguard’s VNQ, $3000 minimum) suit smaller budgets. Study local markets—rents rise 5% yearly. <em>Land is eternal</em>—start with $5000 in REITs.</p><p><strong>Risk and Discipline</strong></p><p>Markets tempt greed, like a dark spell. Limit losses with stop-orders (10% below price). Read <em>The Intelligent Investor</em> ($20) for wisdom. Invest $100 monthly to learn, scaling as skill grows. <em>Wield wealth coldly</em>—build your empire with a dark lord’s focus!</p>",
+    created_at: 1740096000000,
+    votes: 5,
+    article_img_url: "https://images.pexels.com/photos/669454/pexels-photo-669454.jpeg?w=700&h=700"
+  },
+  {
+    title: "Gig Economy Opportunities",
+    topic: "business-finance",
+    author: "chookity",
+    body: "<p><strong>Floating Through Flexible Work—Chookity!</strong></p><p>I’m Mooncake, from <em>Final Space</em>, and the <strong>gig economy</strong> is my cosmic hustle—chookity! Learn to freelance, use platforms like Upwork, and manage finances. <em>Zoom through gigs</em>—thrive as a gig worker!</p><p><strong>Starting as a Freelancer</strong></p><p>Freelancing offers freedom, like dodging asteroids. Offer skills—writing, coding, or design—on Upwork ($20/hour average). Build a portfolio on Behance (free). Pitch clients with tailored proposals, like Mooncake’s charm. <em>Chookity—start small!</em>. Mooncake’s insight: complete 5 jobs to boost your profile’s rating.</p><p><strong>Using Gig Platforms</strong></p><p>Upwork and Fiverr connect you to clients. Set rates ($15–$50/hour) based on experience. Create gigs for specific tasks, like logo design ($100). Respond fast—48% of clients hire within 24 hours. <em>Even Gary hustles</em>—use Trello for task tracking. Mooncake’s tip: pay 10% platform fees for visibility.</p><p><strong>Managing Finances</strong></p><p>Gigs lack benefits, so save 30% for taxes via QuickBooks ($15/month). Budget with apps like YNAB ($14/month). Invoice clients promptly via PayPal (2.9% fees). Save for retirement in a Roth IRA ($500/year). <em>Chookity—plan like a spaceship!</em>. Aim for 3 clients monthly for steady $2000.</p><p><strong>Why Gigs Work</strong></p><p>The gig economy empowers flexibility, earning $100B yearly (2025). It risks instability, so diversify clients. Network on LinkedIn for jobs. Read <em>The Gig Economy</em> ($15) for tips. <em>Float to success</em>—hustle with Mooncake’s cosmic vibe, chookity!</p>",
+    created_at: 1740182400000,
+    votes: 4,
+    article_img_url: "https://images.pexels.com/photos/3184325/pexels-photo-3184325.jpeg?w=700&h=700"
+  },
+  {
+    title: "Financial Planning Essentials",
+    topic: "business-finance",
+    author: "whitewolf",
+    body: "<p><strong>Securing Wealth Like a Hunt</strong></p><p>I’m Geralt of Rivia, and <strong>financial planning</strong> is my strategy for long-term security, like preparing for a wyvern hunt. Learn to budget, save, and invest with a Witcher’s discipline. <em>Toss a coin to your future</em>—build wealth now!</p><p><strong>Crafting a Budget</strong></p><p>Budget like tracking prey. Use the 50/30/20 rule: 50% needs (rent, $1000/month), 30% wants (tavern ale, $600), 20% savings ($400). Track spending with Mint (free). Geralt’s insight: cut subscriptions ($50/month) to free coin. <em>Every crown counts</em>—review weekly to stay on path.</p><p><strong>Saving for Emergencies</strong></p><p>Save 3–6 months’ expenses ($6000–$12,000) in a high-yield account (4% APY, Ally Bank). Deposit $100 monthly to build it in 5 years. Keep it liquid, like a potion ready for use. <em>Even Witchers face lean times</em>—start with $500. Geralt’s tip: automate transfers to avoid temptation.</p><p><strong>Investing for Growth</strong></p><p>Invest like forging a silver sword. Start with index funds (Vanguard’s VTSAX, $3000 minimum, 8% returns). Add $100 medio ambiente via Fidelity. Diversify with bonds ($1000) and real estate ETFs ($500). <em>Hunt long-term gains</em>—hold 10+ years. Read <em>Bogleheads’ Guide</em> ($20) for wisdom.</p><p><strong>Why Planning Wins</strong></p><p>Planning secures freedom, like a contract’s reward. It fights debt and builds legacies. Meet a planner ($100/hour) yearly, or use robo-advisors (Betterment, 0.25% fees). Act now—$100 invested grows to $400 in 20 years. <em>Forge your fortune</em>—plan with a Witcher’s grit!</p>",
+    created_at: 1740268800000,
+    votes: 6,
+    article_img_url: "https://images.pexels.com/photos/583850/pexels-photo-583850.jpeg?w=700&h=700"
+  }
+]

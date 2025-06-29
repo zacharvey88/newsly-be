@@ -791,11 +791,90 @@ describe("/api/users", () => {
 
 });
 
+// api/users/login
+
+describe("/api/users/login", () => {
+
+  test("POST 200: Successful login with correct username and password should return status 200 with user object", () => {
+    return request(app)
+    .post("/api/users/login")
+    .send({
+      username: "theRealDumbledore",
+      password: "test"
+    })
+    .expect(200)
+    .then(({body})=>{
+      const {user} = body
+      expect(user).toMatchObject({
+        username: "theRealDumbledore",
+        name: "Albus",
+        avatar_url: expect.any(String),
+        password: "test"
+      });
+    })
+  })
+
+  test("POST 400: Login with incorrect password should return status 400 with error message", () => {
+    return request(app)
+    .post("/api/users/login")
+    .send({
+      username: "theRealDumbledore",
+      password: "wrongpassword"
+    })
+    .expect(400)
+    .then(({body})=>{
+      const {msg} = body
+      expect(msg).toBe("Incorrect Password");
+    })
+  })
+
+  test("POST 404: Login with non-existent username should return status 404 with not found message", () => {
+    return request(app)
+    .post("/api/users/login")
+    .send({
+      username: "notthedarklord",
+      password: "test"
+    })
+    .expect(404)
+    .then(({body})=>{
+      const {msg} = body
+      expect(msg).toBe("Not found");
+    })
+  })
+
+  test("POST 400: Login with missing username should return status 400 with bad request message", () => {
+    return request(app)
+    .post("/api/users/login")
+    .send({
+      password: "test"
+    })
+    .expect(400)
+    .then(({body})=>{
+      const {msg} = body
+      expect(msg).toBe("Bad request");
+    })
+  })
+
+  test("POST 400: Login with missing password should return status 400 with bad request message", () => {
+    return request(app)
+    .post("/api/users/login")
+    .send({
+      username: "theRealDumbledore"
+    })
+    .expect(400)
+    .then(({body})=>{
+      const {msg} = body
+      expect(msg).toBe("Bad request");
+    })
+  })
+
+});
+
 // api/users:username
 
 describe("/api/users/:username", () => {
 
-  test("GET: Successful requests should return a single user matched to the username, with username, name and avatar_url properties", () => {
+  test("GET: Successful requests should return a single user matched to the username, with username, name, avatar_url and password", () => {
     return request(app)
     .get("/api/users/theRealDumbledore")
     .expect(200)
@@ -804,7 +883,8 @@ describe("/api/users/:username", () => {
       expect(user).toMatchObject({
         username: "theRealDumbledore",
         name: "Albus",
-        avatar_url: expect.any(String)
+        avatar_url: expect.any(String),
+        password: 'test'
       });
     })
   })

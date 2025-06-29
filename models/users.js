@@ -11,7 +11,7 @@ function selectUsers() {
 
 function selectUser(username) {
   return db.query(`
-    SELECT username, name, avatar_url 
+    SELECT username, name, avatar_url, password
     FROM users 
     WHERE username = $1`, [username])
   .then(({rows})=>{
@@ -22,13 +22,13 @@ function selectUser(username) {
   })
 }
 
-function updateUser(username, name) {
+function updateUser(username, name, password, avatar_url) {
   return db.query(`
     UPDATE users
-    SET name=$2
+    SET name=$2, password=$3, avatar_url=$4
     WHERE username=$1
     RETURNING *
-  `, [username, name])
+  `, [username, name, password, avatar_url])
   .then(({rows})=>{
     if(rows.length === 0) {
       return Promise.reject({status: 404, msg: "Not found"})
